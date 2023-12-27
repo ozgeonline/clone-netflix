@@ -36,3 +36,4 @@ export async function deleteFromWatchlist(formData: FormData) {
 
   revalidatePath(pathname);
 }
+

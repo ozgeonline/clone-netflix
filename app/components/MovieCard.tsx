@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Heart, PlayCircle } from "lucide-react";
 import PlayVideoModal from "./PlayVideoModal";
 import { useState } from "react";

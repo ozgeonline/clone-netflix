@@ -4,12 +4,16 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+   schemas  = ["public", "auth"]
 }
+
+
 
 model Account {
   id                 String  @id @default(cuid())
@@ -29,6 +33,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@schema("auth")
 }
 
 model Session {
@@ -37,6 +42,7 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@schema("auth")
 }
 
 model User {
@@ -47,6 +53,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  @@schema("auth")
 }
 
 model Movie {
@@ -63,6 +70,7 @@ model Movie {
   WatchLists    WatchList[]
 
   createdAt DateTime @default(now())
+  @@schema("public")
 }
 
 model WatchList {
@@ -71,6 +79,7 @@ model WatchList {
 
   Movie   Movie? @relation(fields: [movieId], references: [id])
   movieId Int?
+  @@schema("public")
 }
 
 model VerificationToken {
@@ -79,4 +88,5 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+  @@schema("public")
 }

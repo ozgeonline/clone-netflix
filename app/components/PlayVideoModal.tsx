@@ -7,14 +7,14 @@ import {
 } from "@/components/ui/dialog";
 
 interface iAppProps {
-  title: string;
-  overview: string;
-  youtubeUrl: string;
-  state: boolean;
-  changeState: any;
-  release: number;
-  age: number;
-  duration: number;
+  title: string
+  overview: string
+  youtubeUrl: string
+  state: boolean
+  changeState: any
+  release: number
+  age: number
+  duration: number
 }
 
 export default function PlayVideoModal({
