@@ -8,7 +8,7 @@ export default async function HomeLayout({children} : {children: ReactNode}){
   const session = await getServerSession(authOptions)
 
   if(!session) {
-    redirect("/login")
+    redirect("/tr-en")
   }
   return (
     <>

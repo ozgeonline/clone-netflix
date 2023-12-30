@@ -3,23 +3,15 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'image.tmdb.org',
-        port: '',
+        protocol: "https",
+        hostname: "googleusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "image.tmdb.org",
       },
     ],
   },
-
-  // webpack: config => {
-  //   config.resolve.fallback = {
-  //     fs: false,
-  //   };
-
-  //   return config;
-  // },
- 
-
 };
 
-
-module.exports = nextConfig
+module.exports = nextConfig;
