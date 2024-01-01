@@ -58,7 +58,7 @@ export default async function Login() {
       <p
         className="text-gray-500 text-xs mt-5"
       >
-        This page is protected by Google reCAPTCHA to ensure you're not a bot. 
+        This page is protected by Google reCAPTCHA to ensure you&apos;re not a bot. 
         <span className="text-blue-600">Learn more.</span>
       </p>
     </div>
