@@ -74,13 +74,6 @@ export default function UserInput() {
         disabled
         sx={{marginTop:"1rem"}}
       />
-      <Button
-        type="submit"
-        variant="destructive"
-        className="bg-[#e50914] w-[336px] mt-10"
-      >
-        Log in
-      </Button>
     </Box>
   )
 }

@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/utils/auth"
 import { redirect } from "next/navigation"
 import UserInput from "@/app/components/UserInput";
+import { Button } from "@/components/ui/button";
 
 export default async function Login() {
 
@@ -23,6 +24,13 @@ export default async function Login() {
         <div className="space-y-4 mt-5">
 
           <UserInput />
+          <Button
+            type="submit"
+            variant="destructive"
+            className="bg-[#e50914] w-[336px] mt-10"
+          >
+            Log in
+          </Button>
         
           <div className="flex justify-between">
             <div className="flex items-center space-x-2">
