@@ -39,7 +39,7 @@ export default function FQA() {
             id={`${data.id}-header`}
             sx={{
               "& .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-                transform: 'rotate(45deg)',
+                transform: "rotate(45deg)"
               },
               paddingX: "24px",
               paddingY: "10px",
