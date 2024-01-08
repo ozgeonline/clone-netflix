@@ -34,11 +34,14 @@ export default function FQA() {
             }}
         >
           <AccordionSummary
-            expandIcon={<AddIcon sx={{color:"#fff", width:"44px", height:"44px", strokeWidth:2}}/>}
+            expandIcon={<AddIcon sx={{color:"#fff", width:"44px", height:"44px"}}/>}
             aria-controls={`${data.id}-content`}
             id={`${data.id}-header`}
             sx={{
               "& .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+                transform: "rotate(45deg)"
+              },
+              "& .css-1vm75m7-MuiButtonBase-root-MuiAccordionSummary-root .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
                 transform: "rotate(45deg)"
               },
               paddingX: "24px",
