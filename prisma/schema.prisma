@@ -73,6 +73,22 @@ model Movie {
   @@schema("public")
 }
 
+model Card { //m
+  id              Int @id
+  cardTitle       String
+  cardComment     String
+  cardImg         String
+
+  @@schema("public")
+}
+
+model Fqa { //m
+  id         Int @id
+  fqaQ       String
+  fqEx       String
+
+  @@schema("public")
+}
 model WatchList {
   id     String @id @default(uuid())
   userId String

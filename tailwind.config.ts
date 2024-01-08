@@ -12,7 +12,16 @@ module.exports = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        'small': '640px',
+        // => @media (min-width: 640px) { ... }
+        'medium': '768px',
+        // => @media (min-width: 768px) { ... }
+        'large': '1024px',
+        // => @media (min-width: 1024px) { ... }
+        'extraLarge': '1280px',
+        // => @media (min-width: 1280px) { ... }
+        'doubleExtraLarge': '1536px',
+        // => @media (min-width: 1536px) { ... }
       },
     },
     extend: {
@@ -72,5 +81,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+  ],
 }
