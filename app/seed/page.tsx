@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import prisma from "../utils/db";
 
-export function SeedDatabase() {
+export default function SeedDatabase() {
   async function postData() {
     "use server";
     await prisma.movie.createMany({
