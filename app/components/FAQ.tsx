@@ -34,15 +34,12 @@ export default function FQA() {
             }}
         >
           <AccordionSummary
-            expandIcon={<AddIcon sx={{color:"#fff", width:"44px", height:"44px"}}/>}
+            expandIcon={<AddIcon sx={{color:"#fff"}} className='w-8 h-8 sm:w-12 sm:h-12'/>}
             aria-controls={`${data.id}-content`}
             id={`${data.id}-header`}
             sx={{
-              "& .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-                transform: "rotate(45deg)"
-              },
-              "& .css-1vm75m7-MuiButtonBase-root-MuiAccordionSummary-root .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-                transform: "rotate(45deg)"
+              "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+                transform: "rotate(45deg) !important"
               },
               paddingX: "24px",
               paddingY: "10px",
@@ -50,29 +47,27 @@ export default function FQA() {
               ":hover":{backgroundColor: "#414141"},
             }}
           >
-            <Typography sx={{fontSize:"23px",}}>
+            <Typography className='text-md sm:text-lg'>
               {data.title}
             </Typography>
           </AccordionSummary>
           <AccordionDetails sx={{paddingX: "24px", paddingY: "18px"}}>
-          <Typography sx={{fontSize:"23px", }}>
-            {data.content}
-          </Typography>
+            <Typography component={'span'} dangerouslySetInnerHTML={{ __html: data.content }} className='text-md sm:text-lg' />
           </AccordionDetails>
         </Accordion>
       ))}
       <div className='mt-12 items-center justify-center flex flex-col'>
-        <h3 className='text-xl'>Ready to watch? Enter your email to create or restart your membership.</h3>
-        <form method="post" action="/api/auth/signin" className="flex justify-center mt-4">
+        <h3 className='text-xl text-center'>Ready to watch? Enter your email to create or restart your membership.</h3>
+        <form method="post" action="/api/auth/signin" className="flex sm:flex-row flex-col items-center justify-center mt-4">
           <input
             type="email"
             name="email"
             placeholder="Email address"
-            className="py-4 px-4 w-[375px] rounded-sm bg-neutral-900/70 border border-white/25 mr-2"
+            className="sm:py-4 sm:px-4 w-[275px] py-3 px-3 rounded-sm bg-neutral-900/70 border border-white/25 mr-2"
           />
           <button
             type="submit"
-            className="flex py-3 pr-4 pl-6 w-[205px] rounded-sm bg-[#e50914] border border-[#e50914] text-2xl hover:opacity-90">
+            className="flex pt-2 px-3 sm:py-3 sm:pr-4 sm:pl-6 w-[160px] h-[48px] sm:w-[205px] sm:h-[56px] text-lg mt-3 sm:mt-0 sm:text-2xl rounded-sm bg-[#e50914] border border-[#e50914]  hover:opacity-90">
               Get Started <ChevronRight className="ml-2" size="32px"/>
           </button>
         </form>
