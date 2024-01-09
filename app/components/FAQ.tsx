@@ -47,12 +47,12 @@ export default function FQA() {
               ":hover":{backgroundColor: "#414141"},
             }}
           >
-            <Typography className='text-md sm:text-lg'>
+            <Typography className='text-md sm:text-xl'>
               {data.title}
             </Typography>
           </AccordionSummary>
           <AccordionDetails sx={{paddingX: "24px", paddingY: "18px"}}>
-            <Typography component={'span'} dangerouslySetInnerHTML={{ __html: data.content }} className='text-md sm:text-lg' />
+            <Typography component={'span'} dangerouslySetInnerHTML={{ __html: data.content }} className='text-md sm:text-xl' />
           </AccordionDetails>
         </Accordion>
       ))}
