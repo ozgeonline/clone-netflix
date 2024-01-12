@@ -9,6 +9,7 @@ import AddIcon from '@mui/icons-material/Add'
 import fqaData from '../data/FAQ'
 import { useState } from 'react'
 import { ChevronRight } from 'lucide-react'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 export default function FQA() {
 
@@ -16,6 +17,7 @@ export default function FQA() {
   const handleChange = (data: any) => (event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? data : false)
   }
+  const matches = useMediaQuery('(min-width:640px)')
 
   return (
     <div  className='py-20 px-8 border-t-8 justify-center items-center flex flex-col'>
@@ -34,12 +36,16 @@ export default function FQA() {
             }}
         >
           <AccordionSummary
-            expandIcon={<AddIcon sx={{color:"#fff"}} className='w-8 h-8 sm:w-12 sm:h-12'/>}
+            expandIcon={
+              <AddIcon sx={{
+                color:"#fff",
+                fontSize: `${matches ? "44px" : "24px"}`
+              }} />}
             aria-controls={`${data.id}-content`}
             id={`${data.id}-header`}
             sx={{
               "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-                transform: "rotate(45deg) !important"
+                transform: "rotate(45deg) !important",
               },
               paddingX: "24px",
               paddingY: "10px",
@@ -47,7 +53,7 @@ export default function FQA() {
               ":hover":{backgroundColor: "#414141"},
             }}
           >
-            <Typography className='text-md sm:text-xl'>
+            <Typography sx={{ fontSize: `${matches ? "24px" : "18px"}`}}>
               {data.title}
             </Typography>
           </AccordionSummary>
