@@ -62,18 +62,18 @@ export default function FQA() {
           </AccordionDetails>
         </Accordion>
       ))}
-      <div className='mt-12 items-center justify-center flex flex-col'>
+      <div className='mt-12  justify-center flex flex-col'>
         <h3 className='text-xl text-center'>Ready to watch? Enter your email to create or restart your membership.</h3>
         <form method="post" action="/api/auth/signin" className="flex sm:flex-row flex-col items-center justify-center mt-4">
           <input
             type="email"
             name="email"
             placeholder="Email address"
-            className="sm:py-4 sm:px-4 w-[275px] py-3 px-3 rounded-sm bg-neutral-900/70 border border-white/25 mr-2"
+            className="sm:py-4 sm:px-4 w-full sm:w-[368px] py-3 px-3 mx-2 rounded-sm bg-neutral-900/70 border border-white/25 mr-2"
           />
           <button
             type="submit"
-            className="flex pt-2 px-3 sm:py-3 sm:pr-4 sm:pl-6 w-[160px] h-[48px] sm:w-[205px] sm:h-[56px] text-lg mt-3 sm:mt-0 sm:text-2xl rounded-sm bg-[#e50914] border border-[#e50914]  hover:opacity-90">
+            className="flex pt-2 px-3 sm:py-3 sm:pr-4 sm:pl-6 w-[160px] h-[48px] sm:w-[205px] sm:h-[56px] text-lg mt-3 sm:mt-0 sm:text-2xl rounded-sm bg-[#e50914] border border-[#e50914]  hover:brightness-90">
               Get Started <ChevronRight className="ml-2" size="32px"/>
           </button>
         </form>

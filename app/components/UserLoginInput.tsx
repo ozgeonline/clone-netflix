@@ -1,14 +1,16 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { Box, TextField } from "@mui/material"
-import { useState } from "react";
+import { useState } from "react"
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 export default function UserInput() {
 
     const [inputValue, setInputValue] = useState("")
     const [warningMessage, setWarningMessage] = useState("")
     const [isTouched, setIsTouched] = useState(false)
+
+    const matches = useMediaQuery('(min-width:640px)')
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value
@@ -35,8 +37,8 @@ export default function UserInput() {
     <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { width: '336px', borderRadius:"4px"},
-        '& .css-batk84-MuiInputBase-root-MuiFilledInput-root::after': {
+        '& .MuiTextField-root': { width: '100%', borderRadius:"4px"},
+        '& .MuiInputBase-root.MuiFilledInput-root.MuiFilledInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl::after': {
           borderBottomLeftRadius:"4px", 
           borderBottomRightRadius:"4px",
           borderBottom:"2px solid #e87c03",
@@ -48,6 +50,8 @@ export default function UserInput() {
         '& .MuiFormLabel-root': {color:"#8c8c8c"},
         '& .MuiFormHelperText-root': {color: "#e87c03"},
         '& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {color:"#8c8c8c"},
+        maxWidth:`${matches ? "336px" : "100%"}`,
+        width:"100%"
         
       }}
       noValidate
