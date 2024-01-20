@@ -75,8 +75,9 @@ export default function UserInput() {
         name="password"
         defaultValue=""
         variant="filled"
+        
         disabled
-        sx={{marginTop:"1rem"}}
+        sx={{marginTop:"1rem", input: { cursor: 'no-drop' }}}
       />
     </Box>
   )

@@ -1,4 +1,4 @@
-import { MovieCard } from "@/app/components/MovieCard";
+import { MovieCard } from "@/app/components/section/MovieCard";
 import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth";

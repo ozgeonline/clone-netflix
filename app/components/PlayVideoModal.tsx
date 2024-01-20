@@ -44,5 +44,5 @@ export default function PlayVideoModal({
         <iframe src={youtubeUrl} height={250} className="w-full"></iframe>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

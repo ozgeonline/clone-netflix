@@ -6,7 +6,7 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import AddIcon from '@mui/icons-material/Add'
-import fqaData from '../data/FAQ'
+import fqaData from '../../data/FAQ'
 import { useState } from 'react'
 import { ChevronRight } from 'lucide-react'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -40,7 +40,9 @@ export default function FQA() {
               <AddIcon sx={{
                 color:"#fff",
                 fontSize: `${matches ? "44px" : "24px"}`
-              }} />}
+                }} 
+              />
+            }
             aria-controls={`${data.id}-content`}
             id={`${data.id}-header`}
             sx={{
@@ -78,12 +80,6 @@ export default function FQA() {
           </button>
         </form>
       </div>
-      
-    </div>
-
-
-
-  
-      
+    </div>    
   )
 }

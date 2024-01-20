@@ -1,26 +1,26 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../utils/auth";
+import { getServerSession } from "next-auth"
+import { authOptions } from "../utils/auth"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import UserSignOutButton from "./UserSignOutButton";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import UserSignOutButton from "./button/UserSignOutButton"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu"
 
 export default async function UserButton() {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions)
 
   if (!session) {
     return;
   }
 
-  const avatarSrc = session.user?.image || "/avatar.png";
-  const userShortName = session.user?.name?.slice(0, 2) || "un";
+  const avatarSrc = session.user?.image || "/avatar.png"
+  const userShortName = session.user?.name?.slice(0, 2) || "un"
   const userName = session.user?.name
   const userMail = session.user?.email
 
@@ -54,5 +54,5 @@ export default async function UserButton() {
         
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

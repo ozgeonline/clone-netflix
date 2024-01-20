@@ -5,9 +5,9 @@ import Logo from "../../public/netflix_logo.svg"
 import { Languages } from "lucide-react"
 import { ChevronDown } from 'lucide-react'
 import Link from "next/link"
-import CardAnimationWatch from "../components/CardAnimationWatch"
-import FAQ from "../components/FAQ"
-import Footer from "../components/Footer"
+import CardAnimationWatch from "../components/section/CardAnimationWatch"
+import FAQ from "../components/section/FAQ"
+import Footer from "../components/section/Footer"
 
 
 export default function AuthLayout({children}:{children: ReactNode}){

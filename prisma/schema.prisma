@@ -1,7 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-//kullanıcı verilerini depolamak için
-
 generator client {
   provider = "prisma-client-js"
   previewFeatures = ["multiSchema"]
@@ -10,10 +6,8 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-   schemas  = ["public", "auth"]
+  schemas  = ["public", "auth"]
 }
-
-
 
 model Account {
   id                 String  @id @default(cuid())

@@ -3,7 +3,6 @@
 import { Box, TextField } from "@mui/material"
 import { useState } from "react"
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { XCircle } from 'lucide-react'
 
 export default function UserGetStartedInput() {
   
@@ -35,7 +34,6 @@ export default function UserGetStartedInput() {
     }
 
     return (
-      
       <Box
         component="form"
         sx={{
@@ -60,7 +58,7 @@ export default function UserGetStartedInput() {
           '& .MuiFilledInput-input': {borderRadius:"4px"},
           '& .MuiFormLabel-root': {color:"#8c8c8c"},
           '& .MuiFormLabel-root.Mui-focused': {color:"#8c8c8c"},
-          '& .MuiFormHelperText-root': {color: "#eb3942",marginBottom:"-1.4rem"},
+          '& .MuiFormHelperText-root': {color: "#eb3942", marginBottom:"-1.4rem"},
           width:`${matches ? "375px" : "250px"}`,
         }}
         noValidate

@@ -1,5 +1,5 @@
-import prisma from "../utils/db"
-import MovieButtons from "./MovieButtons"
+import prisma from "../../utils/db"
+import MovieButtons from "../button/MovieButtons"
 
 async function getData() {
   const data = await prisma.movie.findFirst({
@@ -19,20 +19,20 @@ async function getData() {
 }
 
 export default async function MovieVideo() {
-  const data = await getData();
+  const data = await getData()
 
   return (
-    <div className="h-[55vh] lg:h-[55vh] w-full flex justify-start items-center">
+    <div className="h-[55vh] lg:h-[55vh] w-full flex justify-start items-center top-10">
       <video
         poster={data?.imageString}
         autoPlay
         muted
         loop
         src={data?.videoSource}
-        className="w-full absolute top-0 left-0 h-[60vh] object-cover -z-10 brightness-[60%]"
+        className="w-full absolute top-0 left-0 h-[100vh] object-cover -z-10 brightness-[60%]"
       ></video>
 
-      <div className="absolute w-[90%] lg:w-[40%] mx-auto">
+      <div className="absolute w-[90%] lg:w-[40%] -ml-24 mt-[30rem]">
         <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold">
           {data?.title}
         </h1>

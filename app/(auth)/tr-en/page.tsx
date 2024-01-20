@@ -2,9 +2,9 @@ import { authOptions } from "@/app/utils/auth"
 import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
 import { ChevronRight } from 'lucide-react'
-import CardAnimationWatch from "@/app/components/CardAnimationWatch"
-import FAQ from "@/app/components/FAQ"
-import Footer from "@/app/components/Footer"
+import CardAnimationWatch from "@/app/components/section/CardAnimationWatch"
+import FAQ from "@/app/components/section/FAQ"
+import Footer from "@/app/components/section/Footer"
 import UserGetStartedInput from "@/app/components/UserGetStartedInput"
 
 export default async function Tr() {

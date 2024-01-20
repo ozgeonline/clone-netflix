@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Heart, PlayCircle } from "lucide-react";
-import PlayVideoModal from "./PlayVideoModal";
+import { Button } from "@/components/ui/button"
+import { Heart, PlayCircle } from "lucide-react"
+import PlayVideoModal from "../PlayVideoModal"
 import { useState } from "react";
-import { addTowatchlist, deleteFromWatchlist } from "../action";
-import { usePathname } from "next/navigation";
+import { addTowatchlist, deleteFromWatchlist } from "../../action"
+import { usePathname } from "next/navigation"
 
 interface iAppProps {
-  title: string;
-  overview: string;
-  movieId: number;
-  watchList: boolean;
-  wachtListId: string;
-  youtubeUrl: string;
-  year: number;
-  age: number;
-  time: number;
+  title: string
+  overview: string
+  movieId: number
+  watchList: boolean
+  wachtListId: string
+  youtubeUrl: string
+  year: number
+  age: number
+  time: number
 }
 
 export function MovieCard({
@@ -31,8 +31,8 @@ export function MovieCard({
   year,
 }: iAppProps) {
 
-  const [open, setOpen] = useState(false);
-  const pathName = usePathname();
+  const [open, setOpen] = useState(false)
+  const pathName = usePathname()
 
   return (
     <>

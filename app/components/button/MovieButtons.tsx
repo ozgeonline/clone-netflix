@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { InfoIcon, PlayCircle } from "lucide-react";
-import { useState } from "react";
-import PlayVideoModal from "./PlayVideoModal";
+import { Button } from "@/components/ui/button"
+import { InfoIcon, PlayCircle } from "lucide-react"
+import { useState } from "react"
+import PlayVideoModal from "../PlayVideoModal"
 
 interface iAppProps {
   overview: string;
@@ -24,10 +24,10 @@ export default function MovieButtons({
   title,
   youtubeUrl,
 }: iAppProps) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
   return (
     <>
-      <Button onClick={() => setOpen(true)} className="text-lg font-medium">
+      <Button onClick={() => setOpen(true)} className="text-lg font-medium w-32">
         <PlayCircle className="mr-2 h-6 w-6" /> Play
       </Button>
       <Button
@@ -49,5 +49,5 @@ export default function MovieButtons({
         youtubeUrl={youtubeUrl}
       />
     </>
-  );
+  )
 }

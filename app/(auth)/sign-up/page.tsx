@@ -1,13 +1,13 @@
 import Link from "next/link";
-import GithubSignInButton from "@/app/components/GithubSignInButton"
-import GoogleSignInButton from "@/app/components/GoogleSignInButton"
+import GithubSignInButton from "@/app/components/button/GithubSignInButton"
+import GoogleSignInButton from "@/app/components/button/GoogleSignInButton"
 import { Checkbox } from "@/components/ui/checkbox"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/utils/auth"
 import { redirect } from "next/navigation"
 import UserInput from "@/app/components/UserLoginInput";
 import { Button } from "@/components/ui/button";
-import Footer from "@/app/components/Footer";
+import Footer from "@/app/components/section/Footer";
 
 export default async function Login() {
 

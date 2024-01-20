@@ -1,4 +1,4 @@
-import prisma from "../utils/db"
+import prisma from "../../utils/db"
 import Image from "next/image"
 
 async function getData() {
@@ -23,9 +23,10 @@ export default async function CardAnimationWatch() {
       <div 
         key={card.id} 
         className={`
-          border-t-8 md:py-[72px] xl:px-36 lg:px-5 flex flex-col py-16 lg:flex-row items-center
+          border-t-8 py-16 md:py-[72px] lg:px-5 xl:px-36 flex flex-col lg:flex-row items-center
           ${card.id % 2 !== 0  ? "lg:flex-row-reverse" : "lg:flex-row"}
-        `} >
+        `} 
+      >
           <div className="mx-10 2xl:w-[585px] xl:w-[475px] lg:w-[450px]">
             <h1 className="text-3xl lg:text-5xl text-center lg:text-start font-extrabold">{card.cardTitle}</h1>
             <p className="sm:text-sm text-center md:text-lg lg:text-2xl lg:text-start mt-4">{card.cardComment}</p>
