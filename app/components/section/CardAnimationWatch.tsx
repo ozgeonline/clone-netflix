@@ -18,7 +18,7 @@ export default async function CardAnimationWatch() {
   const data = await getData()
  
   return (
-    <div className="">
+    <div className="bg-black">
     {data.map((card) => (
       <div 
         key={card.id} 

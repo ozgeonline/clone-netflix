@@ -29,8 +29,10 @@ export default async function MovieVideo() {
         muted
         loop
         src={data?.videoSource}
-        className="w-full absolute top-0 left-0 h-[100vh] object-cover -z-10 brightness-[60%]"
+        className="w-full absolute top-0 left-0 h-[110vh] object-cover -z-20 brightness-[60%]"
       ></video>
+      <div className="absolute -bottom-64 w-screen h-44 bg-none -ms-40 -z-10 shadow-[0_35px_70px_55px_rgba(0,0,0,1)] shadow-[#141414]  transform rotate-180">
+      </div>
 
       <div className="absolute w-[90%] lg:w-[40%] -ml-24 mt-[30rem]">
         <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold">
@@ -45,7 +47,7 @@ export default async function MovieVideo() {
             overview={data?.overview as string}
             releaseDate={data?.release as number}
             title={data?.title as string}
-            youtubeUrl={data?.youtubeString as string}
+            videoSource={data?.youtubeString as string}
             key={data?.id}
           />
         </div>

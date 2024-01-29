@@ -17,7 +17,7 @@ export default function NavLink({ path, label }: Props) {
         <li>
           <Link
             href={path}
-            className="text-white font-semibold  text-sm"
+            className="text-white font-semibold text-sm"
           >
             {label}
           </Link>
@@ -25,7 +25,7 @@ export default function NavLink({ path, label }: Props) {
         ) : (
         <li>
           <Link
-            className="text-gray-300 font-normal text-sm"
+            className="text-white font-normal text-sm"
             href={path}
           >
             {label}

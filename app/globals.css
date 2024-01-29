@@ -59,13 +59,35 @@
   }
   body {
     @apply bg-[#141414] text-foreground;
+    width: 100%;
+    
+  }
+  img, video {
+    box-sizing: border-box;
+    
   }
 
   .navbar {
     background-color: #141414;
-    /* display: flex;
-    width: 100%;
-    justify-content: space-between; */
 
   }
+  /*******scroll*******/
+  .overflow-css::-webkit-scrollbar {
+    width: 0.1px;
+    background: transparent;
+  }
+  /* Track */
+  .overflow-css::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  /* Handle */
+  .overflow-css::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  /* Handle on hover */
+  .overflow-css::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+ 
+
 }

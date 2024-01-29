@@ -20,7 +20,7 @@ export default function FQA() {
   const matches = useMediaQuery('(min-width:640px)')
 
   return (
-    <div  className='py-20 px-8 border-t-8 justify-center items-center flex flex-col'>
+    <div  className='py-20 px-8 border-t-8 justify-center items-center flex flex-col bg-black'>
       <h1 className='text-5xl font-extrabold mb-7'>Frequently Asked Questions</h1>
       {fqaData.map((data) => (
         <Accordion

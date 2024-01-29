@@ -7,12 +7,15 @@ import PlayVideoModal from "../PlayVideoModal"
 
 interface iAppProps {
   overview: string;
-  youtubeUrl: string;
+  videoSource: string;
   id: number;
   age: number;
   title: string;
   releaseDate: number;
   duration: number;
+  movieId: number
+  watchList: boolean
+  wachtListId: string
 }
 
 export default function MovieButtons({
@@ -22,19 +25,22 @@ export default function MovieButtons({
   overview,
   releaseDate,
   title,
-  youtubeUrl,
+  videoSource,
+  movieId,
+  wachtListId,
+  watchList,
 }: iAppProps) {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <Button onClick={() => setOpen(true)} className="text-lg font-medium w-32">
-        <PlayCircle className="mr-2 h-6 w-6" /> Play
+      <Button onClick={() => setOpen(true)} className="text-lg font-medium w-32 h-12">
+        <PlayCircle className="mr-2 h-7 w-7" /> Play
       </Button>
       <Button
         onClick={() => setOpen(true)}
-        className="text-lg font-medium bg-white/40 hover:bg-white/30 text-white"
+        className="text-lg font-medium bg-neutral-700/80 hover:bg-white/30 text-white w-44 h-12"
       >
-        <InfoIcon className="mr-2 h-6 w-6" /> Learn More
+        <InfoIcon className="mr-2 h-7 w-7" />More Info
       </Button>
 
       <PlayVideoModal
@@ -46,7 +52,10 @@ export default function MovieButtons({
         overview={overview}
         release={releaseDate}
         title={title}
-        youtubeUrl={youtubeUrl}
+        videoSource={videoSource}
+        movieId={movieId}
+        watchList={watchList}
+        wachtListId={wachtListId}
       />
     </>
   )

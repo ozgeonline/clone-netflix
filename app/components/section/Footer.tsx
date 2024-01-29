@@ -4,7 +4,7 @@ import { Languages } from "lucide-react"
 
 export default function Footer() {
   return (
-    <div className="py-20 border-t-8">
+    <div className="py-20 border-t-8 bg-black">
       <div className="max-w-[1170px] lg:ml-[170px] md:ml-16 ml-4  mt-[-1rem]">
         <div className="mb-2">
           <Link href={`#`} className="underline text-[#ffffffb3]">Questions? Contact us.</Link>

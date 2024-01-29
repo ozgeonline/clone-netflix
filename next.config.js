@@ -18,6 +18,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "occ-0-7332-1490.1.nflxso.net",
       },
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+      },
     ],
   },
 };

@@ -2,7 +2,6 @@
 
 import { Box, TextField } from "@mui/material"
 import { useState } from "react"
-import useMediaQuery from '@mui/material/useMediaQuery'
 
 export default function UserGetStartedInput() {
   
@@ -10,8 +9,6 @@ export default function UserGetStartedInput() {
     const [warningMessage, setWarningMessage] = useState("")
     const [warningColor, setWarningColor] = useState(false)
     const [isTouched, setIsTouched] = useState(false)
-
-    const matches = useMediaQuery('(min-width:640px)')
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value
@@ -59,7 +56,9 @@ export default function UserGetStartedInput() {
           '& .MuiFormLabel-root': {color:"#8c8c8c"},
           '& .MuiFormLabel-root.Mui-focused': {color:"#8c8c8c"},
           '& .MuiFormHelperText-root': {color: "#eb3942", marginBottom:"-1.4rem"},
-          width:`${matches ? "375px" : "250px"}`,
+          width:"100vw",
+          maxWidth:"375px",
+          paddingX:"1.5rem"
         }}
         noValidate
         autoComplete="off"
@@ -72,8 +71,6 @@ export default function UserGetStartedInput() {
           id="filled-error-helper-text"
           label="Email address"
           name="email"
-          defaultValue=""
-          placeholder=""
           helperText={isTouched && warningMessage}
           variant="filled"
         />

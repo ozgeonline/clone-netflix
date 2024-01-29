@@ -18,7 +18,7 @@ export default async function Login() {
   } 
 
   return (
-    <div className="mt-36">
+    <div className="min-[330px]:mt-36 mt-0">
       <div className="
         flex flex-col items-center justify-center 
         md:mx-auto px-18 sm:px-32 py-40 p-6 md:p-14 

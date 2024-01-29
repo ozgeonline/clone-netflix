@@ -6,6 +6,11 @@ import { signOut } from "next-auth/react";
 export default function UserSignOutButton() {
 
   return (
-    <DropdownMenuItem onClick={() => signOut()} className="px-12 cursor-pointer hover:underline hover:bg-none">Sign out of Netflix</DropdownMenuItem>
+    <DropdownMenuItem 
+      onClick={() => signOut()} 
+      className="px-12 cursor-pointer hover:underline hover:bg-none"
+    >
+      Sign out of Netflix
+    </DropdownMenuItem>
   )
 }
