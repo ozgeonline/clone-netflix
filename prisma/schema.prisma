@@ -63,9 +63,32 @@ model Movie {
   youtubeString String
   WatchLists    WatchList[]
   WatchHistory  WatchHistory[]
- 
+
 
   createdAt DateTime @default(now())
+  @@schema("public")
+}
+
+model WatchList {
+  id     String @id @default(uuid())
+  userId String
+
+  Movie   Movie? @relation(fields: [movieId], references: [id])
+  movieId Int
+  @@schema("public")
+}
+
+model WatchHistory {
+  id     String @id @default(uuid())
+  userId String
+  WatchHistory String
+  videoSource  String
+  
+  Movie   Movie? @relation(fields: [movieId], references: [id])
+  movieId Int?
+
+  createdAt DateTime @default(now())
+
   @@schema("public")
 }
 
@@ -82,29 +105,6 @@ model Fqa { //m
   id         Int @id
   fqaQ       String
   fqEx       String
-
-  @@schema("public")
-}
-model WatchList {
-  id     String @id @default(uuid())
-  userId String
-
-  Movie   Movie? @relation(fields: [movieId], references: [id])
-  movieId Int?
- 
-  @@schema("public")
-}
-
-model WatchHistory {
-  id     String @id @default(uuid())
-  userId String
-  WatchHistory String
-  videoSource  String
-  
-  Movie   Movie? @relation(fields: [movieId], references: [id])
-  movieId Int?
-
-  createdAt DateTime @default(now())
 
   @@schema("public")
 }

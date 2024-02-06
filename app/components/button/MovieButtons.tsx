@@ -14,8 +14,8 @@ interface iAppProps {
   releaseDate: number;
   duration: number;
   movieId: number
-  watchList: boolean
   wachtListId: string
+  watchList: boolean
 }
 
 export default function MovieButtons({
@@ -28,11 +28,11 @@ export default function MovieButtons({
   videoSource,
   movieId,
   wachtListId,
-  watchList,
+  watchList
 }: iAppProps) {
   const [open, setOpen] = useState(false)
   return (
-    <>
+    <div>
       <Button onClick={() => setOpen(true)} className="text-lg font-medium w-32 h-12">
         <PlayCircle className="mr-2 h-7 w-7" /> Play
       </Button>
@@ -54,9 +54,9 @@ export default function MovieButtons({
         title={title}
         videoSource={videoSource}
         movieId={movieId}
-        watchList={watchList}
         wachtListId={wachtListId}
+        watchList={watchList}       
       />
-    </>
+    </div>
   )
 }

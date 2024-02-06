@@ -23,7 +23,7 @@ export default function Navbar() {
       </div>
       <div className="flex items-center gap-x-7">
         <Search className="w-5 h-5 text-gray-300 cursor-pointer" />
-        <p>Kids</p>
+        <p className="cursor-pointer">Kids</p>
         <Bell className="h-5 w-5 text-gray-300 cursor-pointer" />
         <UserNav />
       </div>

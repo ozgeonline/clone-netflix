@@ -68,7 +68,7 @@ export default async function Watchlist() {
                       : false
                   }
                   year={movie.Movie?.release as number}
-                  youtubeUrl={movie.Movie?.youtubeString as string}
+                  videoSource={movie.Movie?.youtubeString as string}
                 />
               </div>
             </div>

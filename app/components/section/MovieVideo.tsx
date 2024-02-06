@@ -1,7 +1,9 @@
+import { getServerSession } from "next-auth"
 import prisma from "../../utils/db"
 import MovieButtons from "../button/MovieButtons"
+import { authOptions } from "@/app/utils/auth"
 
-async function getData() {
+async function getData(userId: string,movieId:number) {
   const data = await prisma.movie.findFirst({
     select: {
       title: true,
@@ -12,14 +14,21 @@ async function getData() {
       duration: true,
       id: true,
       age: true,
-      youtubeString: true,
+      WatchLists: {
+        where: {
+          userId: userId
+        },
+        
+      },
+
     }
   })
   return data
 }
 
-export default async function MovieVideo() {
-  const data = await getData()
+export default async function MovieVideo({ movieId }: { movieId: number }) {
+  const session = await getServerSession(authOptions)
+  const data = await getData(session?.user?.email as string, movieId)
 
   return (
     <div className="h-[55vh] lg:h-[55vh] w-full flex justify-start items-center top-10">
@@ -47,8 +56,10 @@ export default async function MovieVideo() {
             overview={data?.overview as string}
             releaseDate={data?.release as number}
             title={data?.title as string}
-            videoSource={data?.youtubeString as string}
-            key={data?.id}
+            videoSource={data?.videoSource as string}
+            movieId={data?.id as number}
+            wachtListId={data?.WatchLists[0]?.id as string}
+            watchList={data?.WatchLists && data.WatchLists.length > 0 ? true : false}            
           />
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ThumbsDown, ThumbsUp, VolumeX, Volume2, PauseCircle, Plus, Play, Check } from "lucide-react"
+import { ThumbsDown, ThumbsUp, VolumeX, Volume2, PauseCircle, Plus, Play, Check, X  } from "lucide-react"
 import { useRef, useState } from "react";
 import { addTowatchlist, deleteFromWatchlist } from "../action";
 import { usePathname } from "next/navigation"
@@ -23,10 +23,10 @@ export default function PlayVideoModalButton ({
   const [like, setLike] = useState(true)
   const pathName = usePathname()
 
-  const random = Math.floor(Math.random()*50)+45
   const videoRef = useRef<HTMLVideoElement>(null)
   const [muted, setMuted] = useState<boolean>(true)
   const [playing, setPlaying] = useState<boolean>(true)
+  const [open, SetOpen] = useState<boolean>(false)
 
   const handlePlayToggle = () => {
     if (videoRef.current) {
@@ -47,14 +47,16 @@ export default function PlayVideoModalButton ({
   }
 
   return (
-    <div>
+    <div className="bg-[#141414]">
       <video 
         src={videoSource} 
         ref={videoRef}  
-        className="w-full h-[500px]" 
+        className="w-full h-[500px] -mt-6" 
         playsInline
         muted
       />
+      <div className="absolute bottom-60 w-screen h-12 bg-[#141414] -ms-20 shadow-[0_35px_70px_55px_rgba(0,0,0,1)] shadow-[#141414]  transform rotate-180">
+      </div>
       <div className="flex justify-between -mt-36 mx-10">
         <div className="flex space-x-3">
           <Button onClick={handlePlayToggle} className="text-lg font-extrabold w-32 h-10 bg-white hover:brightness-125 hover:cursor-pointer z-50">
@@ -66,7 +68,7 @@ export default function PlayVideoModalButton ({
               <form action={deleteFromWatchlist} >
                 <input type="hidden" name="watchlistId" value={wachtListId} />
                 <input type="hidden" name="pathname" value={pathName} />
-                <Button variant="link" size="icon" className="border rounded-full bg-[#141414] border-[#ffffffb3] opacity-60 hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all">
+                <Button variant="link" size="icon" className="border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all">
                   <Check className="w-5 h-5" />
                 </Button>
               </form>
@@ -74,7 +76,7 @@ export default function PlayVideoModalButton ({
               <form action={addTowatchlist} >
                 <input type="hidden" name="movieId" value={movieId} />
                 <input type="hidden" name="pathname" value={pathName} />
-                <Button variant="link" size="icon" className="border rounded-full bg-[#141414] border-[#ffffffb3] opacity-60 hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all">
+                <Button variant="link" size="icon" className="border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all">
                   <Plus className="w-7 h-7" />
                 </Button>
               </form>
@@ -83,13 +85,23 @@ export default function PlayVideoModalButton ({
           <div className="">
             {
               like ? (
-                <button onClick={() => setLike(!like)} className="p-2 bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all">
-                  <ThumbsUp className="h-6 w-6" />
-                </button>
+                <Button 
+                  onClick={() => setLike(!like)} 
+                  size="icon" 
+                  variant="link" 
+                  className="z-50 p-[10px] bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all"
+                >
+                  <ThumbsUp className="h-5 w-5" />
+                </Button>
               ) : (
-                <button onClick={() => setLike(!like)} className="p-2 bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all">
-                  <ThumbsDown className="h-6 w-6" />
-                </button>
+                <Button 
+                  onClick={() => setLike(!like)} 
+                  size="icon" 
+                  variant="link" 
+                  className="z-50 p-[10px] bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all"
+                >
+                  <ThumbsDown className="h-5 w-5" />
+                </Button>
               )
             }
           </div>
@@ -98,14 +110,14 @@ export default function PlayVideoModalButton ({
           onClick={handleMuteToggle}
           variant="link"
           size="icon"
-          className="text-lg font-medium bg-[#141414] border border-[#ffffffb3] opacity-60 rounded-full hover:opacity-70 hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all"
+          className="z-50 text-lg font-medium bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all"
         >
-        {
-          muted 
-          ? <VolumeX className="h-10 w-10 px-2"/> 
-          : <Volume2 className="h-10 w-10 px-2"/>
-        }
-      </Button>
+          {
+            muted 
+            ? <VolumeX className="h-10 w-10 px-2"/> 
+            : <Volume2 className="h-10 w-10 px-2"/>
+          }
+        </Button>
       </div>
     </div>
   )

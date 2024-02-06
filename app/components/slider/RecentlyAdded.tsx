@@ -1,8 +1,8 @@
-import Image from "next/image";
-import prisma from "../../utils/db";
-import { MovieCard } from "../section/MovieCard";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../utils/auth";
+import Image from "next/image"
+import prisma from "../../utils/db"
+import { MovieCard } from "../section/MovieCard"
+import { getServerSession } from "next-auth"
+import { authOptions } from "../../utils/auth"
 
 async function getData(userId: string) {
   const data = await prisma.movie.findMany({
@@ -64,10 +64,11 @@ export default async function RecentlyAdded() {
                   wachtListId={movie.WatchLists[0]?.id}
                   videoSource={movie.videoSource}
                   watchList={movie.WatchLists.length > 0 ? true : false}
-                  key={movie.id}
                   age={movie.age}
                   time={movie.duration}
                   year={movie.release}
+                  duration={movie.duration} 
+              
                 />
               </div>
             </div>

@@ -106,7 +106,7 @@ export default async function CategoryPage({params} : { params: {genre: string}}
                 wachtListId={movie.WatchLists[0]?.id}
                 watchList={movie.WatchLists.length > 0 ? true : false}
                 year={movie.release}
-                youtubeUrl={movie.youtubeString}
+                videoSource={movie.youtubeString}
               />
             </div>
           </div>

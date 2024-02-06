@@ -8,22 +8,23 @@ import { addTowatchlist, deleteFromWatchlist } from "../../action"
 import { usePathname } from "next/navigation"
 
 interface iAppProps {
+  wachtListId: string
+  movieId: number
   title: string
   overview: string
-  movieId: number
   watchList: boolean
-  wachtListId: string
   videoSource: string
   year: number
   age: number
   time: number
+  duration: number
 }
 
 export function MovieCard({
     movieId,
+    wachtListId,
     overview,
     title,
-    wachtListId,
     watchList,
     videoSource,
     age,
@@ -43,7 +44,6 @@ export function MovieCard({
       <div className="mt-40">
         <div 
           className="flex flex-row justify-between"
-          onClick={() => setOpen(true)} 
         >
           <div className="flex flex-row items-center">
             <Button 
@@ -62,7 +62,7 @@ export function MovieCard({
                 <Button 
                   variant="link"
                   size="icon"
-                  className="h-6 w-6 p-1 border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-500"
+                  className="h-6 w-6 p-1 border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-500 z-40"
                 >
                   <Check />
                 </Button>
@@ -74,7 +74,7 @@ export function MovieCard({
                 <Button 
                   variant="link" 
                   size="icon" 
-                  className="p-1 h-6 w-6 border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-500"
+                  className="p-1 h-6 w-6 border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-500 z-40"
                 >
                   <Plus />
                 </Button>
@@ -136,16 +136,16 @@ export function MovieCard({
       <PlayVideoModal
         videoSource={videoSource}
         key={movieId}
+        wachtListId={wachtListId}
+        watchList={watchList}
         title={title}
         overview={overview}
         state={open}
         changeState={setOpen}
         age={age}
         duration={time}
-        release={year} 
+        release={year}
         movieId={movieId}
-        watchList={watchList}
-        wachtListId={wachtListId}
       />
     </div>
   )

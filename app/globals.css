@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
+
 
 @layer base {
   :root {
@@ -65,6 +66,14 @@
   img, video {
     box-sizing: border-box;
     
+  }
+
+  .tooltip {
+    @apply invisible absolute;
+  }
+  
+  .has-tooltip:hover .tooltip {
+    @apply visible z-50;
   }
 
   .navbar {
