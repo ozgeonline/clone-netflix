@@ -3,7 +3,7 @@ import prisma from "../../utils/db"
 import MovieButtons from "../button/MovieButtons"
 import { authOptions } from "@/app/utils/auth"
 
-async function getData(userId: string,movieId:number) {
+async function getData(userId: string, movieId: number) {
   const data = await prisma.movie.findFirst({
     select: {
       title: true,
@@ -18,9 +18,7 @@ async function getData(userId: string,movieId:number) {
         where: {
           userId: userId
         },
-        
       },
-
     }
   })
   return data
@@ -28,7 +26,7 @@ async function getData(userId: string,movieId:number) {
 
 export default async function MovieVideo({ movieId }: { movieId: number }) {
   const session = await getServerSession(authOptions)
-  const data = await getData(session?.user?.email as string, movieId)
+  const data = await getData(session?.user?.email as string, movieId as number)
 
   return (
     <div className="h-[55vh] lg:h-[55vh] w-full flex justify-start items-center top-10">
@@ -50,16 +48,18 @@ export default async function MovieVideo({ movieId }: { movieId: number }) {
         <p className="text-white text-lg mt-5 line-clamp-3">{data?.overview}</p>
         <div className="flex gap-x-3 mt-4">
           <MovieButtons
+            key={data?.id}
             age={data?.age as number}
             duration={data?.duration as number}
-            id={data?.id as number}
             overview={data?.overview as string}
             releaseDate={data?.release as number}
             title={data?.title as string}
             videoSource={data?.videoSource as string}
+
             movieId={data?.id as number}
             wachtListId={data?.WatchLists[0]?.id as string}
-            watchList={data?.WatchLists && data.WatchLists.length > 0 ? true : false}            
+            watchList={data?.WatchLists && data.WatchLists.length > 0 ? true : false}
+            id={data?.WatchLists[0]?.movieId as number}
           />
         </div>
       </div>

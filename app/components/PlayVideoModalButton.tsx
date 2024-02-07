@@ -54,6 +54,7 @@ export default function PlayVideoModalButton ({
         className="w-full h-[500px] -mt-6" 
         playsInline
         muted
+        preload="auto"
       />
       <div className="absolute bottom-60 w-screen h-12 bg-[#141414] -ms-20 shadow-[0_35px_70px_55px_rgba(0,0,0,1)] shadow-[#141414]  transform rotate-180">
       </div>

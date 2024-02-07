@@ -59,6 +59,7 @@ export default async function RecentlyAdded() {
 
                 <MovieCard
                   movieId={movie.id}
+                  key={movie.id}
                   overview={movie.overview}
                   title={movie.title}
                   wachtListId={movie.WatchLists[0]?.id}

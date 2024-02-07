@@ -1,4 +1,3 @@
-
 import {
   Dialog,
   DialogContent,
@@ -11,26 +10,23 @@ import Image from "next/image"
 import logo from "../../app/favicon.ico"
 import { Subtitles } from "lucide-react"
 import { Tooltip, TooltipProps, styled, tooltipClasses } from "@mui/material"
-import prisma from "../utils/db"
-import { getServerSession } from "next-auth"
-import { authOptions } from "../utils/auth"
 
 const random = Math.floor(Math.random()*50)+45
 
 const TooltipSubtitles = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} arrow classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.arrow}`]: {
-    color: theme.palette.common.white,
-  },
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.common.white,
-    color: theme.palette.common.black,
-    fontSize: 16,
-    fontWeight: 700,
-    maxWidth: 450,
-  },
-}))
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.white,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.white,
+      color: theme.palette.common.black,
+      fontSize: 16,
+      fontWeight: 700,
+      maxWidth: 450,
+    },
+  }))
 
 interface iAppProps {
   state: boolean
@@ -46,21 +42,19 @@ interface iAppProps {
   release: number
 }
 
-
-export default async function PlayVideoModal({
-  movieId,
-  wachtListId,
-  changeState,
-  state,
-  overview,
-  title,
-  watchList,
-  videoSource,
-  age,
-  duration,
-  release
-}: iAppProps) {
-
+export default function PlayVideoModal({
+    movieId,
+    wachtListId,
+    changeState,
+    state,
+    overview,
+    title,
+    watchList,
+    videoSource,
+    age,
+    duration,
+    release
+  }: iAppProps) {
 
   return (
     <div className="mt-5 flex">
@@ -73,7 +67,6 @@ export default async function PlayVideoModal({
             movieId={movieId}
           />
           <DialogHeader className="mt-24 z-40">
-           
             <DialogTitle className="absolute top-64 left-10 uppercase tracking-widest text-2xl font-light">
               <div className="flex space-x-2">
                 <Image src={logo} alt="logo" width={20} height={20} className=""/>
@@ -81,7 +74,6 @@ export default async function PlayVideoModal({
               </div>
                 {title}
             </DialogTitle>
-            
             <div className="flex flex-col items-start mx-10">
               <div className="flex space-x-2 justify-center">
                 <p className="font-semibold text-md text-[#46d369] hover:cursor-context-menu">{random}% Match</p>
@@ -103,7 +95,6 @@ export default async function PlayVideoModal({
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
-       
       </Dialog>
     </div>
   )
