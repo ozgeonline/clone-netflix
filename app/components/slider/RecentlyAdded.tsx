@@ -66,7 +66,6 @@ export default async function RecentlyAdded() {
                   videoSource={movie.videoSource}
                   watchList={movie.WatchLists.length > 0 ? true : false}
                   age={movie.age}
-                  time={movie.duration}
                   year={movie.release}
                   duration={movie.duration} 
               
