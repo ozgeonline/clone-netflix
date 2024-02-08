@@ -18,7 +18,7 @@ async function getData(userId: string) {
           release: true,
           id: true,
           WatchLists: true,
-          youtubeString: true,
+          videoSource: true,
         }
       }
     }
@@ -59,14 +59,14 @@ export default async function Watchlist() {
                   age={movie.Movie?.age as number}
                   movieId={movie.Movie?.id as number}
                   overview={movie.Movie?.overview as string}
-                  duration={movie.Movie?.duration as number}
+                  time={movie.Movie?.duration as number}
                   title={movie.Movie?.title as string}
                   wachtListId={movie.Movie?.WatchLists[0]?.id as string}
                   watchList={(movie.Movie?.WatchLists.length as number) > 0
                     ? true
                     : false}
                   year={movie.Movie?.release as number}
-                  videoSource={movie.Movie?.youtubeString as string}
+                  videoSource={movie.Movie?.videoSource as string}
                 />
               </div>
             </div>

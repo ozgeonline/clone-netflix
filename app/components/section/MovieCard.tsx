@@ -16,7 +16,7 @@ interface iAppProps {
   videoSource: string
   year: number
   age: number
-  duration: number
+  time: number
   
 }
 
@@ -29,7 +29,7 @@ export function MovieCard({
     videoSource,
     age,
     year,
-    duration
+    time
   }: iAppProps) {
 
   const [open, setOpen] = useState(false)
@@ -124,7 +124,7 @@ export function MovieCard({
             HD
           </p>
           <p className="font-normal text-[10px] text-gray-400">
-            {duration} h
+            {time} h
           </p>
         </div>
 
@@ -143,7 +143,7 @@ export function MovieCard({
         state={open}
         changeState={setOpen}
         age={age}
-        duration={duration}
+        duration={time}
         release={year}
         movieId={movieId}
       />
