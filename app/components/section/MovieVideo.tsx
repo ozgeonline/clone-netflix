@@ -3,7 +3,7 @@ import prisma from "../../utils/db"
 import MovieButtons from "../button/MovieButtons"
 import { authOptions } from "@/app/utils/auth"
 
-async function getData(userId: string, movieId: number) {
+async function getData(userId: string) {
   const data = await prisma.movie.findFirst({
     select: {
       title: true,
@@ -24,9 +24,9 @@ async function getData(userId: string, movieId: number) {
   return data
 }
 
-export default async function MovieVideo({ movieId }: { movieId: number }) {
+export default async function MovieVideo() {
   const session = await getServerSession(authOptions)
-  const data = await getData(session?.user?.email as string, movieId as number)
+  const data = await getData(session?.user?.email as string)
 
   return (
     <div className="h-[55vh] lg:h-[55vh] w-full flex justify-start items-center top-10">
