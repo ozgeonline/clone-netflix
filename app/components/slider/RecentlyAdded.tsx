@@ -67,7 +67,7 @@ export default async function RecentlyAdded() {
                   watchList={movie.WatchLists.length > 0 ? true : false}
                   age={movie.age}
                   year={movie.release}
-                  duration={movie.duration} 
+                  time={movie.duration} 
               
                 />
               </div>
