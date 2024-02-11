@@ -61,6 +61,8 @@ model Movie {
   videoSource   String
   category      String
   youtubeString String
+  cast          String
+  genres        String
   WatchLists    WatchList[]
   WatchHistory  WatchHistory[]
 
@@ -77,6 +79,13 @@ model WatchList {
   movieId Int
   @@schema("public")
 }
+// model CastList {
+//   id      String @id @default(uuid())
+//   Movie   Movie? @relation(fields: [movieId], references: [id])
+//   name    String
+//   movieId Int
+//   @@schema("public")
+// }
 
 model WatchHistory {
   id     String @id @default(uuid())
@@ -93,7 +102,7 @@ model WatchHistory {
 }
 
 model Card { //m
-  id              Int @id
+  id              Int @id @default(autoincrement())
   cardTitle       String
   cardComment     String
   cardImg         String

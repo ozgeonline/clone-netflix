@@ -18,6 +18,9 @@ async function getData(category: string, userId: string) {
           imageString: true,
           overview: true,
           youtubeString: true,
+          cast: true,
+          genres: true,
+          category: true,
           WatchLists: {
             where: { userId: userId}
           }
@@ -37,6 +40,9 @@ async function getData(category: string, userId: string) {
           imageString: true,
           overview: true,
           youtubeString: true,
+          cast: true,
+          genres: true,
+          category: true,
           WatchLists: {
             where: { userId: userId}
           }
@@ -56,6 +62,9 @@ async function getData(category: string, userId: string) {
           imageString: true,
           overview: true,
           youtubeString: true,
+          cast: true,
+          genres: true,
+          category: true,
           WatchLists: {
             where: { userId: userId}
           }
@@ -107,6 +116,9 @@ export default async function CategoryPage({params} : { params: {genre: string}}
                 watchList={movie.WatchLists.length > 0 ? true : false}
                 year={movie.release}
                 videoSource={movie.youtubeString}
+                cast={movie.cast}
+                genre={movie.genres}
+                category={movie.category}                
               />
             </div>
           </div>

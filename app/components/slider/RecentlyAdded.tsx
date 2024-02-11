@@ -10,6 +10,9 @@ async function getData(userId: string) {
       id: true,
       overview: true,
       title: true,
+      cast:true,
+      genres: true,
+      category: true,
       WatchLists: {
         where: {
           userId: userId,
@@ -21,6 +24,7 @@ async function getData(userId: string) {
       age: true,
       release: true,
       duration: true,
+    
     },
     orderBy: {
       createdAt: "desc",
@@ -67,8 +71,11 @@ export default async function RecentlyAdded() {
                   watchList={movie.WatchLists.length > 0 ? true : false}
                   age={movie.age}
                   year={movie.release}
-                  time={movie.duration} 
-              
+                  time={movie.duration}
+                  cast={movie.cast}
+                  genre={movie.genres}
+                  category={movie.category}
+                  imageString={movie.imageString}
                 />
               </div>
             </div>

@@ -25,7 +25,7 @@ export default function NavLink({ path, label }: Props) {
         ) : (
         <li>
           <Link
-            className="text-white font-normal text-sm"
+            className="text-white font-thin text-sm"
             href={path}
           >
             {label}

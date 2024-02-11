@@ -17,7 +17,10 @@ interface iAppProps {
   year: number
   age: number
   time: number
-  
+  cast: string
+  genre: string
+  category: string
+  imageString: string
 }
 
 export function MovieCard({
@@ -29,7 +32,11 @@ export function MovieCard({
     videoSource,
     age,
     year,
-    time
+    time,
+    cast,
+    genre,
+    category,
+    imageString
   }: iAppProps) {
 
   const [open, setOpen] = useState(false)
@@ -114,23 +121,23 @@ export function MovieCard({
         </div>
 
         <div className="flex gap-x-2 items-center mx-2 mt-2">
-          <p className="font-semibold text-[10px] text-[#46d369]">
+          <div className="font-semibold text-[10px] text-[#46d369]">
             {random}% Match
-          </p>
-          <p className="font-normal border py-0 px-1 border-gray-400 text-[10px] text-gray-400">
+          </div>
+          <div className="font-normal border py-0 px-1 border-gray-400 text-[10px] text-gray-400">
             {age}+
-          </p>
-          <p className="font-normal border py-0 px-1 border-gray-400 text-[10px] text-gray-400">
+          </div>
+          <div className="font-normal border py-0 px-1 border-gray-400 text-[10px] text-gray-400">
             HD
-          </p>
-          <p className="font-normal text-[10px] text-gray-400">
+          </div>
+          <div className="font-normal text-[10px] text-gray-400">
             {time} h
-          </p>
+          </div>
         </div>
 
-        <p className="line-clamp-1 text-[10px] text-gray-200 pt-3 mx-2">
+        <div className="line-clamp-1 text-[10px] text-gray-200 pt-3 mx-2">
           {overview}
-        </p>
+        </div>
       </div>
 
       <PlayVideoModal
@@ -146,6 +153,10 @@ export function MovieCard({
         duration={time}
         release={year}
         movieId={movieId}
+        cast={cast}
+        genre={genre}
+        category={category}
+        imageString={imageString}
       />
     </div>
   )

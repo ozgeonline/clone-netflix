@@ -69,7 +69,7 @@ export default function PlayVideoModalButton ({
               <form action={deleteFromWatchlist} >
                 <input type="hidden" name="watchlistId" value={wachtListId} />
                 <input type="hidden" name="pathname" value={pathName} />
-                <Button variant="link" size="icon" className="border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all">
+                <Button variant="link" size="icon" className="border-2 rounded-full bg-neutral-800 border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-in hover:duration-75 hover:transition-all">
                   <Check className="w-5 h-5" />
                 </Button>
               </form>
@@ -77,7 +77,7 @@ export default function PlayVideoModalButton ({
               <form action={addTowatchlist} >
                 <input type="hidden" name="movieId" value={movieId} />
                 <input type="hidden" name="pathname" value={pathName} />
-                <Button variant="link" size="icon" className="border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all">
+                <Button variant="link" size="icon" className="border-2 rounded-full bg-neutral-800 border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-in hover:duration-75 hover:transition-all">
                   <Plus className="w-7 h-7" />
                 </Button>
               </form>
@@ -90,7 +90,7 @@ export default function PlayVideoModalButton ({
                   onClick={() => setLike(!like)} 
                   size="icon" 
                   variant="link" 
-                  className="z-50 p-[10px] bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all"
+                  className="z-50 p-[10px] bg-neutral-800 border-2 border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-in hover:duration-75 hover:transition-all"
                 >
                   <ThumbsUp className="h-5 w-5" />
                 </Button>
@@ -99,7 +99,7 @@ export default function PlayVideoModalButton ({
                   onClick={() => setLike(!like)} 
                   size="icon" 
                   variant="link" 
-                  className="z-50 p-[10px] bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all"
+                  className="z-50 p-[10px] bg-neutral-800 border-2 border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-in hover:duration-75 hover:transition-all"
                 >
                   <ThumbsDown className="h-5 w-5" />
                 </Button>
@@ -111,12 +111,12 @@ export default function PlayVideoModalButton ({
           onClick={handleMuteToggle}
           variant="link"
           size="icon"
-          className="z-50 text-lg font-medium bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-300 hover:transition-all"
+          className="z-50 text-lg font-medium bg-neutral-800 bg-opacity-50 border-2 border-zinc-500  rounded-full hover:brightness-150 hover:ease-in hover:duration-75 transition-all"
         >
           {
             muted 
-            ? <VolumeX className="h-10 w-10 px-2"/> 
-            : <Volume2 className="h-10 w-10 px-2"/>
+            ? <VolumeX className="h-10 w-10 px-2 text-zinc-500"/> 
+            : <Volume2 className="h-10 w-10 px-2 text-zinc-500"/>
           }
         </Button>
       </div>
