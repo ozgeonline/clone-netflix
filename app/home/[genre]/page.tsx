@@ -118,8 +118,9 @@ export default async function CategoryPage({params} : { params: {genre: string}}
                 videoSource={movie.youtubeString}
                 cast={movie.cast}
                 genre={movie.genres}
-                category={movie.category}                
-              />
+                category={movie.category} 
+                imageString={movie.imageString}
+                />
             </div>
           </div>
         </div>
