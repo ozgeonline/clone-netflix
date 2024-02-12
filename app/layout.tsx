@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google'
 import './globals.css'
 import { NextAuthProvider } from './components/NextAuthProvider'
 import Head from 'next/head'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const roboto = Roboto({
   style: ['normal', 'italic'],
@@ -24,6 +25,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     <body className={roboto.className}>
       <NextAuthProvider>
         {children}
+        <SpeedInsights/>
       </NextAuthProvider>
     </body>
   </html>
