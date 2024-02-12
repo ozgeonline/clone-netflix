@@ -19,9 +19,9 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
   <html lang="en">
-    <Head>
+    <head>
 			<link rel="shortcut icon" href='/favicon.ico' />
-		</Head>
+		</head>
     <body className={roboto.className}>
       <NextAuthProvider>
         {children}
