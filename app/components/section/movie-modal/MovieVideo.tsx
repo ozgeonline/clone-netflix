@@ -1,8 +1,7 @@
 import { getServerSession } from "next-auth"
-import prisma from "../../utils/db"
-import MovieButtons from "../button/MovieButtons"
+import prisma from "../../../utils/db"
+import MovieButtons from "./MovieButtons"
 import { authOptions } from "@/app/utils/auth"
-import { useRef } from "react"
 
 async function getData(userId: string) {
   const data = await prisma.movie.findFirst({
@@ -49,7 +48,9 @@ export default async function MovieVideo() {
         <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold">
           {data?.title}
         </h1>
-        <p className="text-white text-lg mt-5 line-clamp-3">{data?.overview}</p>
+        <p className="text-white text-lg mt-5 line-clamp-3">
+          {data?.overview}
+        </p>
         <div className="flex gap-x-3 mt-4">
           <MovieButtons
             key={data?.id}
@@ -62,12 +63,13 @@ export default async function MovieVideo() {
             cast={data?.cast as string}
             genre={data?.genres as string}
             category={data?.category as string}
-
+            imageString={data?.imageString as string}
+            
             movieId={data?.id as number}
             wachtListId={data?.WatchLists[0]?.id as string}
             watchList={data?.WatchLists && data.WatchLists.length > 0 ? true : false}
-            id={data?.WatchLists[0]?.movieId as number} 
-            imageString={data?.imageString as string}
+            id={data?.WatchLists[0]?.movieId as number}
+            
           />
         </div>
       </div>

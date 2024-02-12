@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button"
 import { ThumbsUp, ThumbsDown, Check, Plus, Play, ChevronDown } from "lucide-react"
-import PlayVideoModal from "../PlayVideoModal"
+import PlayVideoModal from "./PlayVideoModal"
 import { useState } from "react";
-import { addTowatchlist, deleteFromWatchlist } from "../../action"
+import { addTowatchlist, deleteFromWatchlist } from "../../../action"
 import { usePathname } from "next/navigation"
 
 interface iAppProps {
@@ -49,9 +49,7 @@ export function MovieCard({
     <div className="flex flex-col max-w-[480px]">
       <h1 className="font-bold text-lg line-clamp-1 left-3 top-28 absolute  [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)]">{title}</h1>
       <div className="mt-40">
-        <div 
-          className="flex flex-row justify-between"
-        >
+        <div className="flex flex-row justify-between">
           <div className="flex flex-row items-center">
             <Button 
               onClick={() => setOpen(true)}
@@ -88,8 +86,7 @@ export function MovieCard({
               </form>
             )}
             
-            {
-              like ? (
+            { like ? (
                 <Button 
                   onClick={() => setLike(!like)} 
                   variant="link" 

@@ -21,7 +21,7 @@ async function getData(userId:string) {
     orderBy: {
       createdAt: "desc",
     },
-    take: 10
+    take: 3
   })
   return data
 }
@@ -43,7 +43,7 @@ export default async function ContinueWatchingCard() {
 
   return (
    <div className="flex gap-x-2 ms-20 xl:ms-0">
-    {data.map((movie,index) => (
+    {data.map((movie) => (
       <VideoPlayer key={movie.id} videoUrl={movie.videoSource}/>
     ))}
    </div>

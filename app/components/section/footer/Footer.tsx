@@ -1,5 +1,5 @@
 import Link from "next/link"
-import links from "../../data/link"
+import links from "../../../data/link"
 import { Languages } from "lucide-react"
 
 export default function Footer() {
@@ -7,12 +7,22 @@ export default function Footer() {
     <div className="py-20 border-t-8 bg-black">
       <div className="max-w-[1170px] lg:ml-[170px] md:ml-16 ml-4  mt-[-1rem]">
         <div className="mb-2">
-          <Link href={`#`} className="underline text-[#ffffffb3]">Questions? Contact us.</Link>
+          <Link 
+            href={`#`}
+            className="underline text-[#ffffffb3]"
+            prefetch={false}
+          >
+            Questions? Contact us.
+          </Link>
         </div>
         <div className="grid xs:grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
           {links.map((link) => (
             <div key={link.id} className="mt-3">
-              <Link href={`#`} className="text-sm underline text-[#ffffffb3]">
+              <Link 
+                href={`#`} 
+                prefetch={false} 
+                className="text-sm underline text-[#ffffffb3]"
+              >
                 {link.title}
               </Link>
             </div>

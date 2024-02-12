@@ -1,9 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ThumbsDown, ThumbsUp, VolumeX, Volume2, PauseCircle, Plus, Play, Check, X  } from "lucide-react"
-import { useRef, useState } from "react";
-import { addTowatchlist, deleteFromWatchlist } from "../action";
+import { ThumbsDown, ThumbsUp, VolumeX, Volume2, PauseCircle, Plus, Play, Check } from "lucide-react"
+import { useRef, useState } from "react"
+import { addTowatchlist, deleteFromWatchlist } from "../../../action";
 import { usePathname } from "next/navigation"
 
 interface iAppProps {
@@ -26,7 +26,6 @@ export default function PlayVideoModalButton ({
   const videoRef = useRef<HTMLVideoElement>(null)
   const [muted, setMuted] = useState<boolean>(true)
   const [playing, setPlaying] = useState<boolean>(true)
-  const [open, SetOpen] = useState<boolean>(false)
 
   const handlePlayToggle = () => {
     if (videoRef.current) {
@@ -39,6 +38,7 @@ export default function PlayVideoModalButton ({
       }
     }
   }
+
   const handleMuteToggle = () => {
     if (videoRef.current) {
       videoRef.current.muted = !muted
@@ -54,7 +54,6 @@ export default function PlayVideoModalButton ({
         className="w-full h-[500px] -mt-6" 
         playsInline
         muted
-        preload="auto"
       />
       <div className="absolute bottom-60 w-screen h-12 bg-[#141414] -ms-20 shadow-[0_35px_70px_55px_rgba(0,0,0,1)] shadow-[#141414]  transform rotate-180">
       </div>
@@ -64,7 +63,7 @@ export default function PlayVideoModalButton ({
             { playing ? <Play className="mr-2 h-7 w-7 text-black fill-inherit" /> : <PauseCircle className="mr-2 h-7 w-7" /> }
             { playing ? "Play" : "Pause" }
           </Button>
-          <div className="">
+          <div>
             {watchList ? (
               <form action={deleteFromWatchlist} >
                 <input type="hidden" name="watchlistId" value={wachtListId} />
@@ -83,9 +82,8 @@ export default function PlayVideoModalButton ({
               </form>
             )}
           </div>
-          <div className="">
-            {
-              like ? (
+          <div>
+            { like ? (
                 <Button 
                   onClick={() => setLike(!like)} 
                   size="icon" 
@@ -111,7 +109,7 @@ export default function PlayVideoModalButton ({
           onClick={handleMuteToggle}
           variant="link"
           size="icon"
-          className="z-50 text-lg font-medium bg-neutral-800 bg-opacity-50 border-2 border-zinc-500  rounded-full hover:brightness-150 hover:ease-in hover:duration-75 transition-all"
+          className="z-50 text-lg font-medium bg-neutral-800 bg-opacity-50 border-2 border-zinc-500 rounded-full hover:brightness-150 hover:ease-in hover:duration-75 transition-all"
         >
           {
             muted 

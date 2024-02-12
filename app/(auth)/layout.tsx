@@ -5,7 +5,6 @@ import { Languages } from "lucide-react"
 import { ChevronDown } from 'lucide-react'
 import Link from "next/link"
 
-
 export default function AuthLayout({children}:{children: ReactNode}){
   
   return (
@@ -21,7 +20,7 @@ export default function AuthLayout({children}:{children: ReactNode}){
           />
         
           <div className="flex flex-row">
-            <Link href="/home">
+            <Link href="/home" prefetch={false}>
               <div className="absolute w-20 md:w-36 h-6 md:h-[40px] -left-20 sm:-left-18 md:-left-16 lg:left-16 top-7">
                 <Image
                   src={Logo}
@@ -43,6 +42,7 @@ export default function AuthLayout({children}:{children: ReactNode}){
                 <ChevronDown className="w-4 h-4 absolute top-2 left-5 sm:hidden inline-block" />
               </div>
               <Link
+                prefetch={false}
                 href="/login"
                 type="submit"
                 className="w-20 h-8 bg-[#e50914] mr-[15rem] sm:mr-[5rem] md:mr-[15rem] py-1.5 px-4 rounded-sm text-sm hover:opacity-90 font-semibold">Sign In

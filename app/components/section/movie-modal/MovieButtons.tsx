@@ -1,9 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { InfoIcon, Play, PlayCircle } from "lucide-react"
+import { InfoIcon, Play } from "lucide-react"
 import { useState } from "react"
-import PlayVideoModal from "../PlayVideoModal"
+import PlayVideoModal from "./PlayVideoModal"
 
 interface iAppProps {
   overview: string
@@ -12,8 +12,6 @@ interface iAppProps {
   title: string
   releaseDate: number
   duration: number
-  
-
   id: number
   movieId: number
   wachtListId: string
@@ -67,8 +65,6 @@ export default function MovieButtons({
         release={releaseDate}
         title={title}
         videoSource={videoSource}
-
-
         movieId={movieId}
         wachtListId={wachtListId}
         watchList={watchList}

@@ -18,6 +18,7 @@ export default function NavLink({ path, label }: Props) {
           <Link
             href={path}
             className="text-white font-semibold text-sm"
+            prefetch={false}
           >
             {label}
           </Link>
@@ -27,6 +28,7 @@ export default function NavLink({ path, label }: Props) {
           <Link
             className="text-white font-thin text-sm"
             href={path}
+            prefetch={false}
           >
             {label}
           </Link>

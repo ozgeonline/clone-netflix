@@ -1,18 +1,17 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "../../utils/auth"
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import userImg from "../../../public/avatar.png"
 import { Button } from "@/components/ui/button"
 import { Pencil, FolderSync, UserRound, HelpCircle } from 'lucide-react'
 import UserSignOutButton from "./UserSignOutButton"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuGroup, 
+  DropdownMenuItem, 
+  DropdownMenuLabel, 
+  DropdownMenuSeparator, 
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Image from "next/image"
@@ -24,7 +23,7 @@ export default async function UserButton() {
     return;
   }
 
-  const avatarSrc = session.user?.image || "/avatar.png"
+  const avatarSrc = session.user?.image || "./avatar.png"
   const userShortName = session.user?.name?.slice(0, 2) || "un"
   const userName = session.user?.name
   const userMail = session.user?.email
@@ -45,9 +44,13 @@ export default async function UserButton() {
       <DropdownMenuContent className="w-56 text-start rounded-none mt-4" align="end" forceMount>
         <DropdownMenuLabel>
           <div className="flex flex-row">
-            <Image src={userImg} alt="user random image" className="rounded-sm w-7 h-7 hover:cursor-pointer"/>
+            <Image 
+              src={userImg} 
+              alt="user random image" 
+              className="rounded-sm w-7 h-7 hover:cursor-pointer"
+            />
             <div className="flex flex-col space-y-2 ps-2">
-              <p className="text-sm font-medium leading-none  hover:underline hover:cursor-pointer">
+              <p className="text-sm font-medium leading-none hover:underline hover:cursor-pointer">
                 {userName}
               </p>
               <p className="text-xs leading-none text-muted-foreground">

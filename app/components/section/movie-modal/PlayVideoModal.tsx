@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, } from "@/components/ui/dialog"
 import PlayVideoModalButton from "./PlayVideoModalButton"
 import Image from "next/image"
-import logo from "../../app/favicon.ico"
+import logo from "../../../../app/favicon.ico"
 import { Subtitles } from "lucide-react"
 import { Tooltip, TooltipProps, styled, tooltipClasses } from "@mui/material"
 
@@ -73,7 +73,7 @@ export default function PlayVideoModal({
             />
             <DialogTitle className="absolute top-64 left-10 uppercase tracking-widest text-2xl font-light">
               <div className="flex space-x-2">
-                <Image src={logo} alt="logo" width={20} height={20} className=""/>
+                <Image src={logo} alt="logo" width={20} height={20}/>
                 <p className="uppercase text-sm">series</p>
               </div>
                 {title}
@@ -115,8 +115,8 @@ export default function PlayVideoModal({
                     <span className="hover:cursor-default text-zinc-500 font-thin text-sm">Cast: </span>
                     {casts.map((item, index) => (
                       <>
-                      <span key={index} className="hover:cursor-pointer hover:underline text-zinc-200 text-sm">{item}</span>
-                      <span>{", "}</span>
+                        <span key={index} className="hover:cursor-pointer hover:underline text-zinc-200 text-sm">{item}</span>
+                        <span>{", "}</span>
                       </>
                     ))}
                     <span className="hover:cursor-pointer hover:underline text-zinc-200 italic text-sm">more</span>
@@ -125,8 +125,8 @@ export default function PlayVideoModal({
                     <span className="hover:cursor-default text-zinc-500 font-thin text-sm">Genres: </span>
                     {genres.map((item, index) => (
                       <>
-                      <span key={index} className="hover:cursor-pointer hover:underline text-zinc-200 text-sm">{item}</span>
-                      <span>{", "}</span>
+                        <span key={index} className="hover:cursor-pointer hover:underline text-zinc-200 text-sm">{item}</span>
+                        <span>{", "}</span>
                       </>
                     ))}
                     <span className="hover:cursor-pointer hover:underline text-zinc-200 italic text-sm">more</span>
@@ -149,7 +149,6 @@ export default function PlayVideoModal({
                           width="238" 
                           height="133"
                           className="rounded-t-sm z-10" 
-                          priority
                         />
                         <div className="flex flex-col px-3 bg-[#2F2F2F] w-full rounded-b-sm">
                           <div className="flex flex-row space-x-2 items-center my-7">

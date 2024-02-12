@@ -1,4 +1,4 @@
-import MovieVideo from "../components/section/MovieVideo";
+import MovieVideo from "../components/section/movie-modal/MovieVideo";
 import Navbar from "../components/navbar/Navbar";
 import RecentlyAdded from "../components/slider/RecentlyAdded";
 import ContinueWatching from "../components/slider/ContinueWatching";

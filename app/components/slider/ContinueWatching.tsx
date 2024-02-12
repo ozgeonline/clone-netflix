@@ -36,12 +36,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl }) => {
       videoRef.current.remove()
       localStorage.removeItem('videoTime')
     }
-   
-    
   }
 
   return (
-   
       <video
         ref={videoRef}
         controls

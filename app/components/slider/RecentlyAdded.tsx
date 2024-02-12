@@ -1,6 +1,6 @@
 import Image from "next/image"
 import prisma from "../../utils/db"
-import { MovieCard } from "../section/MovieCard"
+import { MovieCard } from "../section/movie-modal/MovieCard"
 import { getServerSession } from "next-auth"
 import { authOptions } from "../../utils/auth"
 

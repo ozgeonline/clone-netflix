@@ -1,4 +1,4 @@
-import { MovieCard } from "@/app/components/section/MovieCard";
+import { MovieCard } from "@/app/components/section/movie-modal/MovieCard";
 import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth";
@@ -65,9 +65,11 @@ export default async function Watchlist() {
                   time={movie.Movie?.duration as number}
                   title={movie.Movie?.title as string}
                   wachtListId={movie.Movie?.WatchLists[0]?.id as string}
-                  watchList={(movie.Movie?.WatchLists.length as number) > 0
+                  watchList={
+                    (movie.Movie?.WatchLists.length as number) > 0
                     ? true
-                    : false}
+                    : false
+                  }
                   year={movie.Movie?.release as number}
                   videoSource={movie.Movie?.videoSource as string} 
                   cast={movie.Movie?.cast as string} 

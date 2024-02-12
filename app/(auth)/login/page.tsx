@@ -1,13 +1,13 @@
-import Link from "next/link";
-import GithubSignInButton from "@/app/components/button/GithubSignInButton"
-import GoogleSignInButton from "@/app/components/button/GoogleSignInButton"
+import Link from "next/link"
+import GithubSignInButton from "@/app/components/button/authButton/GithubSignInButton"
+import GoogleSignInButton from "@/app/components/button/authButton/GoogleSignInButton"
 import { Checkbox } from "@/components/ui/checkbox"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/utils/auth"
 import { redirect } from "next/navigation"
-import UserInput from "@/app/components/UserLoginInput";
-import { Button } from "@/components/ui/button";
-import Footer from "@/app/components/section/Footer";
+import UserInput from "@/app/components/button/authInputModal/UserLoginInput"
+import { Button } from "@/components/ui/button"
+import Footer from "@/app/components/section/footer/Footer"
 
 export default async function Login() {
 
@@ -19,13 +19,11 @@ export default async function Login() {
 
   return (
     <div className="min-[330px]:mt-36 mt-0">
-      <div className="
-        flex flex-col items-center justify-center 
-        md:mx-auto px-18 sm:px-32 py-40 p-6 md:p-14 
-        w-screen md:max-w-md rounded bg-black md:bg-black/80"
-      >
+      <div className="flex flex-col items-center justify-center md:mx-auto px-18 sm:px-32 py-40 p-6 md:p-14 w-screen md:max-w-md rounded bg-black md:bg-black/80" >
         <form method="post" action="/api/auth/signin">
-          <h1 className="text-3xl font-semibold text-white pt-2">Log in</h1>
+          <h1 className="text-3xl font-semibold text-white pt-2">
+            Log in
+          </h1>
           <div className="space-y-4 mt-5">
             <UserInput />
             <Button
@@ -46,13 +44,19 @@ export default async function Login() {
                   Remember me
                 </label>
               </div>
-              <p className="text-xs cursor-pointer text-[#959393] hover:underline">Need help?</p>
+              <p className="text-xs cursor-pointer text-[#959393] hover:underline">
+                Need help?
+              </p>
             </div>
           </div>
         </form>
         <div className="text-gray-500 text-sm mt-2">
           New to Neflix?{" "}
-          <Link className="text-white hover:underline" href="/sign-up">
+          <Link 
+            className="text-white hover:underline"
+            href="/sign-up"
+            prefetch={false}
+          >
             Sign up now!
           </Link>
         </div>
@@ -62,7 +66,9 @@ export default async function Login() {
         </div>
         <p className="text-gray-500 text-xs mt-5">
           This page is protected by Google reCAPTCHA to ensure you&apos;re not a bot. 
-          <span className="text-blue-600 hover:underline hover:cursor-pointer">Learn more.</span>
+          <span className="text-blue-600 hover:underline hover:cursor-pointer">
+            Learn more.
+          </span>
         </p>
       </div>
       <div className="md:mt-[4.5rem]">
