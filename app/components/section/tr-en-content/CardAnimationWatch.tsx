@@ -1,21 +1,7 @@
-import prisma from "../../../utils/db"
 import Image from "next/image"
 import cardData from "@/app/data/card"
 
-// async function getData() {
-//   const data = await prisma.card.findMany({
-//     select: {
-//       id: true,
-//       cardTitle: true,
-//       cardComment: true,
-//       cardImg: true
-//     }
-//   })
-//   return data
-// }
-
 export default  function CardAnimationWatch() {
-  // const data = await getData()
  
   return (
     <div className="bg-black">

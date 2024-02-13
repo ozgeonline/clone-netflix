@@ -17,7 +17,7 @@ async function getData(category: string, userId: string) {
           release: true,
           imageString: true,
           overview: true,
-          youtubeString: true,
+          videoSource: true,
           cast: true,
           genres: true,
           category: true,
@@ -39,7 +39,7 @@ async function getData(category: string, userId: string) {
           release: true,
           imageString: true,
           overview: true,
-          youtubeString: true,
+          videoSource: true,
           cast: true,
           genres: true,
           category: true,
@@ -61,7 +61,7 @@ async function getData(category: string, userId: string) {
           release: true,
           imageString: true,
           overview: true,
-          youtubeString: true,
+          videoSource: true,
           cast: true,
           genres: true,
           category: true,
@@ -93,6 +93,8 @@ export default async function CategoryPage({params} : { params: {genre: string}}
             alt="Movie"
             width={500}
             height={400}
+            loading="lazy"
+            quality={50}
             className="rounded-sm absolute w-full h-full object-cover"
           />
           <div className="h-60 relative z-10 w-full transform transition duration-500 hover:scale-125 opacity-0 hover:opacity-100">
@@ -102,6 +104,8 @@ export default async function CategoryPage({params} : { params: {genre: string}}
                 alt="Movie"
                 width={800}
                 height={800}
+                loading="lazy"
+                quality={50}
                 className="absolute w-full h-full -z-10 rounded-lg object-cover"
               />
 
@@ -115,7 +119,7 @@ export default async function CategoryPage({params} : { params: {genre: string}}
                 wachtListId={movie.WatchLists[0]?.id}
                 watchList={movie.WatchLists.length > 0 ? true : false}
                 year={movie.release}
-                videoSource={movie.youtubeString}
+                videoSource={movie.videoSource}
                 cast={movie.cast}
                 genre={movie.genres}
                 category={movie.category} 
