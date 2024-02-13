@@ -34,7 +34,8 @@ export default async function CardAnimationWatch() {
               <Image 
                 src={card.cardImg} 
                 alt="Watch List Img" 
-                layout="fill"
+                fill={true}
+                loading="lazy"
               />
             </div>
         </div>

@@ -15,8 +15,8 @@ export default function AuthLayout({children}:{children: ReactNode}){
             src="https://assets.nflxext.com/ffe/siteui/vlv3/df6621a3-890c-4ca0-b698-90bd5152f3d1/0711d012-de63-4c4f-a3b4-9e9ece7267ac/TR-en-20240107-trifectadaily-perspective_alpha_website_small.jpg"
             alt="background image"
             className="flex -z-10 brightness-50 scale-x-125 object-cover"
-            priority
-            fill
+            fill={true}
+            loading="lazy"
           />
         
           <div className="flex flex-row">
@@ -25,9 +25,9 @@ export default function AuthLayout({children}:{children: ReactNode}){
                 <Image
                   src={Logo}
                   alt="Logo"
-                  fill
+                  fill={true}
+                  loading="lazy"
                   style={{marginLeft: "110px"}}
-                  priority
                   className="absolute left-1 md:left-10 lg:left-16 top-7 object-contain"
                 />
               </div>
