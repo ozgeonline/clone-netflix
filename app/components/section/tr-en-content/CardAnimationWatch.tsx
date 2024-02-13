@@ -1,24 +1,25 @@
 import prisma from "../../../utils/db"
 import Image from "next/image"
+import cardData from "@/app/data/card"
 
-async function getData() {
-  const data = await prisma.card.findMany({
-    select: {
-      id: true,
-      cardTitle: true,
-      cardComment: true,
-      cardImg: true
-    }
-  })
-  return data
-}
+// async function getData() {
+//   const data = await prisma.card.findMany({
+//     select: {
+//       id: true,
+//       cardTitle: true,
+//       cardComment: true,
+//       cardImg: true
+//     }
+//   })
+//   return data
+// }
 
-export default async function CardAnimationWatch() {
-  const data = await getData()
+export default  function CardAnimationWatch() {
+  // const data = await getData()
  
   return (
     <div className="bg-black">
-      {data.map((card) => (
+      {cardData.map((card) => (
         <div 
           key={card.id} 
           className={
@@ -32,7 +33,9 @@ export default async function CardAnimationWatch() {
             </div>
             <div className="relative 2xl:w-[580px] 2xl:h-[430px] xl:w-[470px] xl:h-[350px] lg:w-[450px] lg:h-[350px] md:w-[640px] md:h-[480px] sm:w-[560px] sm:h-[420px] w-[350px] h-[280px] flex-shrink">
               <Image 
-                src={card.cardImg} 
+                src={card.cardImg}
+                className="brightness-75"
+                quality={50}
                 alt="Watch List Img" 
                 fill={true}
                 loading="lazy"

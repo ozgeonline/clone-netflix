@@ -79,13 +79,6 @@ model WatchList {
   movieId Int
   @@schema("public")
 }
-// model CastList {
-//   id      String @id @default(uuid())
-//   Movie   Movie? @relation(fields: [movieId], references: [id])
-//   name    String
-//   movieId Int
-//   @@schema("public")
-// }
 
 model WatchHistory {
   id     String @id @default(uuid())
@@ -97,15 +90,6 @@ model WatchHistory {
   movieId Int?
 
   createdAt DateTime @default(now())
-
-  @@schema("public")
-}
-
-model Card { //m
-  id              Int @id @default(autoincrement())
-  cardTitle       String
-  cardComment     String
-  cardImg         String
 
   @@schema("public")
 }

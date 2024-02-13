@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 
 interface VideoPlayerProps {
   videoUrl: string
-  imageString: string
+ 
   // onVideoEnd: () => void;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, imageString }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl,  }) => {
 
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [savedTime, setSavedTime] = useState<number | null>(null)
@@ -43,7 +43,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, imageString }) => {
       <video
         ref={videoRef}
         preload="none"
-        poster={imageString}
+        // poster={imageString}
         controls
         onTimeUpdate={handleVideoTimeUpdate}
         onEnded={handleVideoEnded}
@@ -53,6 +53,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, imageString }) => {
         <source src={videoUrl} type="video/mp4" className=''/>
         Your browser does not support the video tag.
       </video>
+
+      
   )
 }
 

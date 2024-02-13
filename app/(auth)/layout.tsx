@@ -17,6 +17,7 @@ export default function AuthLayout({children}:{children: ReactNode}){
             className="flex -z-10 brightness-50 scale-x-125 object-cover"
             fill={true}
             loading="lazy"
+            quality={50}
           />
         
           <div className="flex flex-row">
@@ -27,6 +28,7 @@ export default function AuthLayout({children}:{children: ReactNode}){
                   alt="Logo"
                   fill={true}
                   loading="lazy"
+                  quality={50}
                   style={{marginLeft: "110px"}}
                   className="absolute left-1 md:left-10 lg:left-16 top-7 object-contain"
                 />
