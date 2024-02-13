@@ -27,7 +27,7 @@ export default function AuthLayout({children}:{children: ReactNode}){
                   src={Logo}
                   alt="Logo"
                   fill={true}
-                  loading="lazy"
+                  priority={true}
                   quality={50}
                   style={{marginLeft: "110px"}}
                   className="absolute left-1 md:left-10 lg:left-16 top-7 object-contain"
