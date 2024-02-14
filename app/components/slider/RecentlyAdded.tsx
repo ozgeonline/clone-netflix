@@ -48,7 +48,7 @@ export default async function RecentlyAdded() {
               alt="Movie"
               className="rounded-sm object-cover"
               fill
-              sizes="100vw"
+              sizes="100%"
               quality={50}
               loading="lazy"
             />
@@ -60,6 +60,7 @@ export default async function RecentlyAdded() {
                   alt="Movie"
                   width={800}
                   height={800}
+                  sizes="100%"
                   quality={50}
                   priority
                   className="absolute w-full h-3/5 top-0 -z-10 rounded-t-md object-cover hover:cursor-pointer"

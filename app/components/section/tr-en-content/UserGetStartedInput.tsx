@@ -68,7 +68,8 @@ export default function UserGetStartedInput() {
           value={inputValue}
           onBlur={handleInputBlur}
           type="email"
-          id="filled-error-helper-text"
+          id="
+          "
           label="Email address"
           name="email"
           helperText={isTouched && warningMessage}

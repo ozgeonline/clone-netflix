@@ -23,7 +23,8 @@ export default  function CardAnimationWatch() {
                 className="brightness-75"
                 quality={50}
                 alt="Watch List Img" 
-                fill={true}
+                fill
+                sizes="100%"
                 loading="lazy"
               />
             </div>
