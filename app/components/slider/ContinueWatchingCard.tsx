@@ -6,6 +6,7 @@ async function getData() {
   const data = await prisma.movie.findMany({
     select: {
       videoSource: true,
+      imageString: true
     },
     orderBy: {
       createdAt: "desc",
@@ -21,7 +22,7 @@ export default async function ContinueWatchingCard() {
   return (
    <div className="flex gap-x-2 ms-20 xl:ms-0">
     {data.map((movie,index) => (
-      <VideoPlayer key={index} videoUrl={movie.videoSource}/>
+      <VideoPlayer key={index} videoUrl={movie.videoSource} imageString={movie.imageString}/>
     ))}
    </div>
   )

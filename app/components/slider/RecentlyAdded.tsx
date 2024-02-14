@@ -19,7 +19,6 @@ async function getData(userId: string) {
         },
       },
       imageString: true,
-      youtubeString: true,
       videoSource: true,
       age: true,
       release: true,

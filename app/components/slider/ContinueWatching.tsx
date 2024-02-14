@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 
 interface VideoPlayerProps {
   videoUrl: string
+  imageString: string
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl,imageString }) => {
 
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [savedTime, setSavedTime] = useState<number | null>(null)
@@ -51,19 +52,21 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl }) => {
   }
 
   return (
-    <video
-      ref={videoRef}
-      preload="none"
-      controls
-      onTimeUpdate={handleVideoTimeUpdate}
-      onEnded={handleVideoEnded}
-      onPlay={handleVideoClick}
-      onLoadedData={handleVideoLoadedData}
-      className={`object-cover rounded-sm flex w-60 h-32 ${isLoaded ? 'bg-opacity-10' : 'bg-opacity-100'}`}
+     <video
+        ref={videoRef}
+        poster={isLoaded ? "" : imageString}
+        preload="none"
+        controls
+        muted
+        onTimeUpdate={handleVideoTimeUpdate}
+        onEnded={handleVideoEnded}
+        onPlay={handleVideoClick}
+        onLoadedMetadata={handleVideoLoadedData}
+        className={`object-cover rounded-sm flex w-60 h-32 `}
     >
       <source src={videoUrl} type="video/mp4"/>
       Your browser does not support the video tag.
-    </video>
+      </video>
   ) 
 }
 

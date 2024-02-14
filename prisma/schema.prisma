@@ -60,7 +60,6 @@ model Movie {
   release       Int
   videoSource   String
   category      String
-  youtubeString String
   cast          String
   genres        String
   WatchLists    WatchList[]
