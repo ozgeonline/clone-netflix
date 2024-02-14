@@ -18,7 +18,7 @@ export default function HomePage() {
       <MovieVideo />
 
       <div className="-ms-24 mt-64">
-        <ContinueWatchingCard/>
+        {/* <ContinueWatchingCard/> */}
         {/* <OnlyNetflix />
         <TopTenTVShows />
         <Trending />
