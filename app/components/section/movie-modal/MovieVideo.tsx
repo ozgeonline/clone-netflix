@@ -32,7 +32,7 @@ export default async function MovieVideo() {
   const data = await getData(session?.user?.email as string)
 
   return (
-    <div className="h-[55vh] lg:h-[55vh] w-full flex justify-start items-center top-10">
+    <div className="h-[55vh] lg:h-[55vh] w-screen flex justify-start items-center top-10">
       <video
         poster={data?.imageString}
         autoPlay

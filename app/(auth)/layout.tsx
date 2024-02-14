@@ -16,7 +16,9 @@ export default function AuthLayout({children}:{children: ReactNode}){
             alt="background image"
             className="flex -z-10 brightness-50 scale-x-125 object-cover"
             fill={true}
-            loading="lazy"
+            width={0}
+            height={0}
+            priority={true}
             quality={50}
           />
         
@@ -27,6 +29,8 @@ export default function AuthLayout({children}:{children: ReactNode}){
                   src={Logo}
                   alt="Logo"
                   fill={true}
+                  width={0}
+                  height={0}
                   priority={true}
                   quality={50}
                   style={{marginLeft: "110px"}}

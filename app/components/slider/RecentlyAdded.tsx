@@ -48,6 +48,9 @@ export default async function RecentlyAdded() {
               alt="Movie"
               className="rounded-sm object-cover"
               fill
+              sizes="100vw"
+              quality={50}
+              loading="lazy"
             />
 
             <div className="h-60 relative z-10 w-full transition duration-500 hover:scale-x-[1.4] hover:scale-y-[1.5] opacity-0 hover:opacity-100 hover:shadow-md shadow-black hover:cursor-pointer">
@@ -57,6 +60,8 @@ export default async function RecentlyAdded() {
                   alt="Movie"
                   width={800}
                   height={800}
+                  quality={50}
+                  priority
                   className="absolute w-full h-3/5 top-0 -z-10 rounded-t-md object-cover hover:cursor-pointer"
                 />
 
