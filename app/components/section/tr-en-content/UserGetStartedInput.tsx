@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, TextField } from "@mui/material"
+import { TextField, Typography } from "@mui/material"
 import { useState } from "react"
 
 export default function UserGetStartedInput() {
@@ -31,7 +31,7 @@ export default function UserGetStartedInput() {
     }
 
     return (
-      <Box
+      <Typography
         component="form"
         sx={{
           '& .MuiTextField-root': { 
@@ -68,13 +68,12 @@ export default function UserGetStartedInput() {
           value={inputValue}
           onBlur={handleInputBlur}
           type="email"
-          id="
-          "
+          id=""
           label="Email address"
           name="email"
           helperText={isTouched && warningMessage}
           variant="filled"
         />
-      </Box>
+      </Typography>
     )
 }

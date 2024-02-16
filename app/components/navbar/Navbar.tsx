@@ -13,7 +13,7 @@ export default function Navbar() {
     <ScrollingElementSSR>
       <div className="flex items-center">
         <Link href="/home" prefetch={false}>
-          <Image src={Logo} alt="Netflix logo" priority width={93} height={30}/>
+          <Image src="https://utfs.io/f/d33f8566-a121-4424-9710-828f8b0bf2d8-bauwjc.svg" alt="Netflix logo" priority width={93} height={30}/>
         </Link>
         <ul className="lg:flex gap-x-5 ml-10 hidden">
           {links.map((link) => (

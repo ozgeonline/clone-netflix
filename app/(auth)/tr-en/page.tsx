@@ -19,8 +19,8 @@ export default async function Tr() {
     <div>
       <div className="text-center  flex flex-col items-center justify-center h-screen px-8 sm:px-3 pt-10 min-[320px]:pt-28 sm:pt-20">
         <h1 className="text-[32px] md:text-5xl font-black sm:flex-wrap px-1 mt-3">Unlimited movies, TV shows, and more</h1>
-        <div className="text-[18px] md:text-[24px] mt-4 sm:flex-wrap">Watch anywhere. Cancel anytime.</div>
-        <div className="text-[18px] md:text-[20px] mt-4 sm:flex-wrap">Ready to watch? Enter your email to create or restart your membership.</div>
+        <h2 className="text-[18px] md:text-[24px] mt-4 sm:flex-wrap">Watch anywhere. Cancel anytime.</h2>
+        <h2 className="text-[18px] md:text-[20px] mt-4 sm:flex-wrap">Ready to watch? Enter your email to create or restart your membership.</h2>
         <form 
           method="post" 
           action="/api/auth/signin" 

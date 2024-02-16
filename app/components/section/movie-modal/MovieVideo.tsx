@@ -39,6 +39,7 @@ export default async function MovieVideo() {
         muted
         loop
         src={data?.videoSource}
+        preload="auto"
         className="w-full absolute top-0 left-0 h-[110vh] object-cover -z-20 brightness-[60%]"
       ></video>
       <div className="absolute -bottom-64 w-screen h-44 bg-none -ms-40 -z-10 shadow-[0_35px_70px_55px_rgba(0,0,0,1)] shadow-[#141414]  transform rotate-180">

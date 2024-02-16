@@ -9,14 +9,17 @@ export default function AuthLayout({children}:{children: ReactNode}){
   
   return (
     <div>
-      <div className="relative flex flex-col h-[800px] min-[320px]:h-[512px] md:h-[700px] w-screen items-center justify-center">
+      <div className="relative flex flex-col lg:h-screen h-[700px] w-screen items-center justify-center">
         <Image
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/df6621a3-890c-4ca0-b698-90bd5152f3d1/0711d012-de63-4c4f-a3b4-9e9ece7267ac/TR-en-20240107-trifectadaily-perspective_alpha_website_small.jpg"
+          src="https://utfs.io/f/f641c1e7-df9e-4fba-8867-2d01bb86c303-9ysoom.webp"
           alt="background image"
-          className="flex -z-10 brightness-50 scale-x-125 object-cover"
+          className="flex -z-10 brightness-50 object-cover"
           fill
           sizes="100vw"
-          priority={true}
+          style={{
+            maxWidth:"100%",
+          }}
+          priority
           quality={50}
         />
         <div className=" bg-gradient-to-t from-transparent via-black/80 to-black/80 w-screen h-[200px] -mt-[38rem]">
@@ -24,13 +27,13 @@ export default function AuthLayout({children}:{children: ReactNode}){
             <Link href="/home" prefetch={false}>
               <div className="absolute w-20 md:w-36 h-6 md:h-[40px] -left-20 sm:-left-18 md:-left-16 lg:left-16 top-7">
                 <Image
-                  src={Logo}
+                  src="https://utfs.io/f/d33f8566-a121-4424-9710-828f8b0bf2d8-bauwjc.svg"
                   alt="Logo"
                   fill
                   sizes="100vw"
-                  priority={true}
+                  priority
                   quality={50}
-                  style={{marginLeft: "110px"}}
+                  style={{marginLeft: "110px", maxWidth:"100%",}}
                   className="absolute left-1 md:left-10 lg:left-16 top-7 object-contain"
                 />
               </div>
@@ -38,7 +41,7 @@ export default function AuthLayout({children}:{children: ReactNode}){
             <div className="absolute flex flex-row top-16 -right-44 min-[320px]:top-7 min-[320px]:-right-52 sm:-right-[3rem] md:-right-48 lg:-right-14 ">
               <div className="flex space-x-4 w-16 sm:w-32 bg-neutral-900/70 mr-[1rem] border border-gray-500 rounded-sm">
                 <Languages className="w-4 h-4 absolute top-2 left-2 "/>
-                <select id="lang" className="py-1 px-3 outline-none bg-neutral-900/10 rounded-sm -mt-48 sm:mt-0">
+                <select aria-label="lang" id="lang" className="py-1 px-3 outline-none bg-neutral-900/10 rounded-sm -mt-48 sm:mt-0">
                   <option value="eng" className="bg-slate-50 text-black">English</option>
                   <option value="tr" className="bg-slate-50 text-black">Türkçe</option>
                 </select>
