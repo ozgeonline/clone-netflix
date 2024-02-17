@@ -1,23 +1,14 @@
-import { authOptions } from "@/app/utils/auth"
-import { getServerSession } from "next-auth"
-import { redirect } from "next/navigation"
 import { ChevronRight } from 'lucide-react'
 import CardAnimationWatch from "@/app/components/section/tr-en-content/CardAnimationWatch"
 import FAQ from "@/app/components/section/tr-en-content/FAQ"
 import Footer from "@/app/components/section/footer/Footer"
 import UserGetStartedInput from "@/app/components/section/tr-en-content/UserGetStartedInput"
 
-export default async function Tr() {
-
-  const session = await getServerSession(authOptions)
-
-  if(session) {
-    redirect('/home')
-  }
+export default function Tr() {
   
   return (
     <div>
-      <div className="text-center  flex flex-col items-center justify-center h-screen px-8 sm:px-3 pt-10 min-[320px]:pt-28 sm:pt-20">
+      <div className="text-center flex flex-col items-center justify-center h-screen px-8 sm:px-3 pt-10 min-[320px]:pt-28 sm:pt-20">
         <h1 className="text-[32px] md:text-5xl font-black sm:flex-wrap px-1 mt-3">Unlimited movies, TV shows, and more</h1>
         <h2 className="text-[18px] md:text-[24px] mt-4 sm:flex-wrap">Watch anywhere. Cancel anytime.</h2>
         <h2 className="text-[18px] md:text-[20px] mt-4 sm:flex-wrap">Ready to watch? Enter your email to create or restart your membership.</h2>
@@ -36,7 +27,7 @@ export default async function Tr() {
           </button>
         </form>
       </div>
-      <div className="-mt-[4.5rem] md:mt-4">
+      <div className="-mt-10">
         <CardAnimationWatch />
         <FAQ />
         <Footer />

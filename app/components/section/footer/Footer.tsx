@@ -5,7 +5,7 @@ import { Languages } from "lucide-react"
 export default function Footer() {
   return (
     <div className="py-20 border-t-8 bg-black">
-      <div className="max-w-[1170px] lg:ml-[170px] md:ml-16 ml-4  mt-[-1rem]">
+      <div className="max-w-[1170px] lg:ml-[170px] md:ml-16 ml-4">
         <div className="mb-2">
           <Link 
             href={`#`}
@@ -15,7 +15,7 @@ export default function Footer() {
             Questions? Contact us.
           </Link>
         </div>
-        <div className="grid xs:grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
+        <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
           {links.map((link) => (
             <div key={link.id} className="mt-3">
               <Link 
