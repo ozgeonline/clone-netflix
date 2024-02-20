@@ -1,84 +1,53 @@
 "use client"
 
 import * as React from 'react'
-import Accordion from '@mui/material/Accordion'
-import AccordionSummary from '@mui/material/AccordionSummary'
-import AccordionDetails from '@mui/material/AccordionDetails'
-import Typography from '@mui/material/Typography'
 import AddIcon from '@mui/icons-material/Add'
 import fqaData from '../../../data/FAQ'
 import { useState } from 'react'
-import { ChevronRight } from 'lucide-react'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import UserGetStartedInput from './UserGetStartedInput'
 
 export default function FQA() {
 
-  const [expanded, setExpanded] = useState(null)
-  const handleChange = (data: any) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-    setExpanded(isExpanded ? data : false)
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const toggleAccordion = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
   }
-  const matches = useMediaQuery('(min-width:640px)')
 
   return (
-    <div  className='py-20 px-8 border-t-8 justify-center items-center flex flex-col bg-black'>
-      <h1 className='text-5xl font-extrabold mb-7'>Frequently Asked Questions</h1>
-      {fqaData.map((data) => (
-        <Accordion
-          key={data.id}
-          expanded={expanded === data.id}
-          onChange={handleChange(data.id)}
-          sx={{
-            backgroundColor:"#2D2D2D",
-            color: "#fff",
-            marginBottom: "7px",
-            borderRadius: "0px !important",
-            maxWidth: "1170px",
-            }}
-        >
-          <AccordionSummary
-            expandIcon={
-              <AddIcon sx={{
-                color:"#fff",
-                fontSize: `${matches ? "44px" : "24px"}`
-                }} 
-              />
-            }
-            aria-controls={`${data.id}-content`}
-            id={`${data.id}-header`}
-            sx={{
-              "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-                transform: "rotate(45deg) !important",
-              },
-              paddingX: "24px",
-              paddingY: "10px",
-              borderBottom: "2px solid black",
-              ":hover":{backgroundColor: "#414141"},
-            }}
+    <div  className='py-20 px-8 border-t-8 justify-center items-center flex flex-col bg-black w-full'>
+      <h1 className='text-lg sm:text-2xl lg:text-5xl font-extrabold mb-7'>Frequently Asked Questions</h1>
+      {fqaData.map((data,index) => (
+        <div key={data.id} className='flex flex-col justify-center items-center w-full'>
+          <div
+            onClick={() => toggleAccordion(index)}
+            className={`
+              ${openIndex !== index ? "w-full" : "w-full"} max-w-[1170px]
+              flex justify-between items-center bg-[#2D2D2D] text-white mb-[2px]  px-6 py-4 hover:brightness-150 cursor-pointer
+            `}
           >
-            <Typography sx={{ fontSize: `${matches ? "24px" : "18px"}`}}>
+            <h2 className={`${openIndex !== index ? "" : "w-full"} text-lg lg:text-2xl font-thin`}>
               {data.title}
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails sx={{paddingX: "24px", paddingY: "18px"}}>
-            <Typography component={'span'} dangerouslySetInnerHTML={{ __html: data.content }} className='text-md sm:text-xl' />
-          </AccordionDetails>
-        </Accordion>
+            </h2>
+            <span>
+              {openIndex === index 
+                ? <AddIcon className='rotate-45 lg:text-5xl text-base font-extralight transition-all ease-linear'/> 
+                : <AddIcon className='lg:text-5xl text-xl transition-all ease-linear'/>
+              }
+            </span>
+          </div>
+          {openIndex === index && (
+            <div 
+              className={`bg-[#2D2D2D] text-white text-lg lg:text-2xl mb-2 px-6 py-6 transition-all transition-effect`}
+            >
+              <div dangerouslySetInnerHTML={{ __html: data.content }}></div>
+            </div>
+          )}
+        </div>
       ))}
-      <div className='mt-12  justify-center flex flex-col'>
-        <h3 className='text-xl text-center'>Ready to watch? Enter your email to create or restart your membership.</h3>
-        <form method="post" action="/api/auth/signin" className="flex sm:flex-row flex-col items-center justify-center mt-4">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email address"
-            className="sm:py-4 sm:px-4 w-full sm:w-[368px] py-3 px-3 mx-2 rounded-sm bg-neutral-900/70 border border-white/25 mr-2"
-          />
-          <button
-            type="submit"
-            className="flex pt-2 px-3 sm:py-3 sm:pr-4 sm:pl-6 w-[160px] h-[48px] sm:w-[205px] sm:h-[56px] text-lg mt-3 sm:mt-0 sm:text-2xl rounded-sm bg-[#e50914] border border-[#e50914]  hover:brightness-90">
-              Get Started <ChevronRight className="ml-2" size="32px"/>
-          </button>
-        </form>
+
+      <div className='mt-12 justify-center flex flex-col'>
+        <h2 className='text-base lg:text-xl text-center mx-6'>Ready to watch? Enter your email to create or restart your membership.</h2>
+        <UserGetStartedInput/>
       </div>
     </div>    
   )

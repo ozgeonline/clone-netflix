@@ -80,7 +80,7 @@
     background-color: #141414;
 
   }
-  /*******scroll*******/
+  /*?--scroll---*/
   .overflow-css::-webkit-scrollbar {
     width: 0.1px;
     background: transparent;
@@ -97,6 +97,28 @@
   .overflow-css::-webkit-scrollbar-thumb:hover {
     background: transparent;
   }
- 
+
+  .input-field {
+    font-size: 16px; /* Default*/
+    transition: all .2s ease;
+  }
+
+  .input-field:focus::placeholder {
+      font-size: 12px; /* when input is focused */
+      position: absolute;
+      top: 0.2rem;
+      left: 1.5rem;
+      transition: all .2s ease;
+      color: #8c8c8c;
+    
+  }
+  .input-field:focus {
+    background-color: #444;
+    opacity: .9;
+  }
+
+  /* .transition-effect {
+    transition: height  2s linear; 
+  } */
 
 }

@@ -1,84 +1,61 @@
 "use client"
-
-import { Box, TextField } from "@mui/material"
 import { useState } from "react"
-import useMediaQuery from '@mui/material/useMediaQuery'
 
 export default function UserInput() {
-
-    const [inputValue, setInputValue] = useState("")
-    const [warningMessage, setWarningMessage] = useState("")
-    const [isTouched, setIsTouched] = useState(false)
-
-    const matches = useMediaQuery('(min-width:640px)')
-
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = event.target.value
-      setInputValue(value)
-    
-      if (!value) {
-        setWarningMessage('Please enter a valid email.')
-      } else {
-        setWarningMessage('')
-      }
-    }
-
-    const handleInputBlur = () => {
-      setIsTouched(true)
-      
-      if (!inputValue) {
-        setWarningMessage('Please enter a valid email.')
-      } else {
-        setWarningMessage('')
-      }
-    }
   
+  const [inputValue, setInputValue] = useState("")
+  const [isTouched, setIsTouched] = useState(false)
+  
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    setInputValue(value)
+  }
+  const handleInputBlur = () => {
+    setIsTouched(true)
+  }
+
+  const validateEmail = (email: string): boolean => {
+    //for email validation
+    const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
   return (
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { width: '100%', borderRadius:"4px"},
-        '& .MuiInputBase-root.MuiFilledInput-root.MuiFilledInput-underline.MuiInputBase-colorPrimary.MuiInputBase-formControl::after': {
-          borderBottomLeftRadius:"4px", 
-          borderBottomRightRadius:"4px",
-          borderBottom:"2px solid #e87c03",
-          height:"6px",
-          width:"100%"
-        },
-        '& .MuiInputBase-input': {backgroundColor:"#333", color:"#fff"},
-        '& .MuiFilledInput-input': {borderRadius:"4px", },
-        '& .MuiFormLabel-root': {color:"#8c8c8c"},
-        '& .MuiFormHelperText-root': {color: "#e87c03"},
-        '& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {color:"#8c8c8c"},
-        maxWidth:`${matches ? "336px" : "100%"}`,
-        width:"100%"
-        
-      }}
-      noValidate
-      autoComplete="on"
-    >
-      <TextField
-        onChange={handleInputChange}
-        value={inputValue}
-        onBlur={handleInputBlur}
-        type="email"
-        id="filled-error-helper-text"
-        label="Email"
-        name="email"
-        defaultValue=""
-        helperText={isTouched && warningMessage}
-        variant="filled"
-      />
-      <TextField
-        type="email"
-        label="Password"
-        name="password"
-        defaultValue=""
-        variant="filled"
-        
-        disabled
-        sx={{marginTop:"1rem", input: { cursor: 'no-drop' }}}
-      />
-    </Box>
+    <div className="relative">
+    <input
+      type="email"
+      name="email"
+      placeholder="Email address"
+      value={inputValue}
+      onBlur={handleInputBlur}
+      onChange={handleInputChange}
+      className={`
+        input-field bg-[#333] opacity-80 text-white rounded-sm w-full md:w-[314px] py-3 px-6
+        ${(inputValue && validateEmail(inputValue)) 
+          ? "border-none" 
+          : (!inputValue || !validateEmail(inputValue)) && isTouched 
+          ? "border-b-2 border-[#e87c03] outline-none" 
+          : "border border-[#3d3c3b]"
+        }
+      `}
+      required
+      
+    />
+
+    {isTouched && !validateEmail(inputValue) && (
+      <label htmlFor="email" className="absolute top-14 left-0 text-[#e87c03] w-full max-w-[370px] text-sm text-start">
+        Please enter a valid email address.
+      </label>
+    )}
+
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      disabled
+      className="input-field bg-[#333] opacity-80 text-white rounded-sm  w-full md:w-[314px] py-3 px-6 cursor-not-allowed mt-8"
+    /> 
+
+  </div>
   )
 }

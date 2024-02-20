@@ -31,9 +31,10 @@ export default function Footer() {
         <div className="flex w-[122px] mt-5 border border-gray-500 rounded-sm">
           <div className="relative space-x-4 bg-neutral-900/70 rounded-sm w-32">
             <Languages className="w-4 h-4 absolute top-2 left-2 "/>
-            <select className=" py-1 px-3 outline-none bg-neutral-900/10 rounded-sm">
-              <option value="0" className="bg-slate-50 text-black">English</option>
-              <option value="1" className="bg-slate-50 text-black">Türkçe</option>
+            <label className="hidden" htmlFor="language-select" aria-label="Language Choice">Language:</label>
+            <select aria-labelledby="Language Choice" id="language-select" name="language-select" className=" py-1 px-3 outline-none bg-neutral-900/10 rounded-sm">
+              <option aria-labelledby="Language Choice" aria-label="hidden" value="lang-1" className="bg-slate-50 text-black">English</option>
+              <option aria-labelledby="Language Choice" aria-label="hidden" value="lang-2" className="bg-slate-50 text-black">Türkçe</option>
             </select>
           </div>
         </div>
