@@ -39,8 +39,8 @@ export default async function RecentlyAdded() {
 
   return (
     <div className="mb-52">
-      <h1 className="text-2xl font-bold  ">Recently Added</h1>
-      <div className="flex flex-row mt-3 space-x-1">
+      <h1 className="text-base sm:text-2xl "> Recently Added </h1>
+      <div className="flex flex-row mt-3 space-x-2">
         {data.map((movie) => (
           <div key={movie.id} className="relative h-[131px] w-[233px]">
             <Image
@@ -53,8 +53,8 @@ export default async function RecentlyAdded() {
               loading="lazy"
             />
 
-            <div className="h-60 relative z-10 w-full transition duration-500 hover:scale-x-[1.4] hover:scale-y-[1.5] opacity-0 hover:opacity-100 hover:shadow-md shadow-black hover:cursor-pointer">
-              <div className="z-10 w-full h-full rounded-md flex items-center justify-center ">
+            <div className="h-60 relative z-10 rounded-sm w-full transition duration-500 hover:scale-[1.45] opacity-0 hover:opacity-100 hover:shadow-md hover:shadow-black/90 hover:cursor-pointer">
+              <div className="z-10 w-full h-full flex items-center justify-center">
                 <Image
                   src={movie.imageString}
                   alt="Movie"
@@ -62,7 +62,7 @@ export default async function RecentlyAdded() {
                   height={800}
                   sizes="100%"
                   quality={50}
-                  priority
+                  layout="responsive"
                   className="absolute w-full h-3/5 top-0 -z-10 rounded-t-md object-cover hover:cursor-pointer"
                 />
 

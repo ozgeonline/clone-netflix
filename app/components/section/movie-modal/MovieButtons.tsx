@@ -44,15 +44,15 @@ export default function MovieButtons({
     <div>
       <Button 
         onClick={() => setOpen(true)} 
-        className="text-lg font-medium w-32 h-12"
+        className=" text-base lg:text-lg font-medium w-18 h-8 lg:w-32 lg:h-12"
       >
-        <Play className="h-7 w-7 text-black me-2 rounded-full fill-inherit" /> Play
+        <Play className="h-4 w-4 lg:h-7 lg:w-7 text-black me-2 rounded-full fill-inherit" /> Play
       </Button>
       <Button
         onClick={() => setOpen(true)}
-        className="text-lg font-medium bg-neutral-700/80 hover:bg-white/30 text-white w-44 h-12 ms-2"
+        className="text-base lg:text-lg font-medium bg-neutral-700/80 hover:bg-white/30 text-white w-36 h-8 lg:w-44 lg:h-12 max-sm:mt-2 ms-0 min-[270px]:ms-2"
       >
-        <InfoIcon className="mr-2 h-7 w-7" />More Info
+        <InfoIcon className="mr-2 h-4 w-4 lg:h-7 lg:w-7" />More Info
       </Button>
 
       <PlayVideoModal

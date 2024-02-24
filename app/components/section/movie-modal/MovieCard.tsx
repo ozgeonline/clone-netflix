@@ -47,7 +47,9 @@ export function MovieCard({
 
   return (
     <div className="flex flex-col max-w-[480px]">
-      <h1 className="font-bold text-lg line-clamp-1 left-3 top-28 absolute  [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)]">{title}</h1>
+      <h1 className="font-bold text-lg line-clamp-1 left-3 top-28 absolute  [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)]">
+        {title}
+      </h1>
       <div className="mt-40">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row items-center">
@@ -111,7 +113,7 @@ export function MovieCard({
           <Button 
             onClick={() => setOpen(true)} 
             variant="link" size="icon" 
-            className="mt-2 me-4 pt-[2px] h-6 w-6 bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-500"
+            className="mt-2 me-2 h-6 w-6 bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-500"
           >
             <ChevronDown className="h-5 w-5" />
           </Button>

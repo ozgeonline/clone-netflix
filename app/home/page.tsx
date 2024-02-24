@@ -1,27 +1,20 @@
 import MovieVideo from "../components/section/movie-modal/MovieVideo";
-import Navbar from "../components/navbar/Navbar";
 import RecentlyAdded from "../components/slider/RecentlyAdded";
-import ContinueWatching from "../components/slider/ContinueWatching";
-import OnlyNetflix from "../components/slider/OnlyNetflix";
-import TopTenTVShows from "../components/slider/TopTenTVShows";
-import Trending from "../components/slider/Trending";
-import MyList from "../components/slider/MyList";
-import TvComedies from "../components/slider/TvComedies";
-import ComedyMovies from "../components/slider/ComedyMovies";
+// import OnlyNetflix from "../components/slider/OnlyNetflix";
+// import MyList from "../components/slider/MyList";
+// import TvComedies from "../components/slider/TvComedies";
+// import ComedyMovies from "../components/slider/ComedyMovies";
 import ContinueWatchingCard from "../components/slider/ContinueWatchingCard";
 
 
 export default function HomePage() {
   return (
     
-    <div className="p-5 lg:p-0">
+    <div className="">
       <MovieVideo />
-
-      <div className="-ms-24 mt-64">
+      <div className="ml-5 lg:ml-14 -mt-20 lg:-mt-36 space-y-8">
         <ContinueWatchingCard/>
         {/* <OnlyNetflix />
-        <TopTenTVShows />
-        <Trending />
         <MyList />
         <TvComedies />
         <ComedyMovies />

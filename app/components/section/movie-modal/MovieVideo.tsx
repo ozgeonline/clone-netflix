@@ -1,9 +1,11 @@
-import { getServerSession } from "next-auth"
+// import { getServerSession } from "next-auth"
 import prisma from "../../../utils/db"
 import MovieButtons from "./MovieButtons"
-import { authOptions } from "@/app/utils/auth"
+// import { authOptions } from "@/app/utils/auth"
 
-async function getData(userId: string) {
+const userId = ""
+
+async function getData() {
   const data = await prisma.movie.findFirst({
     select: {
       title: true,
@@ -28,28 +30,31 @@ async function getData(userId: string) {
 }
 
 export default async function MovieVideo() {
-  const session = await getServerSession(authOptions)
-  const data = await getData(session?.user?.email as string)
+  // const session = await getServerSession(authOptions)
+  const data = await getData()
 
   return (
-    <div className="h-[55vh] lg:h-[55vh] w-screen flex justify-start items-center top-10">
-      <video
-        poster={data?.imageString}
-        autoPlay
-        muted
-        loop
-        src={data?.videoSource}
-        preload="auto"
-        className="w-full absolute top-0 left-0 h-[110vh] object-cover -z-20 brightness-[60%]"
-      ></video>
-      <div className="absolute -bottom-64 w-screen h-44 bg-none -ms-40 -z-10 shadow-[0_35px_70px_55px_rgba(0,0,0,1)] shadow-[#141414]  transform rotate-180">
+    <div className="w-screen h-auto flex justify-start items-center">
+      <div className="relative top-0 flex w-full h-[55vh] lg:h-[110vh]">
+        <video
+          poster={data?.imageString}
+          src={data?.videoSource}
+          autoPlay
+          muted
+          loop
+          preload="auto"
+          playsInline
+          className="w-full h-full absolute top-0 left-0 object-cover -z-20 brightness-[60%] "
+        ></video>
+      </div>
+      <div className="absolute top-[404px] lg:top-[810px] w-screen h-44 bg-none -z-10 shadow-[0_35px_70px_55px_rgba(0,0,0,1)] shadow-[#141414]  transform rotate-180">
       </div>
 
-      <div className="absolute w-[90%] lg:w-[40%] -ml-24 mt-[30rem]">
-        <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold">
+      <div className="absolute w-[90%] lg:w-[40%] ml-5 lg:ml-14 mt-10 lg:mt-28">
+        <h1 className="text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
           {data?.title}
         </h1>
-        <p className="text-white text-lg mt-5 line-clamp-3">
+        <p className="text-white text-sm lg:text-lg mt-2 lg:mt-5 line-clamp-2">
           {data?.overview}
         </p>
         <div className="flex gap-x-3 mt-4">
@@ -70,7 +75,6 @@ export default async function MovieVideo() {
             wachtListId={data?.WatchLists[0]?.id as string}
             watchList={data?.WatchLists && data.WatchLists.length > 0 ? true : false}
             id={data?.WatchLists[0]?.movieId as number}
-            
           />
         </div>
       </div>

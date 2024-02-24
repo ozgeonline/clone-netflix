@@ -30,9 +30,9 @@ export default async function UserButton() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-10 w-10 rounded-sm">
-          <Avatar className="h-10 w-10 rounded-sm">
+      <DropdownMenuTrigger asChild >
+        <Button variant="ghost" className="relative h-8 w-8 rounded-sm ms-5 -right-10 sm:right-5">
+          <Avatar className="h-8 w-8 rounded-sm">
             <AvatarImage src={avatarSrc} />
             <AvatarFallback className="rounded-sm uppercase">
               {userShortName}
@@ -41,7 +41,7 @@ export default async function UserButton() {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="w-56 text-start rounded-none mt-4" align="end" forceMount>
+      <DropdownMenuContent className="w-56 text-start rounded-none mt-4 bg-black/90" align="end" forceMount>
         <DropdownMenuLabel>
           <div className="flex flex-row">
             <Image 

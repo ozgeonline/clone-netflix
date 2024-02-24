@@ -1,10 +1,10 @@
 "use client"
-import UserInput from "./UserLoginInput";
+import UserLoginInput from "./UserLoginInput";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import GithubSignInButton from "../authButton/GithubSignInButton";
 import GoogleSignInButton from "../authButton/GoogleSignInButton";
-import Footer from "../../section/footer/Footer";
+import Footer from "../../section/Footer";
 
   type formInfo = {
     title: string
@@ -36,7 +36,7 @@ import Footer from "../../section/footer/Footer";
               {title}
             </h1>
             <div className="space-y-7 mt-5">
-              <UserInput />
+              <UserLoginInput />
 
               <button
                 type="submit"
@@ -61,6 +61,7 @@ import Footer from "../../section/footer/Footer";
               </div>
             </div>
           </form>
+
           <div className="text-gray-500 text-sm mt-2">
             {linkTitle}
             <Link 
@@ -71,10 +72,12 @@ import Footer from "../../section/footer/Footer";
               {linkInfo}
             </Link>
           </div>
+
           <div className="flex w-full justify-center items-center gap-x-3 mt-6">
             <GithubSignInButton />
             <GoogleSignInButton />
           </div>
+
           <div className="text-gray-500 text-xs mt-5 w-full md:w-[314px]">
             This page is protected by Google reCAPTCHA to ensure you&apos;re not a bot. 
             <span className="text-blue-600 hover:underline hover:cursor-pointer">
@@ -82,6 +85,7 @@ import Footer from "../../section/footer/Footer";
             </span>
           </div>
         </div>
+        
         <div className="md:mt-12">
           <Footer />
         </div>
