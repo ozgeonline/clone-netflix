@@ -48,13 +48,13 @@ export function MovieCard({
 
   return (
     <div 
-      className="absolute top-0 pt-5 left-0 w-full z-50 bg-[#141414] rounded-b-sm shadow-md shadow-black/90 hover:transition-transform hover:duration-500">
+      className="absolute top-0 px-[1px] pt-5 left-0 w-full z-50 bg-[#141414] rounded-b-sm shadow-md shadow-black/90 hover:transition-transform hover:duration-500">
       <h1 className="font-bold text-lg line-clamp-1 left-3 top-28   [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)]">
         {title}
       </h1>
       <div className="">
-        <div className="flex flex-row justify-between">
-          <div className="flex flex-row items-center">
+        <div className="flex justify-between">
+          <div className="flex items-center">
             <Button 
               onClick={() => setOpen(true)}
               size="icon"
@@ -71,7 +71,7 @@ export function MovieCard({
                 <Button 
                   variant="link"
                   size="icon"
-                  className="h-6 w-6 p-1 border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-500 z-40"
+                  className="h-6 w-6 p-1 border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-500"
                 >
                   <Check />
                 </Button>
@@ -83,7 +83,7 @@ export function MovieCard({
                 <Button 
                   variant="link" 
                   size="icon" 
-                  className="p-1 h-6 w-6 border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-500 z-40"
+                  className="p-1 h-6 w-6 border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-out hover:duration-500"
                 >
                   <Plus />
                 </Button>

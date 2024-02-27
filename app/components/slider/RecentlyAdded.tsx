@@ -64,7 +64,7 @@ export default async function RecentlyAdded() {
             </div>
 
             <div 
-              className="hidden w-[14.2rem] group-hover:scale-[1.4] absolute group-hover:inline-flex group-hover:z-50 group-hover:transition-transform group-hover:duration-500
+              className="invisible w-[14.2rem] group-hover:scale-[1.4] absolute group-hover:visible group-hover:z-50 group-hover:transition-transform group-hover:duration-500
               group-hover:shadow-md group-hover:shadow-black/90 group-hover:cursor-pointer ">
               <MovieCard
                 movieId={movie.id}
