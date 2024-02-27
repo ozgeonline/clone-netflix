@@ -35,7 +35,7 @@ export default async function HomeLayout({children} : {children: ReactNode}){
     <>
       <Navbar />
       <main className="w-full me-0">
-        {data.map((dialog) => (
+        {/* {data.map((dialog) => (
           <Dialog
             key={dialog.id}
             title="Example Modal"
@@ -43,7 +43,7 @@ export default async function HomeLayout({children} : {children: ReactNode}){
             age={dialog.age}
            
           />
-        ))}
+        ))} */}
         
           {children}
       </main>
