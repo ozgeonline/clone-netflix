@@ -12,9 +12,7 @@ export default async function AuthLayout({children}:{children: ReactNode}){
   const session = await getServerSession(authOptions)
   if (session) {
     return redirect("/home")
-  } else {
-    redirect("/tr-en")
-  }
+  } 
   
   return (
       <div className="items-center justify-center">
