@@ -33,7 +33,7 @@ export default async function UserButton() {
       <DropdownMenuTrigger asChild >
         <Button variant="ghost" className="relative h-8 w-8 rounded-sm ms-5 -right-10 sm:right-5">
           <Avatar className="h-8 w-8 rounded-sm">
-            <AvatarImage src={avatarSrc} />
+            <AvatarImage src={avatarSrc} alt="Profile picture" />
             <AvatarFallback className="rounded-sm uppercase">
               {userShortName}
             </AvatarFallback>

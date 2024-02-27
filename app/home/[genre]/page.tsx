@@ -1,4 +1,4 @@
-import { MovieCard } from "@/app/components/section/movie-modal/MovieCard";
+import { MovieCard } from "@/app/components/movie-modal/MovieCard";
 import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth";
@@ -76,7 +76,6 @@ async function getData(category: string, userId: string) {
       throw new Error("Invalid Category");
     }
   }
-
 }
 
 export default async function CategoryPage({params} : { params: {genre: string}}) {
@@ -93,7 +92,7 @@ export default async function CategoryPage({params} : { params: {genre: string}}
             alt="Movie"
             width={500}
             height={400}
-            loading="lazy"
+            loading="eager"
             quality={50}
             className="rounded-sm absolute w-full h-full object-cover"
           />
@@ -104,7 +103,7 @@ export default async function CategoryPage({params} : { params: {genre: string}}
                 alt="Movie"
                 width={800}
                 height={800}
-                loading="lazy"
+                loading="eager"
                 quality={50}
                 className="absolute w-full h-full -z-10 rounded-lg object-cover"
               />

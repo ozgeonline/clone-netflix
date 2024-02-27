@@ -3,9 +3,10 @@
 import { Button } from "@/components/ui/button"
 import { ThumbsUp, ThumbsDown, Check, Plus, Play, ChevronDown } from "lucide-react"
 import PlayVideoModal from "./PlayVideoModal"
-import { useState } from "react";
-import { addTowatchlist, deleteFromWatchlist } from "../../../action"
+import { useState } from "react"
+import { addTowatchlist, deleteFromWatchlist } from "../../action"
 import { usePathname } from "next/navigation"
+import Link from "next/link"
 
 interface iAppProps {
   wachtListId: string
@@ -39,18 +40,19 @@ export function MovieCard({
     imageString
   }: iAppProps) {
 
-  const [open, setOpen] = useState(false)
-  const [like, setLike] = useState(true)
+  const [open, setOpen] = useState<boolean>(false)
+  const [like, setLike] = useState<boolean>(true)
   const pathName = usePathname()
 
   const random = Math.floor(Math.random()*50)+45
 
   return (
-    <div className="flex flex-col max-w-[480px]">
-      <h1 className="font-bold text-lg line-clamp-1 left-3 top-28 absolute  [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)]">
+    <div 
+      className="absolute top-0 pt-5 left-0 w-full z-50 bg-[#141414] rounded-b-sm shadow-md shadow-black/90 hover:transition-transform hover:duration-500">
+      <h1 className="font-bold text-lg line-clamp-1 left-3 top-28   [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)]">
         {title}
       </h1>
-      <div className="mt-40">
+      <div className="">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row items-center">
             <Button 
@@ -110,13 +112,20 @@ export function MovieCard({
             }
           </div>
          
-          <Button 
+          {/* <Button 
             onClick={() => setOpen(true)} 
             variant="link" size="icon" 
             className="mt-2 me-2 h-6 w-6 bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-500"
           >
             <ChevronDown className="h-5 w-5" />
-          </Button>
+          </Button> */}
+          <Link
+            href={`../../${pathName}?showDialog=y`}
+          >
+            <button onClick={window.close}>
+              <ChevronDown className="h-5 w-5" />
+            </button>
+          </Link>
         </div>
 
         <div className="flex gap-x-2 items-center mx-2 mt-2">

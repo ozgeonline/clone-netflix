@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { ThumbsDown, ThumbsUp, VolumeX, Volume2, PauseCircle, Plus, Play, Check } from "lucide-react"
 import { useRef, useState } from "react"
-import { addTowatchlist, deleteFromWatchlist } from "../../../action";
+import { addTowatchlist, deleteFromWatchlist } from "../../action";
 import { usePathname } from "next/navigation"
 
 interface iAppProps {

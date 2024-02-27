@@ -1,5 +1,5 @@
 // import { getServerSession } from "next-auth"
-import prisma from "../../../utils/db"
+import prisma from "../../utils/db"
 import MovieButtons from "./MovieButtons"
 // import { authOptions } from "@/app/utils/auth"
 
@@ -42,18 +42,19 @@ export default async function MovieVideo() {
           autoPlay
           muted
           loop
-          preload="auto"
+          preload="none"
           playsInline
           className="w-full h-full absolute top-0 left-0 object-cover -z-20 brightness-[60%] "
+          
         ></video>
       </div>
       <div className="absolute top-[404px] lg:top-[810px] w-screen h-44 bg-none -z-10 shadow-[0_35px_70px_55px_rgba(0,0,0,1)] shadow-[#141414]  transform rotate-180">
       </div>
 
       <div className="absolute w-[90%] lg:w-[40%] ml-5 lg:ml-14 mt-10 lg:mt-28">
-        <h1 className="text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
+        <p className="text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
           {data?.title}
-        </h1>
+        </p>
         <p className="text-white text-sm lg:text-lg mt-2 lg:mt-5 line-clamp-2">
           {data?.overview}
         </p>

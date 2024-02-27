@@ -1,8 +1,11 @@
 import Image from "next/image"
 import prisma from "../../utils/db"
-import { MovieCard } from "../section/movie-modal/MovieCard"
+import { MovieCard } from "../movie-modal/MovieCard"
 import { getServerSession } from "next-auth"
 import { authOptions } from "../../utils/auth"
+import React from "react"
+import SliderModal from "./slider-modal/SliderModal"
+
 
 async function getData(userId: string) {
   const data = await prisma.movie.findMany({
@@ -28,7 +31,7 @@ async function getData(userId: string) {
     orderBy: {
       createdAt: "desc",
     },
-    take: 4
+    take: 10
   })
   return data
 }
@@ -37,55 +40,53 @@ export default async function RecentlyAdded() {
   const session = await getServerSession(authOptions)
   const data = await getData(session?.user?.email as string)
 
+ 
+
   return (
-    <div className="mb-52">
-      <h1 className="text-base sm:text-2xl "> Recently Added </h1>
-      <div className="flex flex-row mt-3 space-x-2">
+    <div>
+      <h1 className="text-base sm:text-2xl ">New Releases</h1>
+      <div className="flex flex-row mt-3 space-x-2 relative w-screen">
+      <SliderModal >
         {data.map((movie) => (
-          <div key={movie.id} className="relative h-[131px] w-[233px]">
-            <Image
-              src={movie.imageString}
-              alt="Movie"
-              className="rounded-sm object-cover"
-              fill
-              sizes="100%"
-              quality={50}
-              loading="lazy"
-            />
+          <div key={movie.id} className="group hover:transition-transform hover:duration-500">
+            <div className="flex flex-col relative h-32 w-[14.2rem] hover:z-50 ">
+              <Image
+                src={movie.imageString}
+                alt={`${movie.title} - ${movie.id}.movie poster`}
+                className="group-hover:scale-[1.4] group-hover:z-50 group-hover:rounded-t-sm group-hover:rounded-b-none rounded-sm object-cover
+                transition-transform duration-500 "
+                fill
+                sizes="100%"
+                quality={50}
+                loading="eager"
+                 
+              />
+            </div>
 
-            <div className="h-60 relative z-10 rounded-sm w-full transition duration-500 hover:scale-[1.45] opacity-0 hover:opacity-100 hover:shadow-md hover:shadow-black/90 hover:cursor-pointer">
-              <div className="z-10 w-full h-full flex items-center justify-center">
-                <Image
-                  src={movie.imageString}
-                  alt="Movie"
-                  width={800}
-                  height={800}
-                  sizes="100%"
-                  quality={50}
-                  layout="responsive"
-                  className="absolute w-full h-3/5 top-0 -z-10 rounded-t-md object-cover hover:cursor-pointer"
-                />
-
-                <MovieCard
-                  movieId={movie.id}
-                  key={movie.id}
-                  overview={movie.overview}
-                  title={movie.title}
-                  wachtListId={movie.WatchLists[0]?.id}
-                  videoSource={movie.videoSource}
-                  watchList={movie.WatchLists.length > 0 ? true : false}
-                  age={movie.age}
-                  year={movie.release}
-                  time={movie.duration}
-                  cast={movie.cast}
-                  genre={movie.genres}
-                  category={movie.category}
-                  imageString={movie.imageString}
-                />
-              </div>
+            <div 
+              className="hidden w-[14.2rem] group-hover:scale-[1.4] absolute group-hover:inline-flex group-hover:z-50 group-hover:transition-transform group-hover:duration-500
+              group-hover:shadow-md group-hover:shadow-black/90 group-hover:cursor-pointer ">
+              <MovieCard
+                movieId={movie.id}
+                key={movie.id}
+                overview={movie.overview}
+                title={movie.title}
+                wachtListId={movie.WatchLists[0]?.id}
+                videoSource={movie.videoSource}
+                watchList={movie.WatchLists.length > 0 ? true : false}
+                age={movie.age}
+                year={movie.release}
+                time={movie.duration}
+                cast={movie.cast}
+                genre={movie.genres}
+                category={movie.category}
+                imageString={movie.imageString}
+                
+              />
             </div>
           </div>
         ))}
+      </SliderModal>
       </div>
     </div>
   )

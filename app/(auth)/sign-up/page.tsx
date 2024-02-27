@@ -1,4 +1,4 @@
-import UserLoginModal from "@/app/components/button/authInputModal/UserLoginModal";
+import UserLoginModal from "@/app/components/auth_modal/authInputModal/UserLoginInput";
 
 export default function SignUp() {
 

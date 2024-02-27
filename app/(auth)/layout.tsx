@@ -1,13 +1,11 @@
 import { ReactNode } from "react"
-import { Languages } from "lucide-react"
-import { ChevronDown } from 'lucide-react'
 import Link from "next/link"
 import { getServerSession } from "next-auth"
 import { authOptions } from "../utils/auth"
 import { redirect } from "next/navigation"
-import Image__Bg from "../components/section/tr-en-content/component/Image__Bg"
-import Image__Logo from "../components/section/tr-en-content/component/Image__Logo"
-import Lang__Select from "../components/section/tr-en-content/component/Lang__Select"
+import Image__Bg from "../components/section/tr-en_pages_modal/component/Image__Bg"
+import Image__Logo from "../components/section/tr-en_pages_modal/component/Image__Logo"
+import Lang__Select from "../components/section/tr-en_pages_modal/component/Lang__Select"
 
 export default async function AuthLayout({children}:{children: ReactNode}){
 

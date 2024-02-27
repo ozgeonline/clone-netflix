@@ -1,10 +1,11 @@
 "use client"
-import UserLoginInput from "./UserLoginInput";
-import { Checkbox } from "@/components/ui/checkbox";
-import Link from "next/link";
-import GithubSignInButton from "../authButton/GithubSignInButton";
-import GoogleSignInButton from "../authButton/GoogleSignInButton";
-import Footer from "../../section/Footer";
+
+import { Checkbox } from "@/components/ui/checkbox"
+import Link from "next/link"
+import GithubSignInButton from "../authButton/GithubSignInButton"
+import GoogleSignInButton from "../authButton/GoogleSignInButton"
+import UserLoginModal from "./UserLoginModal"
+import Footer from "../../section/Footer"
 
   type formInfo = {
     title: string
@@ -14,7 +15,7 @@ import Footer from "../../section/Footer";
     linkRef: string
   }
 
-  export default function UserLoginModal({
+  export default function UserLoginInput({
     title,
     buttonTitle,
     linkTitle,
@@ -36,8 +37,7 @@ import Footer from "../../section/Footer";
               {title}
             </h1>
             <div className="space-y-7 mt-5">
-              <UserLoginInput />
-
+              <UserLoginModal />
               <button
                 type="submit"
                 className="bg-[#e50914] w-full md:w-[314px] py-3 rounded-sm"
