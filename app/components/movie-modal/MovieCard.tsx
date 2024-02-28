@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { ThumbsUp, ThumbsDown, Check, Plus, Play, ChevronDown } from "lucide-react"
-import PlayVideoModal from "./PlayVideoModal"
+// import PlayVideoModal from "./PlayVideoModal"
 import { useState } from "react"
 import { addTowatchlist, deleteFromWatchlist } from "../../action"
 import { usePathname } from "next/navigation"
@@ -148,7 +148,7 @@ export function MovieCard({
         </div>
       </div>
 
-      <PlayVideoModal
+      {/* <PlayVideoModal
         videoSource={videoSource}
         key={movieId}
         wachtListId={wachtListId}
@@ -165,7 +165,7 @@ export function MovieCard({
         genre={genre}
         category={category}
         imageString={imageString}
-      />
+      /> */}
     </div>
   )
 }

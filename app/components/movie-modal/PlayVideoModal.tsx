@@ -1,68 +1,68 @@
-// import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, } from "@/components/ui/dialog"
-import PlayVideoModalButton from "./PlayVideoModalButton"
-import Image from "next/image"
-import logo from "../../../../app/favicon.ico"
-import { Subtitles } from "lucide-react"
-import { Tooltip, TooltipProps, styled, tooltipClasses } from "@mui/material"
-import Dialog from "./Dialog"
-import Link from "next/link"
+// // import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, } from "@/components/ui/dialog"
+// import PlayVideoModalButton from "./PlayVideoModalButton"
+// import Image from "next/image"
+// import logo from "../../../../app/favicon.ico"
+// import { Subtitles } from "lucide-react"
+// import { Tooltip, TooltipProps, styled, tooltipClasses } from "@mui/material"
+// import Dialog from "./Dialog"
+// import Link from "next/link"
 
-const TooltipSubtitles = styled(({ className, ...props }: TooltipProps) => (
-    <Tooltip {...props} arrow classes={{ popper: className }} />
-  ))(({ theme }) => ({
-    [`& .${tooltipClasses.arrow}`]: {
-      color: theme.palette.common.white,
-    },
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: theme.palette.common.white,
-      color: theme.palette.common.black,
-      fontSize: 16,
-      fontWeight: 700,
-      maxWidth: 450,
-    },
-  }))
+// const TooltipSubtitles = styled(({ className, ...props }: TooltipProps) => (
+//     <Tooltip {...props} arrow classes={{ popper: className }} />
+//   ))(({ theme }) => ({
+//     [`& .${tooltipClasses.arrow}`]: {
+//       color: theme.palette.common.white,
+//     },
+//     [`& .${tooltipClasses.tooltip}`]: {
+//       backgroundColor: theme.palette.common.white,
+//       color: theme.palette.common.black,
+//       fontSize: 16,
+//       fontWeight: 700,
+//       maxWidth: 450,
+//     },
+//   }))
 
-interface iAppProps {
-  state: boolean
-  changeState: any
-  movieId: number
-  wachtListId: string
-  overview: string
-  title: string
-  watchList: boolean
-  videoSource: string
-  age: number
-  duration: number
-  release: number
-  cast: string
-  genre: string
-  category: string
-  imageString: string
-}
+// interface iAppProps {
+//   state: boolean
+//   changeState: any
+//   movieId: number
+//   wachtListId: string
+//   overview: string
+//   title: string
+//   watchList: boolean
+//   videoSource: string
+//   age: number
+//   duration: number
+//   release: number
+//   cast: string
+//   genre: string
+//   category: string
+//   imageString: string
+// }
 
-export default function PlayVideoModal({
-    movieId,
-    wachtListId,
-    changeState,
-    state,
-    overview,
-    title,
-    watchList,
-    videoSource,
-    age,
-    duration,
-    release,
-    cast,
-    genre,
-    category,
-    imageString
-  }: iAppProps) {
-  const random = Math.floor(Math.random()*50)+45
-  const casts = cast.split(",")
-  const genres = genre.split(",")
+// export default function PlayVideoModal({
+//     movieId,
+//     wachtListId,
+//     changeState,
+//     state,
+//     overview,
+//     title,
+//     watchList,
+//     videoSource,
+//     age,
+//     duration,
+//     release,
+//     cast,
+//     genre,
+//     category,
+//     imageString
+//   }: iAppProps) {
+//   const random = Math.floor(Math.random()*50)+45
+//   const casts = cast.split(",")
+//   const genres = genre.split(",")
 
-  return (
-    <div></div>
+//   return (
+//     <div></div>
     
     // <div className="mt-5 mb-2 flex">
     //   <Dialog open={state} onOpenChange={() => changeState(!state)} >
@@ -172,5 +172,5 @@ export default function PlayVideoModal({
     //     </DialogContent>
     //   </Dialog>
     // </div>
-  )
-}
+//   )
+// }

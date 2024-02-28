@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { InfoIcon, Play } from "lucide-react"
 import { useState } from "react"
-import PlayVideoModal from "./PlayVideoModal"
+// import PlayVideoModal from "./PlayVideoModal"
 
 interface iAppProps {
   overview: string
@@ -55,7 +55,7 @@ export default function MovieButtons({
         <InfoIcon className="mr-2 h-4 w-4 lg:h-7 lg:w-7" />More Info
       </Button>
 
-      <PlayVideoModal
+      {/* <PlayVideoModal
         state={open}
         changeState={setOpen}
         age={age}
@@ -72,7 +72,7 @@ export default function MovieButtons({
         genre={genre}
         category={category}
         imageString={imageString}
-      />
+      /> */}
     </div>
   )
 }

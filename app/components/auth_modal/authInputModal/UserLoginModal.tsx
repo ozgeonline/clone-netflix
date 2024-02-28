@@ -29,7 +29,7 @@ export default function UserLoginModal() {
         value={inputValue}
         onBlur={handleInputBlur}
         onChange={handleInputChange}
-        autoComplete="on"
+        autoComplete="email"
         className={`input-field bg-[#333] opacity-80 text-white rounded-sm w-full md:w-[314px] py-3 px-6
           ${(inputValue && validateEmail(inputValue)) 
             ? "border-none" 
@@ -51,6 +51,7 @@ export default function UserLoginModal() {
         type="password"
         name="password"
         placeholder="Password"
+        autoComplete="off"
         disabled
         className="input-field bg-[#333] opacity-80 text-white rounded-sm  w-full md:w-[314px] py-3 px-6 cursor-not-allowed mt-8"
       />

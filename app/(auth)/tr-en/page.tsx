@@ -2,8 +2,17 @@ import CardAnimationWatch from "@/app/components/section/tr-en_pages_modal/CardA
 import FAQ from "@/app/components/section/tr-en_pages_modal/FAQ"
 import Footer from "@/app/components/section/Footer"
 import UserGetStartedInput from "@/app/components/section/tr-en_pages_modal/UserGetStartedInput"
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/utils/auth";
+import { redirect } from "next/navigation";
 
-export default function Tr() {
+export default async function Tr() {
+
+  const session = await getServerSession(authOptions);
+
+  if (session) {
+    return redirect("/home");
+  }
   
   return (
     <div>

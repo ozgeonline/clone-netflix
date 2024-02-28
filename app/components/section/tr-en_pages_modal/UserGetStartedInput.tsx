@@ -33,6 +33,7 @@ export default function UserGetStartedInput() {
             type="email"
             name="email"
             placeholder="Email address"
+            autoComplete="email"
             value={inputValue}
             onBlur={handleInputBlur}
             onChange={handleInputChange}
