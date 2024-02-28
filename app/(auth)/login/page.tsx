@@ -1,5 +1,3 @@
-"use client"
-
 import UserLoginModal from "@/app/components/auth_modal/authInputModal/UserLoginInput"
 
 export default function Login() {
