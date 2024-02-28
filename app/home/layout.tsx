@@ -5,37 +5,37 @@ import { redirect } from "next/navigation"
 import Navbar from "../components/navbar/Navbar"
 import Dialog from "../components/movie-modal/Dialog"
 
-async function getData() {
-  const data = await prisma.movie.findMany({
-    select: {
-      id: true,
-      age: true,
+// async function getData() {
+//   const data = await prisma.movie.findMany({
+//     select: {
+//       id: true,
+//       age: true,
      
     
-    },
-  })
-  return data
-}
+//     },
+//   })
+//   return data
+// }
 
 export default async function HomeLayout({children} : {children: ReactNode}){
   const session = await getServerSession(authOptions)
-  const data = await getData()
+  // const data = await getData()
 
 
   if(!session) {
     redirect("/tr-en")
   }
-  async function onClose() {
-    "use server"
-    console.log("Modal has closed")
+  // async function onClose() {
+  //   "use server"
+  //   console.log("Modal has closed")
 
-  }
+  // }
 
   return (
     <>
       <Navbar />
       <main className="w-full me-0">
-        {data.map((dialog) => (
+        {/* {data.map((dialog) => (
           <Dialog
             key={dialog.id}
             title="Example Modal"
@@ -43,7 +43,7 @@ export default async function HomeLayout({children} : {children: ReactNode}){
             age={dialog.age}
            
           />
-        ))}
+        ))} */}
         
           {children}
       </main>
