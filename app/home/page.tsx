@@ -19,9 +19,7 @@ export default function HomePage() {
         <ComedyMovies />
          */}
          <RecentlyAdded/>
-         <RecentlyAdded/>
-         <RecentlyAdded/>
-         <RecentlyAdded/>
+        
       </div>
     </>
   );
