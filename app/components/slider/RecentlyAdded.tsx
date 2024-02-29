@@ -5,9 +5,11 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "../../utils/auth"
 import React from "react"
 import SliderModal from "./slider-modal/SliderModal"
+import Dialog from "../movie-modal/Dialog"
+// import Dialog from "../movie-modal/Dialog"
 
-
-async function getData(userId: string) {
+const userId =""
+async function getData() {
   const data = await prisma.movie.findMany({
     select: {
       id: true,
@@ -36,14 +38,31 @@ async function getData(userId: string) {
   return data
 }
 
+// async function onClose() {
+//   "use server"
+//   console.log("Modal has closed")
+
+// }
+
 export default async function RecentlyAdded() {
-  const session = await getServerSession(authOptions)
-  const data = await getData(session?.user?.email as string)
+  // const session = await getServerSession(authOptions)
+  const data = await getData()
 
  
 
   return (
     <div>
+       {/* {data.map((dialog) => (
+          <Dialog
+          key={dialog.id}
+          title={dialog.title}
+          onClose={onClose}
+          age={dialog.age}
+          >
+            <p>dialog</p>
+          </Dialog>
+        ))} */}
+        
       <h1 className="text-base sm:text-2xl ">New Releases</h1>
       <div className="flex flex-row mt-3 space-x-2 relative w-screen">
       <SliderModal >

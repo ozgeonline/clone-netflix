@@ -7,7 +7,7 @@ import { useState } from "react"
 import { addTowatchlist, deleteFromWatchlist } from "../../action"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-
+import Dialog from "../movie-modal/Dialog"
 interface iAppProps {
   wachtListId: string
   movieId: number
@@ -40,12 +40,14 @@ export function MovieCard({
     imageString
   }: iAppProps) {
 
-  const [open, setOpen] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [like, setLike] = useState<boolean>(true)
   const pathName = usePathname()
 
   const random = Math.floor(Math.random()*50)+45
 
+
+ 
   return (
     <div 
       className="absolute top-0 px-[1px] pt-5 left-0 w-full z-50 bg-[#141414] rounded-b-sm shadow-md shadow-black/90 hover:transition-transform hover:duration-500">
@@ -56,7 +58,7 @@ export function MovieCard({
         <div className="flex justify-between">
           <div className="flex items-center">
             <Button 
-              onClick={() => setOpen(true)}
+              
               size="icon"
               variant="link"
               className="ms-2"
@@ -119,12 +121,17 @@ export function MovieCard({
           >
             <ChevronDown className="h-5 w-5" />
           </Button> */}
+          <Dialog title={title} onClose={function (): void {
+            throw new Error("Function not implemented.")
+          } } movieId={movieId} key={title}>
+            <p>title</p>
+          </Dialog>
           <Link
             href={`../../${pathName}?showDialog=${title}`}
           >
-            <button onClick={window.close} key={movieId}>
+            
               <ChevronDown className="h-5 w-5" />
-            </button>
+            
           </Link>
         </div>
 

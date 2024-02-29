@@ -5,8 +5,28 @@ import RecentlyAdded from "../components/slider/RecentlyAdded"
 // import TvComedies from "../components/slider/TvComedies"
 // import ComedyMovies from "../components/slider/ComedyMovies"
 import ContinueWatchingCard from "../components/slider/ContinueWatchingCard"
+import Dialog from "../components/movie-modal/Dialog"
+import prisma from "../utils/db"
 
-export default function HomePage() {
+// async function getData() {
+//   const data = await prisma.movie.findMany({
+//     select: {
+//       id: true,
+//       age: true,
+//       title:true,
+//     },
+//   })
+//   return data
+// }
+export default  function HomePage() {
+  // const data = await getData()
+
+  // async function onClose() {
+  //   "use server"
+  //   console.log("Modal has closed")
+
+  // }
+
 
   return (
     <>
