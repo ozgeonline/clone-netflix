@@ -7,10 +7,11 @@ import { useRef, useEffect } from 'react'
 type Props = {
   title: string,
   onClose: () => void,
-  age: number
+  age: number,
+  children: React.ReactNode,
 }
 
-export default function Dialog({ title, onClose, age }: Props) {
+export default function Dialog({ title, onClose, age, children }: Props) {
 
   const pathName = usePathname()
   const dialogRef = useRef<null | HTMLDialogElement>(null)
@@ -50,9 +51,9 @@ export default function Dialog({ title, onClose, age }: Props) {
                 </Link>
               </button>
             </div>
-            {/* <div className="px-5 pb-6">
+            <div className="px-5 pb-6">
               {children}
-            </div> */}
+            </div>
           </div>
         </dialog>
     ) : null
