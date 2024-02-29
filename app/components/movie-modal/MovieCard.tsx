@@ -7,7 +7,6 @@ import { useState } from "react"
 import { addTowatchlist, deleteFromWatchlist } from "../../action"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import Dialog from "./Dialog"
 
 interface iAppProps {
   wachtListId: string
@@ -23,7 +22,6 @@ interface iAppProps {
   genre: string
   category: string
   imageString: string
-  children: React.ReactNode
 }
 
 export function MovieCard({
@@ -39,8 +37,7 @@ export function MovieCard({
     cast,
     genre,
     category,
-    imageString,
-    children
+    imageString
   }: iAppProps) {
 
   const [open, setOpen] = useState<boolean>(false)
@@ -48,13 +45,6 @@ export function MovieCard({
   const pathName = usePathname()
 
   const random = Math.floor(Math.random()*50)+45
-
-  async function onClose() {
-   
-    console.log("Modal has closed")
-
-  }
-
 
   return (
     <div 
@@ -129,17 +119,13 @@ export function MovieCard({
           >
             <ChevronDown className="h-5 w-5" />
           </Button> */}
-          <Dialog title={"aaa"} onClose={onClose} age={5}>
-            {children}
-          </Dialog>
           <Link
-            href={`../../${pathName}?showDialog=y`}
+            href={`../../${pathName}?showDialog=${title}`}
           >
-            <button onClick={window.close}>
+            <button onClick={window.close} key={movieId}>
               <ChevronDown className="h-5 w-5" />
             </button>
           </Link>
-          
         </div>
 
         <div className="flex gap-x-2 items-center mx-2 mt-2">

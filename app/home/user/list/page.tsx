@@ -70,12 +70,12 @@ export default async function Watchlist() {
                     ? true
                     : false
                   }
-                  year={movie.Movie?.release as number}
-                  videoSource={movie.Movie?.videoSource as string} 
-                  cast={movie.Movie?.cast as string} 
-                  genre={movie.Movie?.genres as string}
-                  category={movie.Movie?.category as string} 
-                  imageString={movie.Movie?.imageString as string}
+                  // year={movie.Movie?.release as number}
+                  // videoSource={movie.Movie?.videoSource as string} 
+                  // cast={movie.Movie?.cast as string} 
+                  // genre={movie.Movie?.genres as string}
+                  // category={movie.Movie?.category as string} 
+                  // imageString={movie.Movie?.imageString as string}
                 />
               </div>
             </div>

@@ -5,25 +5,8 @@ import RecentlyAdded from "../components/slider/RecentlyAdded"
 // import TvComedies from "../components/slider/TvComedies"
 // import ComedyMovies from "../components/slider/ComedyMovies"
 import ContinueWatchingCard from "../components/slider/ContinueWatchingCard"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "../utils/auth"
-import { Dialog } from "@/components/ui/dialog"
-import { ReactNode } from "react"
 
-async function getData() {
-  const data = await prisma.movie.findMany({
-    select: {
-      id: true,
-      age: true,
-      title:true
-    
-    },
-  })
-  return data
-}
-
-export default async function HomePage({children} : {children: ReactNode}) {
-
+export default function HomePage() {
 
   return (
     <>
@@ -35,9 +18,7 @@ export default async function HomePage({children} : {children: ReactNode}) {
         <TvComedies />
         <ComedyMovies />
          */}
-         <RecentlyAdded>
-          {children}
-         </RecentlyAdded>
+         <RecentlyAdded/>
         
       </div>
     </>

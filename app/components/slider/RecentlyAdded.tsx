@@ -36,7 +36,7 @@ async function getData(userId: string) {
   return data
 }
 
-export default async function RecentlyAdded({children}:{  children: React.ReactNode}) {
+export default async function RecentlyAdded() {
   const session = await getServerSession(authOptions)
   const data = await getData(session?.user?.email as string)
 
@@ -80,7 +80,8 @@ export default async function RecentlyAdded({children}:{  children: React.ReactN
                 cast={movie.cast}
                 genre={movie.genres}
                 category={movie.category}
-                imageString={movie.imageString} children={children}                
+                imageString={movie.imageString}
+                
               />
             </div>
           </div>
