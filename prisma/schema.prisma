@@ -51,7 +51,7 @@ model User {
 }
 
 model Movie {
-  id            Int         @id
+  id            Int         @id @unique @default(autoincrement())
   imageString   String
   title         String
   age           Int

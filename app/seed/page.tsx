@@ -8,7 +8,7 @@ export default function SeedDatabase() {
       await prisma.movie.createMany({
         data: [
           {
-            id: 0,
+           
             title: "Gran Turismo",
             age: 12,
             duration: 2.15,
@@ -21,7 +21,7 @@ export default function SeedDatabase() {
             genres: "Action, Adventure, Drama"
           },
           {
-            id: 1,
+         
             title: "A Haunting in Venice",
             age: 12,
             duration: 1.44,
@@ -34,7 +34,7 @@ export default function SeedDatabase() {
             genres: "Crime, Drama, Horror"
           },
           {
-            id: 2,
+      
             title: "Five Nights at Freddy's",
             age: 16,
             duration: 1.5,
@@ -47,7 +47,7 @@ export default function SeedDatabase() {
             genres: "Horror, Mystery, Thriller"
           },
           {
-            id: 3,
+           
             title: "The Blacklist",
             age: 16,
             duration: 0,
@@ -60,7 +60,7 @@ export default function SeedDatabase() {
             genres: "Crime, Drama, Mystery"
           },
           {
-            id: 4,
+    
             title: "Suits",
             age: 12,
             duration: 0,
@@ -73,7 +73,7 @@ export default function SeedDatabase() {
             genres: "Comedy, Drama"
           },
           {
-            id: 5,
+      
             title: "Chernobyl",
             age: 16,
             duration: 0,
@@ -86,11 +86,11 @@ export default function SeedDatabase() {
             genres: "Drama, History, Thriller"
           },
           {
-            id: 6,
+       
             title: "Retribution",
             age: 12,
             duration: 1.31,
-            imageString: "https://utfs.io/f/0d7102f7-38fc-4641-b9f5-3c6203ad2782-etfdwb.webp",
+            imageString: "https://utfs.io/f/901b71fd-f3e3-4177-8da5-ac869c32df13-7tf6w1.webp",
             overview: "When a mysterious caller puts a bomb under his car seat, Matt Turner begins a high-speed chase across the city to complete a specific series of tasks- all with his kids trapped in the back seat.",
             release: 2023,
             videoSource: "https://utfs.io/f/02953459-a3f4-4680-a94c-d4cb275d29a0-7azsrb.mp4",
@@ -99,7 +99,7 @@ export default function SeedDatabase() {
             genres: "Action, Thriller"
           },
           {
-            id: 7,
+      
             title: "Spider-Man: Across the Spider-Verse",
             age: 12,
             duration: 2.2,
@@ -112,7 +112,7 @@ export default function SeedDatabase() {
             genres: "Animation, Action, Adventure"
           },
           {
-            id: 8,
+    
             title: "Coco",
             release: 2017,
             age: 0,
@@ -125,7 +125,7 @@ export default function SeedDatabase() {
             genres: "Animation, Drama, Adventure"
           },
           {
-            id: 9,
+           
             title: "Monk",
             release: 2002,
             age: 12,
@@ -138,7 +138,7 @@ export default function SeedDatabase() {
             genres: "Comedy, Crime, Drama"
           },
           {
-            id: 10,
+   
             title: "Family Guy",
             age: 16,
             duration: 0,

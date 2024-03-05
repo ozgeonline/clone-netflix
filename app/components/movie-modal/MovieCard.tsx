@@ -40,17 +40,18 @@ export function MovieCard({
     imageString
   }: iAppProps) {
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [like, setLike] = useState<boolean>(true)
-  const pathName = usePathname()
+  const pathName = usePathname() 
 
-  const random = Math.floor(Math.random()*50)+45
-
+  const onClose = () => {
+    console.log("Closed")
+  }
 
  
   return (
     <div 
-      className="absolute top-0 px-[1px] pt-5 left-0 w-full z-50 bg-[#141414] rounded-b-sm shadow-md shadow-black/90 hover:transition-transform hover:duration-500">
+      className="absolute px-[1px] top-32 left-0 w-full z-50 bg-[#141414] rounded-b-sm shadow-md shadow-black/90 transition duration-500 ease-linear"
+    >
       <h1 className="font-bold text-lg line-clamp-1 left-3 top-28   [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)]">
         {title}
       </h1>
@@ -113,23 +114,14 @@ export function MovieCard({
               )
             }
           </div>
-         
-          {/* <Button 
-            onClick={() => setOpen(true)} 
-            variant="link" size="icon" 
-            className="mt-2 me-2 h-6 w-6 bg-[#141414] border border-[#ffffffb3] opacity-70 rounded-full hover:brightness-150 hover:ease-out hover:duration-500"
+          <Dialog
+            title={title}
+            onClose={() => onClose()}
+            key={title}
           >
-            <ChevronDown className="h-5 w-5" />
-          </Button> */}
-          <Dialog title={title} onClose={function (): void {
-            throw new Error("Function not implemented.")
-          } } movieId={movieId} key={title}>
             <p>title</p>
           </Dialog>
-          <Link
-            href={`../../${pathName}?showDialog=${title}`}
-          >
-            
+          <Link href={`../../${pathName}?showDialog=${title}`} >
               <ChevronDown className="h-5 w-5" />
             
           </Link>
@@ -137,7 +129,7 @@ export function MovieCard({
 
         <div className="flex gap-x-2 items-center mx-2 mt-2">
           <div className="font-semibold text-[10px] text-[#46d369]">
-            {random}% Match
+            {Math.floor(Math.random()*50)+45}% Match
           </div>
           <div className="font-normal border py-0 px-1 border-gray-400 text-[10px] text-gray-400">
             {age}+

@@ -5,33 +5,14 @@ import RecentlyAdded from "../components/slider/RecentlyAdded"
 // import TvComedies from "../components/slider/TvComedies"
 // import ComedyMovies from "../components/slider/ComedyMovies"
 import ContinueWatchingCard from "../components/slider/ContinueWatchingCard"
-import Dialog from "../components/movie-modal/Dialog"
-import prisma from "../utils/db"
+import Resizable from "../components/slider/slider-modal/SliderModal";
 
-// async function getData() {
-//   const data = await prisma.movie.findMany({
-//     select: {
-//       id: true,
-//       age: true,
-//       title:true,
-//     },
-//   })
-//   return data
-// }
 export default  function HomePage() {
-  // const data = await getData()
-
-  // async function onClose() {
-  //   "use server"
-  //   console.log("Modal has closed")
-
-  // }
-
 
   return (
     <>
       <MovieVideo />
-      <div className="ml-5 lg:ml-14 -mt-20 lg:-mt-36 space-y-8 w-full">
+      <div className="ml-5 lg:ml-14 -mt-20 lg:-mt-36 space-y-8 pb-96">
         <ContinueWatchingCard/>
         {/* <OnlyNetflix />
         <MyList />
@@ -39,6 +20,7 @@ export default  function HomePage() {
         <ComedyMovies />
          */}
          <RecentlyAdded/>
+        
         
       </div>
     </>
