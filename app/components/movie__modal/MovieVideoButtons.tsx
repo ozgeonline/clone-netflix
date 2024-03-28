@@ -12,7 +12,7 @@ interface iAppProps {
   videoSource:string,
   title: string,
   overview: string,
-  category: string,
+  //category: string,
   cast: string,
   genres: string,
   age: number,

@@ -63,7 +63,7 @@ export default function MovieVideo({
             imageString={imageString}
             videoSource={videoSource}
             title={title}
-            category={category}
+            // category={category}
             genres={genres}
             overview={overview}
             age={age}

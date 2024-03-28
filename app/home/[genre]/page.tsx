@@ -113,7 +113,7 @@ export default async function CategoryPage(
     <div>
       {movie && (
         <MovieVideo 
-          id={movie.id} 
+          //id={movie.id} 
           age={movie.age} 
           duration={movie.duration} 
           overview={movie.overview} 
@@ -135,23 +135,23 @@ export default async function CategoryPage(
           {data.map((movie) => (
             <PreviewModal 
               key={movie.id}
-              id={movie.id}
+              //id={movie.id}
               wachtListId={movie.WatchLists[0]?.id  as string}
               movieId={movie.id}
               title={movie.title}
               overview={movie.overview}
               watchList={movie.WatchLists.length > 0 ? true : false}
               videoSource={movie.videoSource}
-              year={movie.release}
+              //year={movie.release}
               age={movie.age}
-              time={movie.duration}
+              //time={movie.duration}
               cast={movie.cast}
-              genre={movie.genres}
+              genres={movie.genres}
               category={movie.category}
               imageString={movie.imageString}
               release={movie.release}
               duration={movie.duration}
-              genres={movie.genres}
+              
             />
           ))}
         </CarouselModal>

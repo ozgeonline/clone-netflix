@@ -71,7 +71,7 @@ export default function PreviewModal({
           videoSource={videoSource}
           title={title}
           overview={overview}
-          category={category}
+          //category={category}
           cast={cast}
           genres={genres}
           age={age}
