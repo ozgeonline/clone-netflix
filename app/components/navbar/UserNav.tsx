@@ -31,10 +31,10 @@ export default async function UserButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild >
-        <Button variant="ghost" className="relative h-8 w-8 rounded-sm ms-5 -right-10 sm:right-5">
-          <Avatar className="h-8 w-8 rounded-sm">
-            <AvatarImage src={avatarSrc} alt="Profile picture" />
-            <AvatarFallback className="rounded-sm uppercase">
+        <Button variant="ghost" className="relative h-8 w-8 rounded-sm">
+          <Avatar className="h-8 w-8 rounded-sm" rel="preload">
+            <AvatarImage src={avatarSrc} alt="Profile picture" fetchPriority="high" loading="eager"/>
+            <AvatarFallback className="rounded-sm uppercase" delayMs={0} >
               {userShortName}
             </AvatarFallback>
           </Avatar>

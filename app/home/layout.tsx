@@ -6,26 +6,17 @@ import Navbar from "../components/navbar/Navbar"
 
 export default async function HomeLayout({children} : {children: ReactNode}){
   const session = await getServerSession(authOptions)
-  // const data = await getData()
-
 
   if(!session) {
     redirect("/tr-en")
   }
-  // async function onClose() {
-  //   "use server"
-  //   console.log("Modal has closed")
-
-  // }
 
   return (
-    <>
+    <div className="w-screen">
       <Navbar />
-      <main className="w-full me-0">
-      
-        
+      <main className="w-screen">
           {children}
       </main>
-    </>
+    </div>
   )
 }

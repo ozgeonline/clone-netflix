@@ -1,7 +1,6 @@
-import UserLoginModal from "@/app/components/auth_modal/authInputModal/UserLoginInput"
+import UserLoginModal from "@/app/components/input__modal/User_Login_Input"
 
 export default function Login() {
-
   return (
     <UserLoginModal 
       title={"Log in"}

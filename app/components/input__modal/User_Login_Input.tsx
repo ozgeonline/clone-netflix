@@ -2,10 +2,10 @@
 
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
-import GithubSignInButton from "../authButton/GithubSignInButton"
-import GoogleSignInButton from "../authButton/GoogleSignInButton"
-import UserLoginModal from "./UserLoginModal"
-import Footer from "../../section/Footer"
+import GithubSignInButton from "../signin_button__modal/Github_Signin_Button"
+import GoogleSignInButton from "../signin_button__modal/Google_Signin_Button"
+import UserLoginModal from "./User_Login_Modal"
+import Footer from "../section/Footer"
 
   type formInfo = {
     title: string
@@ -25,7 +25,8 @@ import Footer from "../../section/Footer"
     return (
       <div className="mt-0 md:mt-28">
         <div 
-          className="flex flex-col items-center justify-center px-10 md:mx-auto px-18 py-40 sm:px-32 md:p-8 w-screen md:max-w-md rounded bg-black md:bg-black/80"
+          className="flex flex-col w-screen md:max-w-md items-center justify-center md:mx-auto px-10 sm:px-32 py-40 md:p-8  
+          rounded bg-black md:bg-black/80"
         >
           <form 
             method="post"

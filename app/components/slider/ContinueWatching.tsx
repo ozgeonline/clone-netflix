@@ -62,7 +62,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl,imageString }) => {
         onEnded={handleVideoEnded}
         onPlay={handleVideoClick}
         onLoadedMetadata={handleVideoLoadedData}
-        className={`object-cover rounded-sm flex w-60 h-32 `}
+        className={`object-cover rounded-sm flex h-[17vw] sm:h-[8.3vw] w-[30vw] sm:w-[14.8vw] min-w-[150px] min-h-[85px]`}
     >
       <source src={videoUrl} type="video/mp4"/>
       Your browser does not support the video tag.

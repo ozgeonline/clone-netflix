@@ -7,7 +7,7 @@ const [scrolling, setScrolling] = useState(false)
 
 useEffect(() => {
   const handleScroll = () => {
-    if (window.scrollY > 10) {
+    if (window.scrollY > 10 ) {
       setScrolling(true)
     } else {
       setScrolling(false)
@@ -25,11 +25,10 @@ return (
   <div 
     className={scrolling ? "navbar" : ""}
     style={{
-      width: "100%",
+      width: "100vw",
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      padding: "1rem 4rem",
       zIndex: "10",
       position: "fixed",
       transition: "all 0.3s"

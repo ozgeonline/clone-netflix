@@ -57,17 +57,26 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
   body {
     @apply bg-[#141414] text-foreground;
     width: 100%;
-    
+    box-sizing: border-box;
   }
+ 
   img, video {
     box-sizing: border-box;
     
   }
+  html {
+    box-sizing: border-box;
+    width: 100vw;
+  }
 
+  canvas {
+    width: 100vw;
+  }
   .tooltip {
     @apply invisible absolute;
   }
@@ -117,7 +126,9 @@
     opacity: .9;
   }
 
-  /* Slider Component */
+  .subtitles:hover ~ p {
+    display: block;
+  }
 
   
 
