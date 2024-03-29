@@ -12,7 +12,7 @@ export default function NavLink({ path, label }: Props) {
   const pathName = usePathname();
   
   return (
-    <div>
+    <>
       {pathName === path ? (
         <li>
           <Link
@@ -34,6 +34,6 @@ export default function NavLink({ path, label }: Props) {
           </Link>
         </li>
     )}
-  </div>
+  </>
   )
 }

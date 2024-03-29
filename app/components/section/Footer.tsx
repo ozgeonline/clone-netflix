@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-[1170px] lg:ml-[170px] md:ml-16 ml-4">
         <div className="mb-2">
           <Link 
-            href={`#`}
+            href="/"
             className="underline text-[#ffffffb3]"
             prefetch={false}
           >
@@ -19,7 +19,7 @@ export default function Footer() {
           {links.map((link) => (
             <div key={link.id} className="mt-3">
               <Link 
-                href={`#`} 
+                href="/"
                 prefetch={false} 
                 className="text-sm underline text-[#ffffffb3]"
               >

@@ -3,9 +3,9 @@ import Link from "next/link"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "../utils/auth"
 import { redirect } from "next/navigation"
-import Image__Bg from "../components/section/tr-en_pages_modal/component/Image__Bg"
-import Image__Logo from "../components/section/tr-en_pages_modal/component/Image__Logo"
-import Lang__Select from "../components/section/tr-en_pages_modal/component/Lang__Select"
+import Image__Bg from "../components/ui_components/Image__Bg"
+import Image__Logo from "../components/ui_components/Image__Logo"
+import Lang__Select from "../components/ui_components/Lang__Select"
 
 export default async function AuthLayout({children}:{children: ReactNode}){
   const session = await getServerSession(authOptions);

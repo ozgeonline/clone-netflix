@@ -1,7 +1,7 @@
-import CardAnimationWatch from "@/app/components/section/tr-en_pages_modal/CardAnimationWatch"
-import FAQ from "@/app/components/section/tr-en_pages_modal/FAQ"
+import CardAnimationWatch from "@/app/components/section/CardAnimationWatch"
+import FAQ from "@/app/components/section/FAQ"
 import Footer from "@/app/components/section/Footer"
-import UserGetStartedInput from "@/app/components/section/tr-en_pages_modal/UserGetStartedInput"
+import UserGetStartedInput from "@/app/components/input_modal/UserGetStartedInput"
 
 export default  function Tr() {
   
@@ -18,7 +18,6 @@ export default  function Tr() {
         <FAQ />
         <Footer />
       </div>
-
     </div>
   )  
 }

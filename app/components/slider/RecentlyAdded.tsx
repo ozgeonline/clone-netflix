@@ -1,4 +1,3 @@
-import Image from "next/image"
 import prisma from "../../utils/db"
 import { getServerSession } from "next-auth"
 import { authOptions } from "../../utils/auth"
@@ -51,7 +50,7 @@ export default async function RecentlyAdded() {
               videoSource={movie.videoSource}
               title={movie.title}
               overview={movie.overview}
-              category={movie.category}
+              //category={movie.category}
               cast={movie.cast}
               genres={movie.genres}
               age={movie.age}

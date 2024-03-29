@@ -5,7 +5,7 @@ import UserNav from "./UserNav"
 import { links } from "./Navlinks.constant"
 import NavLink from "./NavLink"
 import ScrollingElementSSR from "./ScrollingElementSSR"
-import Image__Logo from "../section/tr-en_pages_modal/component/Image__Logo"
+import Image__Logo from "../ui_components/Image__Logo"
 import { preload } from "react-dom"
 
 export default function Navbar() {

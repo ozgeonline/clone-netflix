@@ -14,9 +14,9 @@ export default async function HomeLayout({children} : {children: ReactNode}){
   return (
     <div className="w-screen">
       <Navbar />
-      <main className="w-screen">
-          {children}
-      </main>
+      <div className="w-screen">
+        {children}
+      </div>
     </div>
   )
 }

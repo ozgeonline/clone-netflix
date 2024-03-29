@@ -13,7 +13,7 @@ export default function CarouselModal ({children: slides}) {
   const [current, setCurrent] = useState<number>(0)
 
   const prev = () => setCurrent((i) => (i === 0 ? slides.length - 1 : i - 1))
-  const next = () => setCurrent((i) => (i === slides.length%6 ? 0 : i + 1))
+  const next = () => setCurrent((i) => (i === slides.length-1 ? 0 : i + 1))
 
   const goToSlide = (slideIndex: SetStateAction<number>) => {
    setCurrent(slideIndex);
@@ -24,7 +24,7 @@ export default function CarouselModal ({children: slides}) {
   //max-lg:overflow-x-auto max-lg:overflow-y-hidden overflow-css
 
   return (
-    <div className='w-screen relative mt-3 '  key={`carousel-key-${current}`}>
+    <div className='w-screen relative mt-3 '  >
       <div
         className=' transition-transform ease-out duration-500
         w-screen max-h-32 0 flex space-x-2 '
@@ -36,7 +36,8 @@ export default function CarouselModal ({children: slides}) {
       <div className='absolute w-full'>
         {/*  invisible lg:visible */}
         <Button 
-          onClick={prev} 
+          onClick={prev}
+          variant='link'
           className='absolute bottom-0 -left-[48px] h-[17vw] sm:h-[8.3vw] w-[2.6vw] min-h-[85px] px-0 sm:pe-3 
           rounded-none 2xl:rounded-s-none 2xl:rounded-e-sm bg-black/60 hover:bg-black/70 group '
           style={{display: `${current<=0 ? "none" : "block"}`}}
@@ -53,14 +54,15 @@ export default function CarouselModal ({children: slides}) {
                           hover:cursor-pointer transition-all w-3 h-1 bg-neutral-600
                           ${current === i ? "bg-opacity-100" : "bg-opacity-50"}
                         `}
-                      />
+                      ></div>
                     )
                   )}
               </div>
           </div>
         </Button>
         <Button 
-          onClick={next} 
+          onClick={next}
+          variant='link'
           className='absolute bottom-0 right-4  h-[17vw] sm:h-[8.3vw] w-[4vw] min-h-[85px] px-0 sm:ps-3 
             rounded-none 2xl:rounded-e-none 2xl:rounded-s-sm bg-black/60 hover:bg-black/70  group'
           style={{display: `${slides.length<=6 ? "none" : "block"}`}}
@@ -77,15 +79,13 @@ export default function CarouselModal ({children: slides}) {
                         hover:cursor-pointer transition-all w-3 h-1 bg-neutral-600
                         ${current === i ? "bg-opacity-100" : "bg-opacity-50"}
                       `}
-                    />
+                    ></div>
                   )
                 )}
               </div>
           </div>
         </Button>
       </div>
-      
-        
     </div>
   )
 }

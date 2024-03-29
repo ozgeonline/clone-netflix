@@ -2,16 +2,13 @@
 
 import { Button } from "@/components/ui/button"
 import { ThumbsUp, ThumbsDown, Check, Plus, Play, ChevronDown, Circle } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { addTowatchlist, deleteFromWatchlist } from "../../action"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import Dialog from "../Dialog"
-import MovieVideo from "./MovieVideo"
-import VideoModal from "./VideoModal"
 
 interface iAppProps {
-  //id:number
   imageString: string
   videoSource: string
   title: string
@@ -56,8 +53,7 @@ export function PreviewModalInfo({
     <div>
       <Dialog
         onClose={() => onClose()}
-        //id={id} 
-        key={title}
+        key={movieId}
         title={title}
         videoSource={videoSource} 
         imageString={imageString} 
@@ -68,11 +64,10 @@ export function PreviewModalInfo({
         age={age} 
         release={release} 
         duration={duration} 
-        
         movieId={movieId} 
         wachtListId={wachtListId} 
         watchList={watchList}
-      ></Dialog>
+      />
 
       <div className="absolute w-full min-h-[5rem] z-[9999] pb-2 mt-24 md:mt-28 bg-[#141414] rounded-b-sm shadow-md shadow-black/90">
         <h1 className="absolute font-bold text-[1em] line-clamp-1 left-3 -top-[1.5em] [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)]" >
@@ -152,7 +147,8 @@ export function PreviewModalInfo({
 
         <div className="flex gap-x-2 items-center mx-2 mt-2">
           <div className="font-semibold text-[10px] text-[#46d369]">
-            {Math.floor(Math.random()*50)+45}% Match
+            {/* {Math.floor(Math.random()*50)+45}% Match */}
+            100% Match
           </div>
           <div className="flex justify-center border py-0 px-1 border-gray-400 text-[10px] w-7 h-4 text-gray-400">
             {age}+
@@ -167,13 +163,15 @@ export function PreviewModalInfo({
         
         <div className='flex items-center space-x-1 pt-3 px-2'>
           {genre.map((item, index) => (
-            <div key={index}>
-              <span className="hover:cursor-pointer hover:underline text-zinc-200 text-[10px]">
+            <div key={index} className="flex items-center">
+              <div className="hover:cursor-pointer hover:underline text-zinc-200 text-[10px] pr-1">
                 {item}
-              </span>
-              <span  className='text-zinc-200 last:hidden'>
-                <Circle className="fill-gray-500 text-gray-500 w-[3px] h-[3px]"/>
-              </span>
+              </div>
+              {index !== genre.length - 1 && 
+                <div  className='text-zinc-200'>
+                  <Circle className="fill-gray-500 text-gray-500 w-[3px] h-[3px]"/>
+                </div>
+              }
             </div>
           ))}
         </div>

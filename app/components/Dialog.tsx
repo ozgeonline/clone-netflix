@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button'
 import { addTowatchlist, deleteFromWatchlist } from "../action"
 
 type Props = {
-  //id: number,
   onClose: () => void,
   title: string,
   imageString: string,
@@ -27,7 +26,6 @@ type Props = {
 }
 
 export default function Dialog({
-  // id,
   onClose,
   title,
   imageString,
@@ -61,10 +59,8 @@ export default function Dialog({
   useEffect(() => {
     if (showDialog === title ) {
         dialogRef.current?.showModal()
-        
     } else {
         dialogRef.current?.close()
-        
     }
   }, [showDialog])
 
@@ -97,7 +93,6 @@ export default function Dialog({
         <dialog
           ref={dialogRef}
           className="fixed z-10 rounded-sm bg-[#181818] backdrop:bg-black/80 w-screen justify-center items-center h-auto pb-20 sm:max-w-[850px]  cursor-context-menu overflow-css"
-          key={movieId}
         >
           <div className="flex flex-col relative">
             <div className='absolute right-16'>
@@ -107,7 +102,7 @@ export default function Dialog({
                   className="mb-2 cursor-pointer rounded-full border-none bg-[#141414] brightness-150 text-white hover:bg-[#181818] hover:brightness-150"
                   size='icon'
                 >
-                  <Link href={pathName}>
+                  <Link href={pathName} >
                     <X className='w-6 h-6'/>
                   </Link>
                 </Button>
@@ -209,7 +204,8 @@ export default function Dialog({
               <div className="flex flex-col px-5 sm:px-10">
                 <div className="flex items-center space-x-2 justify-start ">
                   <p className="font-semibold text-xs sm:text-md text-[#46d369]">
-                    {Math.floor(Math.random()*50)+45}% Match
+                    {/* {Math.floor(Math.random()*50)+45}% Match */}
+                    100% Match
                   </p>
                   <p className="text-zinc-400 font-thin max-sm:text-xs">
                     {release}
@@ -246,7 +242,7 @@ export default function Dialog({
                           <div  className="flex hover:cursor-pointer text-zinc-200 text-xs sm:text-sm lowercase">
                             {item}
                           </div>
-                          {index !== genre.length - 1 && <span className='text-zinc-200 pr-1'>{","}</span>}
+                          {index !== genre.length - 1 && <span className='text-zinc-200 pr-1'>,</span>}
                         </div>
                       ))}
                     </div>
@@ -259,7 +255,7 @@ export default function Dialog({
                           <div className="hover:cursor-pointer hover:underline text-zinc-200 text-xs sm:text-sm ">
                             {item}
                           </div>
-                          {index !== casts.length - 1 && <span className='text-zinc-200'>{", "}</span>}
+                          {index !== casts.length - 1 && <span className='text-zinc-200'>,</span>}
                         </div>
                       ))}
                     </div>
@@ -270,15 +266,15 @@ export default function Dialog({
                           <div className="hover:cursor-pointer hover:underline text-zinc-200 text-xs sm:text-sm">
                             {item}
                           </div>
-                          {index !== genre.length - 1 && <span className='text-zinc-200'>{", "}</span>}
+                          {index !== genre.length - 1 && <div className='text-zinc-200'>,</div>}
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
-                <p className="text-zinc-200 mt-5 lg:line-clamp-3 lg:hover:line-clamp-6 max-sm:text-xs hover:ease-in transition-all cursor-pointer">
+                <div className="text-zinc-200 mt-5 lg:line-clamp-3 lg:hover:line-clamp-6 max-sm:text-xs hover:ease-in transition-all cursor-pointer">
                   {overview}
-                </p>
+                </div>
               </div>
             </div>
               

@@ -22,7 +22,7 @@ async function getData() {
       age: true,
       cast: true,
       genres: true,
-      category: true,
+      //category: true,
       WatchLists: {
         where: {
           userId: userId
@@ -42,22 +42,21 @@ export default async function HomePage() {
   return (
     <div className="w-screen">
       <MovieVideo
-       //id={data?.WatchLists[0]?.movieId} 
         key={data?.id}
-        imageString={data?.imageString} 
-        videoSource={data?.videoSource} 
-        title={data?.title} 
-        overview={data?.overview} 
-        category={data?.category} 
-        cast={data?.cast} 
-        genres={data?.genres} 
-        age={data?.age} 
-        release={data?.release} 
-        duration={data?.duration} 
-        watchList={data?.WatchLists && data.WatchLists.length > 0 ? true : false} 
-        wachtListId={data?.WatchLists[0]?.id} 
+        imageString={data?.imageString}
+        videoSource={data?.videoSource}
+        title={data?.title}
+        overview={data?.overview}
+        //category={data?.category} 
+        cast={data?.cast}
+        genres={data?.genres}
+        age={data?.age}
+        release={data?.release}
+        duration={data?.duration}
+        watchList={data?.WatchLists && data.WatchLists.length > 0 ? true : false}
+        wachtListId={data?.WatchLists[0]?.id}
         movieId={data?.id} 
-   
+         
       />
       <div className="w-screen pl-[3vw] pb-96 -mt-[20vw] md:-mt-[15vw] lg:-mt-36 space-y-6 sm:space-y-8">
         <ContinueWatchingCard />

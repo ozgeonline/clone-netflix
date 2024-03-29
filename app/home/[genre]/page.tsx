@@ -97,7 +97,7 @@ export default async function CategoryPage(
     imageString: string,
     cast: string,
     genre: string,
-    category: string,
+    //category: string,
     movieId: number,
     wachtListId: string,
     WatchLists: boolean
@@ -114,19 +114,19 @@ export default async function CategoryPage(
       {movie && (
         <MovieVideo 
           //id={movie.id} 
-          age={movie.age} 
-          duration={movie.duration} 
-          overview={movie.overview} 
-          release={movie.release} 
-          title={movie.title} 
-          videoSource={movie.videoSource} 
           imageString={movie.imageString} 
+          videoSource={movie.videoSource} 
+          title={movie.title} 
+          overview={movie.overview} 
+          //category={movie.category} 
           cast={movie.cast} 
           genres={movie.genres} 
-          category={movie.category} 
-          movieId={movie.id} 
-          wachtListId={movie.WatchLists[0]?.id} 
+          age={movie.age} 
+          release={movie.release} 
+          duration={movie.duration} 
           watchList={movie?.WatchLists && Array.isArray(movie.WatchLists) && movie.WatchLists.length > 0 ? true : false}
+          wachtListId={movie.WatchLists[0]?.id} 
+          movieId={movie.id} 
         />
       )}
 
@@ -147,7 +147,7 @@ export default async function CategoryPage(
               //time={movie.duration}
               cast={movie.cast}
               genres={movie.genres}
-              category={movie.category}
+              //category={movie.category}
               imageString={movie.imageString}
               release={movie.release}
               duration={movie.duration}

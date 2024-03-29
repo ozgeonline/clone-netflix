@@ -1,15 +1,12 @@
-
-
 import Image from "next/image"
 import { PreviewModalInfo } from "./PreviewModalInfo"
 
 interface iAppProps {
-  //id:number
   imageString: string
   videoSource: string
   title: string
   overview: string
-  category: string
+  //category: string
   cast: string
   genres:string
   age: number
@@ -21,12 +18,11 @@ interface iAppProps {
 }
 
 export default function PreviewModal({
-  //id,
   imageString,
   videoSource,
   title,
   overview,
-  category,
+  //category,
   cast,
   genres,
   age,
@@ -37,7 +33,7 @@ export default function PreviewModal({
   movieId
 }: iAppProps) {
   return (
-    <div key={movieId} className="group overflow-hidden">
+    <div  className="group overflow-hidden">
       <div className="relative h-[17vw] sm:h-[8.3vw] w-[30vw] sm:w-[14.8vw] min-w-[150px] min-h-[85px]">
         <Image
           src={imageString}

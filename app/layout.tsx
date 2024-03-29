@@ -3,6 +3,8 @@ import { Roboto } from 'next/font/google'
 import './globals.css'
 import { NextAuthProvider } from './components/NextAuthProvider'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import Link from 'next/link'
+import Head from 'next/head'
 
 const roboto = Roboto({
   style: ['normal', 'italic'],
@@ -18,13 +20,16 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
   <html lang="en">
-		<link rel="shortcut icon" href='https://utfs.io/f/c5583de1-747d-42e4-84d7-e52d3274dc9a-hru0oc.webp' />
+    <head>
+      <link rel="shortcut icon" href='https://utfs.io/f/c5583de1-747d-42e4-84d7-e52d3274dc9a-hru0oc.webp' />
+    </head>
     <body className={roboto.className}>
       <NextAuthProvider>
         {children}
-        <SpeedInsights />
+       
       </NextAuthProvider>
     </body>
+    <SpeedInsights />
   </html>
   )
 }

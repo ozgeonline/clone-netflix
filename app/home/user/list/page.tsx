@@ -50,7 +50,7 @@ export default async function Watchlist() {
             videoSource={movie.Movie.videoSource}
             title={movie.Movie.title}
             overview={movie.Movie.overview}
-            category={movie.Movie.category}
+            //category={movie.Movie.category}
             cast={movie.Movie.cast}
             genres={movie.Movie.genres}
             age={movie.Movie.age}

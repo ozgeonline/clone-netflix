@@ -2,9 +2,9 @@
 
 import * as React from 'react'
 import AddIcon from '@mui/icons-material/Add'
-import fqaData from '../../../data/FAQ'
+import fqaData from '../../data/FAQ'
 import { useState } from 'react'
-import UserGetStartedInput from './UserGetStartedInput'
+import UserGetStartedInput from '../input_modal/UserGetStartedInput'
 
 export default function FQA() {
 
@@ -25,15 +25,15 @@ export default function FQA() {
               flex justify-between items-center bg-[#2D2D2D] text-white mb-[2px]  px-6 py-4 hover:brightness-150 cursor-pointer
             `}
           >
-            <h2 className={`${openIndex !== index ? "" : "w-full"} text-lg lg:text-2xl font-thin`}>
+            <div className={`${openIndex !== index ? "" : "w-full"} text-lg lg:text-2xl font-thin`}>
               {data.title}
-            </h2>
-            <span>
+            </div>
+            <div>
               {openIndex === index 
                 ? <AddIcon className='rotate-45 lg:text-5xl text-base font-extralight transition-all ease-linear'/> 
                 : <AddIcon className='lg:text-5xl text-xl transition-all ease-linear'/>
               }
-            </span>
+            </div>
           </div>
           {openIndex === index && (
             <div 
@@ -46,7 +46,7 @@ export default function FQA() {
       ))}
 
       <div className='mt-12 justify-center flex flex-col'>
-        <h2 className='text-base lg:text-xl text-center mx-6'>Ready to watch? Enter your email to create or restart your membership.</h2>
+        <div className='text-base lg:text-xl text-center mx-6'>Ready to watch? Enter your email to create or restart your membership.</div>
         <UserGetStartedInput/>
       </div>
     </div>    

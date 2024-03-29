@@ -49,12 +49,11 @@ export default function MovieButtons({
   return (
     <div className="flex items-center justify-start">
       <Dialog
-        title={title}
         onClose={() => onClose()}
         key={movieId}
         imageString={imageString}
         videoSource={videoSource}
-        // id={id} 
+        title={title}
         age={age}
         duration={duration}
         overview={overview}
@@ -71,9 +70,10 @@ export default function MovieButtons({
         className="text-[3vw] sm:text-lg font-bold me-3 rounded-sm
         w-[15vw] sm:w-[12vw] md:w-[10vw] lg:w-[8vw] 
         h-[6vw] sm:h-[5vw] md:h-[4vw] lg:h-[3vw]" 
+        size="icon"
       >
         <Link 
-          href={`../../${pathName}?showDialog=${title}`} 
+          href={`${pathName}?showDialog=${title}`} 
           className="flex items-center"
         >
           <Play className="h-[2vw] w-[2vw] text-black me-[0.75vw] rounded-full fill-inherit" /> Play
@@ -84,9 +84,10 @@ export default function MovieButtons({
         className="text-[3vw] sm:text-lg font-medium rounded-sm bg-neutral-700/80 hover:bg-white/30 text-white
         w-[25vw] sm:w-[17vw] lg:w-[12vw] 
         h-[6vw] sm:h-[5vw] md:h-[4vw] lg:h-[3vw]"
+        size="icon"
       >
         <Link 
-          href={`../../${pathName}?showDialog=${title}`} 
+          href={`${pathName}?showDialog=${title}`} 
           className="flex items-center"
         >
           <InfoIcon className="h-[3vw] sm:h-[2vw] w-[3vw] sm:w-[2vw] me-2" />More Info

@@ -2,8 +2,8 @@
 
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
-import GithubSignInButton from "../signin_button__modal/Github_Signin_Button"
-import GoogleSignInButton from "../signin_button__modal/Google_Signin_Button"
+import GithubSignInButton from "../button_modal/Github_Signin_Button"
+import GoogleSignInButton from "../button_modal/Google_Signin_Button"
 import UserLoginModal from "./User_Login_Modal"
 import Footer from "../section/Footer"
 
