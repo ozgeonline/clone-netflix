@@ -14,7 +14,7 @@ const fqaData = [
   {
     id: 2,
     title: "How much does Netflix cost?",
-    content: "Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee. Plans range from 99.99 TL to 199.99 TL a month. No extra costs, no contracts."
+    content: "Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee. Plans range from 229.99 TL to 119.99 TL a month. No extra costs, no contracts."
   },
   {
     id: 3,

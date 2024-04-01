@@ -1,4 +1,4 @@
-import UserLoginModal from "@/app/components/input_modal/User_Login_Input"
+import UserLoginModal from "@/app/components/input_modal/UserLoginInput"
 
 export default function Login() {
   return (

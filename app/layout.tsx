@@ -26,7 +26,6 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     <body className={roboto.className}>
       <NextAuthProvider>
         {children}
-       
       </NextAuthProvider>
     </body>
     <SpeedInsights />

@@ -135,7 +135,7 @@ export default function Dialog({
                     { playing ? "Pause" : "Play"}
                   </Button>
                   <div className='h-[8vw] sm:h-[5vw] md:h-[4vw] lg:h-[2.5vw]'>
-                    {watchList ? (
+                    { watchList ? (
                       <form action={deleteFromWatchlist}>
                         <input type="hidden" name="watchlistId" value={wachtListId} />
                         <input type="hidden" name="pathname" value={pathName} />

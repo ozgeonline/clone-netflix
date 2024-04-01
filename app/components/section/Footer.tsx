@@ -1,6 +1,7 @@
 import Link from "next/link"
 import links from "../../data/link"
 import { Languages } from "lucide-react"
+import Lang__Select from "../ui_components/Lang__Select"
 
 export default function Footer() {
   return (
@@ -15,7 +16,7 @@ export default function Footer() {
             Questions? Contact us.
           </Link>
         </div>
-        <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid max-[350px]:grid-cols-1 grid-cols-2 md:grid-cols-4">
           {links.map((link) => (
             <div key={link.id} className="mt-3">
               <Link 
@@ -28,17 +29,12 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className="flex w-[122px] mt-5 border border-gray-500 rounded-sm">
-          <div className="relative space-x-4 bg-neutral-900/70 rounded-sm w-32">
-            <Languages className="w-4 h-4 absolute top-2 left-2 "/>
-            <label className="hidden" htmlFor="language-select" aria-label="Language Choice">Language:</label>
-            <select aria-labelledby="Language Choice" id="language-select" name="language-select" className=" py-1 px-3 outline-none bg-neutral-900/10 rounded-sm">
-              <option aria-labelledby="Language Choice" aria-label="hidden" value="lang-1" className="bg-slate-50 text-black">English</option>
-              <option aria-labelledby="Language Choice" aria-label="hidden" value="lang-2" className="bg-slate-50 text-black">Türkçe</option>
-            </select>
-          </div>
+        <div className="w-16 sm:w-[122px] mt-5">
+          <Lang__Select/>
         </div>
-        <p className="text-[#ffffffb3] text-sm mt-5">Netflix Türkiye</p>
+        <p className="text-[#ffffffb3] text-sm mt-5">
+          Netflix Türkiye
+        </p>
       </div>
     </div>
   )
