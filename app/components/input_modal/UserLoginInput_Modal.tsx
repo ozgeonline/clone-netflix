@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-export default function UserLoginModal() {
+export default function UserLoginInput_Modal() {
   
   const [inputValue, setInputValue] = useState("")
   const [isTouched, setIsTouched] = useState(false)
@@ -31,7 +31,8 @@ export default function UserLoginModal() {
         onBlur={handleInputBlur}
         onChange={handleInputChange}
         autoComplete="email"
-        className={`input-field bg-[#333] opacity-80 text-white rounded-sm w-full md:w-[314px] py-3 px-6
+        className={`
+          input-field bg-[#333] opacity-80 text-white rounded-sm w-full md:w-[314px] py-3 px-6
           ${(inputValue && validateEmail(inputValue)) 
             ? "border-none" 
             : (!inputValue || !validateEmail(inputValue)) && isTouched 

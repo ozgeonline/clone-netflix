@@ -97,15 +97,16 @@ export default function Dialog({
           <div className="flex flex-col relative">
             <div className='absolute right-16'>
               <div className="fixed mt-5">
-                <Button
+                <Link
+                  href={pathName}
                   onClick={closeDialog}
                   className="mb-2 cursor-pointer rounded-full border-none bg-[#141414] brightness-150 text-white hover:bg-[#181818] hover:brightness-150"
-                  size='icon'
+                  
                 >
-                  <Link href={pathName} >
+                 
                     <X className='w-6 h-6'/>
-                  </Link>
-                </Button>
+                 
+                </Link>
               </div>
             </div>
             <div className='relative'>

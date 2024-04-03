@@ -27,8 +27,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       <NextAuthProvider>
         {children}
       </NextAuthProvider>
+      <SpeedInsights />
     </body>
-    <SpeedInsights />
+   
   </html>
   )
 }

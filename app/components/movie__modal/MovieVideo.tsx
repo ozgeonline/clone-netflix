@@ -4,35 +4,37 @@ import MovieButtons from "./MovieVideoButtons"
 import VideoModal from "./VideoModal"
 
 type videoProps = {
+  id:number
   imageString: string
   videoSource:string
   title: string
   overview: string
   //category: string
-  cast: string
-  genres: string
-  age: number
-  release:  number
-  duration: number
-  watchList: boolean
-  wachtListId: string
-  movieId: number
+  // cast: string
+  // genres: string
+  // age: number
+  // release:  number
+  // duration: number
+  // watchList: boolean
+  // wachtListId: string
+  // movieId: number
 }
 
 export default function MovieVideo({
+  id,
   imageString,
   videoSource,
   title,
   overview,
   //category,
-  cast,
-  genres,
-  age,
-  release,
-  duration,
-  watchList,
-  wachtListId,
-  movieId,
+  // cast,
+  // genres,
+  // age,
+  // release,
+  // duration,
+  // watchList,
+  // wachtListId,
+  // movieId,
 }: videoProps) {
 
   return (
@@ -56,20 +58,21 @@ export default function MovieVideo({
         </div>
         <div className="flex flex-col relative">
           <MovieButtons
-            key={movieId}
-            imageString={imageString}
-            videoSource={videoSource}
+            key={id}
+            //id={id}
+            //imageString={imageString}
+            //videoSource={videoSource}
             title={title}
             // category={category}
-            genres={genres}
-            overview={overview}
-            age={age}
-            duration={duration}
-            release={release}
-            cast={cast}
-            movieId={movieId}
-            wachtListId={wachtListId}
-            watchList={watchList}
+            //genres={genres}
+            //overview={overview}
+            //age={age}
+            //duration={duration}
+            //release={release}
+            //cast={cast}
+            //movieId={movieId}
+            //wachtListId={wachtListId}
+            //watchList={watchList}
           />
         </div>
       </div>

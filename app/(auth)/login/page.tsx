@@ -1,8 +1,8 @@
-import UserLoginModal from "@/app/components/input_modal/UserLoginInput"
+import UserLoginInput from "@/app/components/input_modal/UserLoginInput"
 
 export default function Login() {
   return (
-    <UserLoginModal 
+    <UserLoginInput 
       title="Log in"
       buttonTitle="Log in"
       linkTitle="Need help? "

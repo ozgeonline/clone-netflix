@@ -6,8 +6,10 @@ import RecentlyAdded from "../components/slider/RecentlyAdded"
 // import ComedyMovies from "../components/slider/ComedyMovies"
 import ContinueWatchingCard from "../components/slider/ContinueWatchingCard"
 import prisma from "../utils/db"
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "../utils/auth"
 
-const userId = ""
+//const userId = ""
 
 async function getData() {
   const data = await prisma.movie.findFirst({
@@ -16,18 +18,18 @@ async function getData() {
       overview: true,
       videoSource: true,
       imageString: true,
-      release: true,
-      duration: true,
+      // release: true,
+      // duration: true,
       id: true,
-      age: true,
-      cast: true,
-      genres: true,
+      // age: true,
+      // cast: true,
+      // genres: true,
       //category: true,
-      WatchLists: {
-        where: {
-          userId: userId
-        },
-      },
+      // WatchLists: {
+      //   where: {
+      //     userId: userId
+      //   },
+      // },
     },
     orderBy: {
       createdAt: "desc",
@@ -43,19 +45,20 @@ export default async function HomePage() {
     <div className="w-screen">
       <MovieVideo
         key={data?.id}
+        id={data?.id}
         imageString={data?.imageString}
         videoSource={data?.videoSource}
         title={data?.title}
         overview={data?.overview}
         //category={data?.category} 
-        cast={data?.cast}
-        genres={data?.genres}
-        age={data?.age}
-        release={data?.release}
-        duration={data?.duration}
-        watchList={data?.WatchLists && data.WatchLists.length > 0 ? true : false}
-        wachtListId={data?.WatchLists[0]?.id}
-        movieId={data?.id} 
+        //cast={data?.cast}
+        //genres={data?.genres}
+        //age={data?.age}
+        //release={data?.release}
+        //duration={data?.duration}
+        //watchList={data?.WatchLists && data.WatchLists.length > 0 ? true : false}
+        //wachtListId={data?.WatchLists[0]?.id}
+        //movieId={data?.id} 
          
       />
       <div className="w-screen pl-[3vw] pb-96 -mt-[20vw] md:-mt-[15vw] lg:-mt-36 space-y-6 sm:space-y-8">

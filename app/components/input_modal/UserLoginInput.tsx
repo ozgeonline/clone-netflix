@@ -4,7 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
 import GithubSignInButton from "../button_modal/Github_Signin_Button"
 import GoogleSignInButton from "../button_modal/Google_Signin_Button"
-import UserLoginModal from "./UserLoginInput_Modal"
+import UserLoginInput_Modal from "./UserLoginInput_Modal"
 import Footer from "../section/Footer"
 
   type formInfo = {
@@ -25,7 +25,8 @@ import Footer from "../section/Footer"
     return (
       <div className="mt-0 md:mt-28 z-10">
         <div 
-          className="flex flex-col w-screen md:max-w-md items-center justify-center md:mx-auto px-10 sm:px-32 py-40 md:p-8  
+          className="flex flex-col w-screen md:max-w-md items-center justify-center
+          md:mx-auto px-10 sm:px-32 py-40 md:p-8  
           rounded bg-black md:bg-black/80"
         >
           <form 
@@ -38,7 +39,7 @@ import Footer from "../section/Footer"
               {title}
             </h1>
             <div className="space-y-7 mt-5">
-              <UserLoginModal />
+              <UserLoginInput_Modal />
               <button
                 type="submit"
                 className="bg-[#e50914] w-full md:w-[314px] py-3 rounded-sm"
@@ -87,7 +88,7 @@ import Footer from "../section/Footer"
           </div>
         </div>
         
-        <div className="md:mt-12">
+        <div className="md:mt-14">
           <Footer />
         </div>
       </div>

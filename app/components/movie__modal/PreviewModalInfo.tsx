@@ -75,15 +75,15 @@ export function PreviewModalInfo({
         </h1>
         <div className="flex justify-between items-center p-1 sm:p-3">
           <div className="flex items-center space-x-1">
-            <Button
-              variant="link"
-              size="icon"
+            <Link
+              href={`../../${pathName}?showDialog=${title}`}
+              
               className="h-6 w-6 hover:brightness-75 hover:ease-in "
             >
-              <Link href={`../../${pathName}?showDialog=${title}`}>
+              
                 <Play className="p-1 text-black bg-white rounded-full fill-inherit" />
-              </Link>
-            </Button>
+              
+            </Link>
             <div className="w-6 h-6">
               {watchList ? (
                 <form action={deleteFromWatchlist}>
@@ -134,15 +134,15 @@ export function PreviewModalInfo({
             }
           </div>
 
-          <Button
-            size="icon"
-            variant="link"
+          <Link
+            href={`../../${pathName}?showDialog=${title}`}
+           
             className="h-6 w-6 border rounded-full border-[#ffffffb3] bg-[#202020] opacity-70 hover:brightness-150"
           >
-            <Link href={`../../${pathName}?showDialog=${title}`} >
+         
               <ChevronDown className="p-1" />
-            </Link>
-          </Button>
+           
+          </Link>
         </div>
 
         <div className="flex gap-x-2 items-center mx-2 mt-2">

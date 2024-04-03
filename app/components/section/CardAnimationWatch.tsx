@@ -17,7 +17,7 @@ export default  function CardAnimationWatch() {
             <h1 className="text-3xl lg:text-5xl text-center lg:text-start font-extrabold">
               {card.cardTitle}
             </h1>
-            <div className="sm:text-sm text-center md:text-lg lg:text-2xl lg:text-start mt-4">
+            <div className="text-center lg:text-start sm:text-sm md:text-lg lg:text-2xl mt-4">
               {card.cardComment}
             </div>
           </div>

@@ -11,7 +11,7 @@ export default function Image__Logo() {
         priority
         loading="eager"
         aria-label="Netflix Logo"
-        className="z-50"
+        className="z-50 "
       />
   )
 }

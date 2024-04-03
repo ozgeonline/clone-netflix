@@ -1,8 +1,8 @@
-import UserLoginModal from "@/app/components/input_modal/UserLoginInput"
+import UserLoginInput from "@/app/components/input_modal/UserLoginInput"
 
 export default function SignUp() {
   return (
-    <UserLoginModal
+    <UserLoginInput
       title="Sign Up"
       buttonTitle="Sign Up"
       linkTitle="Alredy Have a account? "

@@ -7,7 +7,7 @@ export default function Image__Bg() {
         src="https://utfs.io/f/f641c1e7-df9e-4fba-8867-2d01bb86c303-9ysoom.webp"
         alt="background image"
         aria-label="Background image"
-        className="flex -z-10 brightness-50 object-cover"
+        className="-z-10 brightness-50 object-cover"
         fill
         priority
         quality={50}

@@ -5,8 +5,8 @@ import { useState } from "react"
 
 export default function UserGetStartedInput() {
   
-  const [inputValue, setInputValue] = useState("")
-  const [isTouched, setIsTouched] = useState(false)
+  const [inputValue, setInputValue] = useState<string>("")
+  const [isTouched, setIsTouched] = useState<boolean>(false)
   
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
@@ -57,7 +57,9 @@ export default function UserGetStartedInput() {
       
         <button 
           type="submit" 
-          className="flex items-center justify-center rounded-sm text-lg sm:text-2xl bg-[#e50914] hover:brightness-90 w-[160px] sm:w-[210px] h-[48px] sm:h-[56px] mt-3 sm:mt-0 ml-2"
+          className="
+            flex items-center justify-center rounded-sm text-lg sm:text-2xl bg-[#e50914] hover:brightness-90 
+            w-[160px] sm:w-[210px] h-[48px] sm:h-[56px] mt-3 sm:mt-0 ml-2"
         >
           Get Started 
           <ChevronRight className="ml-2" size="32px"/>

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation"
 import Image__Bg from "../components/ui_components/Image__Bg"
 import Image__Logo from "../components/ui_components/Image__Logo"
 import Lang__Select from "../components/ui_components/Lang__Select"
-import Signin_Button from "../components/button_modal/SignIn_Button"
+import Signin_Button from "../components/button_modal/Signin_Button"
 import Link from "next/link"
 
 export default async function AuthLayout({children}:{children: ReactNode}){
@@ -20,14 +20,12 @@ export default async function AuthLayout({children}:{children: ReactNode}){
         </div>
         <Image__Bg />
         <div className="absolute w-screen h-[80vh] sm:h-[95vh]">
-          <div className="w-screen flex flex-col justify-center sm:flex-row">
-            <Link href="/" className="absolute top-0 left-0 h-6 md:h-10 w-24 md:w-36 my-5 mx-10 md:mx-44">
-              <Image__Logo />
-            </Link>
-            <div className="flex items-center absolute top-10 sm:top-0 sm:right-0 space-x-2 h-6 md:h-8 my-5 mx-10 md:me-44 z-50">
-              <Lang__Select />
-              <Signin_Button />
-            </div>
+          <Link href="/" className="absolute top-0 left-0 h-6 md:h-10 w-24 md:w-36 my-5 mx-10 md:mx-44">
+            <Image__Logo />
+          </Link>
+          <div className="flex items-center absolute top-10 sm:top-0 sm:right-0 space-x-2 h-6 md:h-8 my-5 mx-10 md:me-44 z-50">
+            <Lang__Select />
+            <Signin_Button />
           </div>
         </div>
         {children}

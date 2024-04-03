@@ -3,31 +3,30 @@ import CarouselModal from "@/app/components/slider/slider-modal/CarouselModal";
 import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth";
-import Image from "next/image";
 import PreviewModal from "@/app/components/movie__modal/PreviewModal";
 
 async function getData(category: string, userId: string) {
-
-  const data = [];
 
   switch (category) {
     case "shows": {
       const data = await prisma.movie.findMany({
         where: { category: "show" },
         select: {
-          age: true,
-          duration: true,
           id: true,
           title: true,
-          release: true,
           imageString: true,
-          overview: true,
           videoSource: true,
+          overview: true,
+          release: true,
+          duration: true,
+          age: true,
           cast: true,
           genres: true,
-          category: true,
+          //category: true,
           WatchLists: {
-            where: { userId: userId}
+            where: { 
+              userId: userId
+            }
           }
         }
       })
@@ -37,19 +36,21 @@ async function getData(category: string, userId: string) {
       const data = await prisma.movie.findMany({
         where: { category: "movie" },
         select: {
-          age: true,
-          duration: true,
-          title: true,
           id: true,
-          release: true,
+          title: true,
           imageString: true,
-          overview: true,
           videoSource: true,
+          overview: true,
+          release: true,
+          duration: true,
+          age: true,
           cast: true,
           genres: true,
-          category: true,
+          //category: true,
           WatchLists: {
-            where: { userId: userId}
+            where: { 
+              userId: userId
+            }
           }
         }
       })
@@ -59,17 +60,17 @@ async function getData(category: string, userId: string) {
       const data = await prisma.movie.findMany({
         where: { category: "recent" },
         select: {
-          age: true,
-          duration: true,
-          title: true,
           id: true,
-          release: true,
+          title: true,
           imageString: true,
-          overview: true,
           videoSource: true,
+          overview: true,
+          release: true,
+          duration: true,
+          age: true,
           cast: true,
           genres: true,
-          category: true,
+          //category: true,
           WatchLists: {
             where: { 
               userId: userId
@@ -87,46 +88,34 @@ async function getData(category: string, userId: string) {
 
 export default async function CategoryPage(
   { params} : { params: {
-    id: number,
-    age: number,
-    duration: number,
-    overview: string,
-    release:  number,
-    title: string,
-    videoSource:string,
-    imageString: string,
-    cast: string,
-    genre: string,
-    //category: string,
-    movieId: number,
-    wachtListId: string,
-    WatchLists: boolean
+    genre: string
   }}) {
   
   const session = await getServerSession(authOptions)
   const data = await getData(params.genre, session?.user?.email as string,)
 
-  const randomIndex = Math.round(Math.random())
-  const movie = data[randomIndex]
+  //const randomIndex = Math.round(Math.random())
+  const movie = data[0]
   
   return (
     <div>
       {movie && (
-        <MovieVideo 
-          //id={movie.id} 
+        <MovieVideo
+          //key={movie.id}
+          id={movie.id}
           imageString={movie.imageString} 
           videoSource={movie.videoSource} 
           title={movie.title} 
           overview={movie.overview} 
           //category={movie.category} 
-          cast={movie.cast} 
-          genres={movie.genres} 
-          age={movie.age} 
-          release={movie.release} 
-          duration={movie.duration} 
-          watchList={movie?.WatchLists && Array.isArray(movie.WatchLists) && movie.WatchLists.length > 0 ? true : false}
-          wachtListId={movie.WatchLists[0]?.id} 
-          movieId={movie.id} 
+          //cast={movie.cast} 
+          //genres={movie.genres} 
+          //age={movie.age} 
+          //release={movie.release} 
+          //duration={movie.duration} 
+          //watchList={movie?.WatchLists && Array.isArray(movie.WatchLists) && movie.WatchLists.length > 0 ? true : false}
+          //wachtListId={movie?.WatchLists && Array.isArray(movie.WatchLists) && movie.WatchLists[0]?.id} 
+          //movieId={movie.id} 
         />
       )}
 
@@ -142,9 +131,7 @@ export default async function CategoryPage(
               overview={movie.overview}
               watchList={movie.WatchLists.length > 0 ? true : false}
               videoSource={movie.videoSource}
-              //year={movie.release}
               age={movie.age}
-              //time={movie.duration}
               cast={movie.cast}
               genres={movie.genres}
               //category={movie.category}

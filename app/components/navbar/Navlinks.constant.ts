@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 interface linkProps {
   name: string;
   href: string;
@@ -12,6 +10,5 @@ export const links: linkProps[] = [
   { id: "2", name: "Movies", href: "/home/movies" },
   { id: "3", name: "New & Popular", href: "/home/new" },
   { id: "4", name: "My List", href: "/home/user/list" },
-  { id: "5", name: "Browse by Languages", href: "/home/recently" },
- 
+  { id: "5", name: "Browse by Languages", href: "/home/recently" }
 ]

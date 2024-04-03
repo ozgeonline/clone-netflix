@@ -1,6 +1,5 @@
 import Link from "next/link"
 import links from "../../data/link"
-import { Languages } from "lucide-react"
 import Lang__Select from "../ui_components/Lang__Select"
 
 export default function Footer() {

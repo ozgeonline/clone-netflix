@@ -26,7 +26,7 @@ export default function NavLink({ path, label }: Props) {
         ) : (
         <li>
           <Link
-            className="text-slate-300 font-thin text-sm"
+            className="text-slate-300 text-sm"
             href={path}
             prefetch={false}
           >

@@ -46,7 +46,7 @@ export default function FQA() {
       ))}
 
       <div className='flex flex-col justify-center mt-12'>
-        <div className='text-base lg:text-xl text-center mx-6'>
+        <div className='lg:text-xl text-center mx-6'>
           Ready to watch? Enter your email to create or restart your membership.
         </div>
         <UserGetStartedInput/>
