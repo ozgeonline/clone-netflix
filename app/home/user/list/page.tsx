@@ -64,7 +64,7 @@ export default async function Watchlist() {
           ))}
         </CarouselModal> 
         : <div className="text-[#666] sm:text-lg select-none fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
-            You haven't added any titles to your list yet.
+            You haven&acute;t added any titles to your list yet.
           </div>
       }
     </div>
