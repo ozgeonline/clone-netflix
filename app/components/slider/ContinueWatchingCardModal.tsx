@@ -7,7 +7,7 @@ interface VideoPlayerProps {
   imageString: string
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl,imageString }) => {
+const ContinueWatchingCardModal: React.FC<VideoPlayerProps> = ({ videoUrl,imageString }) => {
 
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [savedTime, setSavedTime] = useState<number | null>(null)
@@ -70,6 +70,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl,imageString }) => {
   ) 
 }
 
-export default VideoPlayer
+export default ContinueWatchingCardModal
 
 

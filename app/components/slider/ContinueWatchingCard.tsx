@@ -1,6 +1,6 @@
 
 import prisma from "../../utils/db"
-import VideoPlayer from "./ContinueWatching"
+import ContinueWatchingCardModal from "./ContinueWatchingCardModal"
 
 async function getData() {
   const data = await prisma.movie.findMany({
@@ -28,9 +28,9 @@ export default async function ContinueWatchingCard() {
         {`Explore All >`}
       </span>  
     </h1>
-    <div className="flex flex-row gap-x-2">
+    <div className="flex gap-x-2">
       {data.map((movie,index) => (
-        <VideoPlayer key={index} videoUrl={movie.videoSource} imageString={movie.imageString} />
+        <ContinueWatchingCardModal key={index} videoUrl={movie.videoSource} imageString={movie.imageString} />
       ))}
     </div>
    </div>

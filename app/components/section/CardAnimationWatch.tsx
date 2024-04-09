@@ -8,10 +8,9 @@ export default  function CardAnimationWatch() {
       {cardData.map((card) => (
         <div 
           key={card.id} 
-          className={
-            `border-t-8 py-16 md:py-20 lg:px-5 xl:px-36 flex flex-col lg:flex-row items-center justify-center
-            ${card.id % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"}`
-          }
+          className={`border-t-8 py-16 md:py-20 lg:px-5 xl:px-36 flex flex-col lg:flex-row items-center justify-center
+            ${card.id % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"}
+          `}
         >
           <div className="mx-10 lg:w-[450px] 2xl:w-[585px]">
             <h1 className="text-3xl lg:text-5xl text-center lg:text-start font-extrabold">

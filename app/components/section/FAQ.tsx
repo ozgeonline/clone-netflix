@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from 'react'
-import AddIcon from '@mui/icons-material/Add'
+import { Plus } from 'lucide-react'
 import fqaData from '../../data/FAQ'
 import { useState } from 'react'
 import UserGetStartedInput from '../input_modal/UserGetStartedInput'
@@ -20,9 +20,7 @@ export default function FQA() {
         <div key={data.id} className='flex flex-col justify-center items-center w-full'>
           <div
             onClick={() => toggleAccordion(index)}
-            className={`
-              w-full max-w-[1170px]
-              flex justify-between items-center bg-[#2D2D2D] text-white mb-[2px] px-6 py-4 hover:brightness-150 cursor-pointer
+            className={`w-full max-w-[1170px] flex justify-between items-center bg-[#2D2D2D] text-white mb-[2px] px-6 py-4 hover:brightness-150 cursor-pointer
             `}
           >
             <div className={`text-lg lg:text-2xl font-thin`}>
@@ -30,8 +28,8 @@ export default function FQA() {
             </div>
             <div>
               {openIndex === index 
-                ? <AddIcon className='rotate-45 lg:text-5xl text-base font-extralight transition-all ease-linear'/> 
-                : <AddIcon className='lg:text-5xl text-xl transition-all ease-linear'/>
+                ? <Plus className='rotate-45 lg:text-5xl text-base font-extralight transition-all ease-linear'/> 
+                : <Plus className='lg:text-5xl text-xl transition-all ease-linear'/>
               }
             </div>
           </div>

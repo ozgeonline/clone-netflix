@@ -1,9 +1,9 @@
-import MovieVideo from "@/app/components/movie__modal/MovieVideo";
+import MovieVideo from "@/app/components/movie_modal/MovieVideo";
 import CarouselModal from "@/app/components/slider/slider-modal/CarouselModal";
 import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth";
-import PreviewModal from "@/app/components/movie__modal/PreviewModal";
+import PreviewModal from "@/app/components/movie_modal/PreviewModal";
 
 async function getData(category: string, userId: string) {
 
@@ -22,7 +22,7 @@ async function getData(category: string, userId: string) {
           age: true,
           cast: true,
           genres: true,
-          //category: true,
+          category: true,
           WatchLists: {
             where: { 
               userId: userId
@@ -46,7 +46,7 @@ async function getData(category: string, userId: string) {
           age: true,
           cast: true,
           genres: true,
-          //category: true,
+          category: true,
           WatchLists: {
             where: { 
               userId: userId
@@ -70,7 +70,7 @@ async function getData(category: string, userId: string) {
           age: true,
           cast: true,
           genres: true,
-          //category: true,
+          category: true,
           WatchLists: {
             where: { 
               userId: userId
@@ -93,39 +93,33 @@ export default async function CategoryPage(
   
   const session = await getServerSession(authOptions)
   const data = await getData(params.genre, session?.user?.email as string,)
-
-  //const randomIndex = Math.round(Math.random())
   const movie = data[0]
   
   return (
     <div>
       {movie && (
         <MovieVideo
-          //key={movie.id}
+          key={movie.id}
           id={movie.id}
           imageString={movie.imageString} 
           videoSource={movie.videoSource} 
           title={movie.title} 
           overview={movie.overview} 
-          //category={movie.category} 
-          //cast={movie.cast} 
-          //genres={movie.genres} 
-          //age={movie.age} 
-          //release={movie.release} 
-          //duration={movie.duration} 
-          //watchList={movie?.WatchLists && Array.isArray(movie.WatchLists) && movie.WatchLists.length > 0 ? true : false}
-          //wachtListId={movie?.WatchLists && Array.isArray(movie.WatchLists) && movie.WatchLists[0]?.id} 
-          //movieId={movie.id} 
         />
       )}
 
-      <div className="relative top-16 left-16">
+      <div className="relative top-0 left-16">
+        <h1 className="sm:text-2xl">
+          Popular {
+            movie.category === "shows" ? "TV" :
+            movie.category === "movie" ? "Movie" : "Netflix"
+          } Series
+        </h1>
         <CarouselModal>
           {data.map((movie) => (
             <PreviewModal 
               key={movie.id}
-              //id={movie.id}
-              wachtListId={movie.WatchLists[0]?.id  as string}
+              watchlistId={movie.WatchLists[0]?.id  as string}
               movieId={movie.id}
               title={movie.title}
               overview={movie.overview}
@@ -138,7 +132,6 @@ export default async function CategoryPage(
               imageString={movie.imageString}
               release={movie.release}
               duration={movie.duration}
-              
             />
           ))}
         </CarouselModal>

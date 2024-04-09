@@ -1,6 +1,6 @@
 import Link from "next/link"
 import links from "../../data/link"
-import Lang__Select from "../ui_components/Lang__Select"
+import Lang__Select from "../../../components/LangSelect"
 
 export default function Footer() {
   return (

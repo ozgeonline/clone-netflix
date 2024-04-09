@@ -9,15 +9,6 @@ type videoProps = {
   videoSource:string
   title: string
   overview: string
-  //category: string
-  // cast: string
-  // genres: string
-  // age: number
-  // release:  number
-  // duration: number
-  // watchList: boolean
-  // wachtListId: string
-  // movieId: number
 }
 
 export default function MovieVideo({
@@ -26,15 +17,6 @@ export default function MovieVideo({
   videoSource,
   title,
   overview,
-  //category,
-  // cast,
-  // genres,
-  // age,
-  // release,
-  // duration,
-  // watchList,
-  // wachtListId,
-  // movieId,
 }: videoProps) {
 
   return (
@@ -49,7 +31,7 @@ export default function MovieVideo({
         </div>
       </div>
 
-      <div className="absolute w-[70%] lg:w-[40%] pl-[3vw] mt-[1vw] space-y-1 lg:space-y-4">
+      <div className="absolute w-[70%] lg:w-[40%] pl-[3vw] mt-[7vw] space-y-1 lg:space-y-4">
         <div className="text-white text-[5vw] sm:text-[3vw] line-clamp-1 font-bold">
           {title}
         </div>
@@ -59,20 +41,7 @@ export default function MovieVideo({
         <div className="flex flex-col relative">
           <MovieButtons
             key={id}
-            //id={id}
-            //imageString={imageString}
-            //videoSource={videoSource}
             title={title}
-            // category={category}
-            //genres={genres}
-            //overview={overview}
-            //age={age}
-            //duration={duration}
-            //release={release}
-            //cast={cast}
-            //movieId={movieId}
-            //wachtListId={wachtListId}
-            //watchList={watchList}
           />
         </div>
       </div>

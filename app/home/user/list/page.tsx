@@ -1,8 +1,8 @@
-import PreviewModal from "@/app/components/movie__modal/PreviewModal";
+import PreviewModal from "@/app/components/movie_modal/PreviewModal";
 import CarouselModal from "@/app/components/slider/slider-modal/CarouselModal";
 import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 
 async function getData(userId: string) {
   const data = await prisma.watchList.findMany({
@@ -41,27 +41,32 @@ export default async function Watchlist() {
       <h1 className="text-white text-3xl mt-24 ">
         My List
       </h1>
-      <CarouselModal>
-        {data.map((movie) => (
-          <PreviewModal 
-            key={movie.Movie.id}
-            //id={movie.Movie.id}
-            imageString={movie.Movie.imageString}
-            videoSource={movie.Movie.videoSource}
-            title={movie.Movie.title}
-            overview={movie.Movie.overview}
-            //category={movie.Movie.category}
-            cast={movie.Movie.cast}
-            genres={movie.Movie.genres}
-            age={movie.Movie.age}
-            release={movie.Movie.release}
-            duration={movie.Movie.duration}
-            watchList={movie.Movie.WatchLists.length > 0 ? true : false}
-            wachtListId={movie.Movie.WatchLists[0]?.id  as string}
-            movieId={movie.Movie.id}
-          />
-        ))}
-      </CarouselModal>
+      {data.length > 0 ?
+        <CarouselModal>
+          {data.map((movie) => (
+            <PreviewModal 
+              key={movie.Movie.id}
+              //id={movie.Movie.id}
+              imageString={movie.Movie.imageString}
+              videoSource={movie.Movie.videoSource}
+              title={movie.Movie.title}
+              overview={movie.Movie.overview}
+              //category={movie.Movie.category}
+              cast={movie.Movie.cast}
+              genres={movie.Movie.genres}
+              age={movie.Movie.age}
+              release={movie.Movie.release}
+              duration={movie.Movie.duration}
+              watchList={movie.Movie.WatchLists.length > 0 ? true : false}
+              watchlistId={movie.Movie.WatchLists[0]?.id  as string}
+              movieId={movie.Movie.id}
+            />
+          ))}
+        </CarouselModal> 
+        : <div className="text-[#666] sm:text-lg select-none fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
+            You haven't added any titles to your list yet.
+          </div>
+      }
     </div>
   );
 }

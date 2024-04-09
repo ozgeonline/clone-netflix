@@ -1,6 +1,5 @@
 "use client"
 
-import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
 import GithubSignInButton from "../button_modal/Github_Signin_Button"
 import GoogleSignInButton from "../button_modal/Google_Signin_Button"
@@ -49,7 +48,15 @@ import Footer from "../section/Footer"
 
               <div className="flex justify-between">
                 <div className="flex items-center space-x-2">
-                  <Checkbox name="checkbox" aria-label="checkbox" id="checkbox" checked disabled/>
+                  <input
+                    type="checkbox"
+                    id="checkbox"
+                    name="checkbox"
+                    aria-label="checkbox"
+                    className="cursor-not-allowed w-4 h-4 opacity-50"
+                    checked
+                    disabled
+                  />
                   <label
                     htmlFor="checkbox"
                     className="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

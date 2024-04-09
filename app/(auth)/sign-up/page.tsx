@@ -1,6 +1,15 @@
 import UserLoginInput from "@/app/components/input_modal/UserLoginInput"
+import { authOptions } from "@/app/utils/auth";
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
 
-export default function SignUp() {
+export default async function SignUp() {
+
+  const session = await getServerSession(authOptions);
+  if (session) {
+    return redirect("/home")
+  }
+
   return (
     <UserLoginInput
       title="Sign Up"
