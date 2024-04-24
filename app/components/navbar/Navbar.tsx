@@ -3,15 +3,15 @@ import UserNav from "./UserNav"
 import { links } from "./Navlinks.constant"
 import NavLink from "./NavLink"
 import ScrollingElementSSR from "./ScrollingElementSSR"
-import Image__Logo from "../../../components/ImageLogo"
+import Image__Logo from "../modals/image_modal/ImageLogo"
 
 export default function Navbar() {
   return (
     <ScrollingElementSSR>
-      <div className="flex w-screen justify-between items-center p-2 sm:p-5">
+      <div className="flex w-full justify-between items-center p-2 sm:p-5">
         <div className="flex">
           <Image__Logo logoStyle={"relative flex items-center h-8 md:h-[1.7vw] w-20 sm:w-[11vw]"} />
-          <ul className="lg:flex gap-x-5 hidden">
+          <ul className="md:flex gap-x-5 hidden">
             {links.map((link) => (
               <NavLink key={link.id} path={link.href} label={link.name} />
             ))}

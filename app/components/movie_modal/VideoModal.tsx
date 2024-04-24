@@ -12,18 +12,17 @@ export default function VideoModal({
   return (
     <video
       poster={poster}
-      src={source}
       aria-label={alt}
       autoPlay
       muted
       loop
-      preload="metadata"
+      preload="auto"
       playsInline
       className="w-full h-full absolute top-0 left-0 object-cover -z-20 brightness-[60%] "
       
     > 
-       {/* <source src={source}></source>
-       Your browser does not support the video tag. */}
+       <source src={source}  type="video/mp4"></source>
+       Your browser does not support the video tag.
     </video>
   )
 }

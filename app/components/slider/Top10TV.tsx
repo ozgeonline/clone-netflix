@@ -1,6 +1,8 @@
+import svgDataArray from "./slider-modal/SvgData"
 import PreviewModal from "../movie_modal/PreviewModal"
 
-interface recentProps {
+interface top10Props {
+  index:number
   id:number
   imageString: string
   videoSource: string
@@ -16,7 +18,8 @@ interface recentProps {
   movieId: number
 }
 
-export default function RecentlyAdded({
+export default function Top10TVShows({
+  index,
   id,
   imageString,
   videoSource,
@@ -30,9 +33,24 @@ export default function RecentlyAdded({
   watchList,
   watchlistId,
   movieId
-}: recentProps) {
+}: top10Props) {
+
   return (
-    <div className="relative w-full">
+    <div className="relative flex group-hover:-z-10 w-[233px] h-[162px]">
+      <svg
+        id={svgDataArray[index].id}
+        width={svgDataArray[index].width}
+        height={svgDataArray[index].height}
+        viewBox={svgDataArray[index].viewBox}
+        className={svgDataArray[index].className}
+      >
+        <path
+          stroke={svgDataArray[index].stroke}
+          strokeLinejoin={svgDataArray[index].strokeLinejoin}
+          strokeWidth={svgDataArray[index].strokeWidth}
+          d={svgDataArray[index].pathData}
+        ></path>
+      </svg>
       <PreviewModal
         key={id}
         id={id}
@@ -48,9 +66,8 @@ export default function RecentlyAdded({
         watchList={watchList}
         watchlistId={watchlistId}
         movieId={movieId}
-        imageWrapperStyle={"w-auto h-[8rem]"}
-        // h-[17vw] sm:h-[8.3vw] w-[30vw] sm:w-[15vw] min-w-[150px] min-h-[85px]
-        imageStyle={"rounded-sm max-lg:brightness-75 w-full h-full min-w-[15vw]"}
+        imageWrapperStyle={"w-[115px] h-[165px]"}
+        imageStyle={"rounded-e-sm max-lg:brightness-75"}
       />
     </div>
   )

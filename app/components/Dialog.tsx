@@ -6,11 +6,11 @@ import Image from 'next/image'
 import React, { useRef, useEffect, useState } from 'react'
 import { PauseCircle, Play, Subtitles, Volume2, VolumeX, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import MovieInfo from '../../components/info_controls/MovieInfo'
-import GenreList from '../../components/info_controls/GenreList'
-import CastList from '../../components/info_controls/CastList'
-import ActionWatchlist from '../../components/button_controls/ActionWatchlist'
-import LikeDislikeButton from '../../components/button_controls/LikeDislikeButton'
+import MovieInfo from './info_controls/MovieInfo'
+import GenreList from './info_controls/GenreList'
+import CastList from './info_controls/CastList'
+import ActionWatchlist from './button_controls/ActionWatchlist'
+import LikeDislikeButton from './button_controls/LikeDislikeButton'
 
 type Props = {
   onClose: () => void,
@@ -68,7 +68,7 @@ export default function Dialog({
   }
 
   const handlePlayToggle = () => {
-    if (videoRef.current) {
+    if (videoRef.current !== undefined) {
       if (videoRef.current.paused) {
         videoRef.current.play()
         setPlaying(true)

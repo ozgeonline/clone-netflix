@@ -71,11 +71,13 @@
   }
   html {
     box-sizing: border-box;
-    width: 100vw;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   canvas {
-    width: 100vw;
+    width: 100%;
+    box-sizing: border-box
   }
   .tooltip {
     @apply invisible absolute;
@@ -91,7 +93,7 @@
   }
   /*?--scroll---*/
   .overflow-css::-webkit-scrollbar {
-    width: 0.1px;
+    width: 0;
     background: transparent;
   }
   /* Track */
@@ -106,6 +108,7 @@
   .overflow-css::-webkit-scrollbar-thumb:hover {
     background: transparent;
   }
+
 
   .input-field {
     font-size: 16px; /* Default*/

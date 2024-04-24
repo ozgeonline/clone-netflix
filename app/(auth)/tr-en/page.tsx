@@ -1,7 +1,7 @@
 import CardAnimationWatch from "@/app/components/section/CardAnimationWatch"
 import FAQ from "@/app/components/section/FAQ"
 import Footer from "@/app/components/section/Footer"
-import UserGetStartedInput from "@/app/components/input_modal/UserGetStartedInput"
+import UserGetStartedInput from "@/app/components/modals/input_modal/UserGetStartedInput"
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/utils/auth";
 import { redirect } from "next/navigation";
@@ -19,10 +19,10 @@ export default async function Tr() {
         <h1 className="max-[350px]:text-lg text-3xl md:text-5xl font-black">
           Unlimited movies, TV shows, and more
         </h1>
-        <h2 className="max-[350px]:text-base text-lg md:text-4xl">
+        <h2 className="w-[350px]:text-lg md:text-4xl">
           Watch anywhere. Cancel anytime.
         </h2>
-        <h2 className="max-[350px]:text-base text-lg md:text-xl">
+        <h2 className="w-[350px]:text-lg md:text-xl">
           Ready to watch? Enter your email to create or restart your membership.
         </h2>
         <UserGetStartedInput />

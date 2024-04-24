@@ -1,10 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import GithubSignInButton from "../button_modal/Github_Signin_Button"
-import GoogleSignInButton from "../button_modal/Google_Signin_Button"
+import GithubSignInButton from "../signin_button_modal/Github_Signin_Button"
+import GoogleSignInButton from "../signin_button_modal/Google_Signin_Button"
 import UserLoginInput_Modal from "./UserLoginInput_Modal"
-import Footer from "../section/Footer"
+import Footer from "../../section/Footer"
 
   type formInfo = {
     title: string

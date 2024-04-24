@@ -14,7 +14,7 @@ export default function Lang__Select () {
         aria-labelledby="Aria Language" 
         name="language"
         id="language" 
-        className="py-1 px-3 outline-none bg-neutral-900/10 rounded-sm w-10 sm:w-24"
+        className="py-1 ps-4 outline-none bg-neutral-900/10 rounded-sm w-10 sm:w-24 text-sm"
       >
         <option value="language-1" aria-label="hidden" className="bg-slate-50 text-black">English</option>
         <option value="language-2" aria-label="hidden" className="bg-slate-50 text-black">Türkçe</option>

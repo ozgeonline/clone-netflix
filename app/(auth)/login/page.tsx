@@ -1,4 +1,4 @@
-import UserLoginInput from "@/app/components/input_modal/UserLoginInput"
+import UserLoginInput from "@/app/components/modals/input_modal/UserLoginInput"
 import { authOptions } from "@/app/utils/auth";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";

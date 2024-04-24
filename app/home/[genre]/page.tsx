@@ -108,10 +108,10 @@ export default async function CategoryPage(
         />
       )}
 
-      <div className="relative top-0 left-16">
+      <div className="relative top-0 left-5 xl:left-10">
         <h1 className="sm:text-2xl">
           Popular {
-            movie.category === "shows" ? "TV" :
+            movie.category === "show" ? "TV" :
             movie.category === "movie" ? "Movie" : "Netflix"
           } Series
         </h1>
@@ -119,19 +119,20 @@ export default async function CategoryPage(
           {data.map((movie) => (
             <PreviewModal 
               key={movie.id}
-              watchlistId={movie.WatchLists[0]?.id  as string}
-              movieId={movie.id}
+              id={movie.id}
+              imageString={movie.imageString}
+              videoSource={movie.videoSource}
               title={movie.title}
               overview={movie.overview}
-              watchList={movie.WatchLists.length > 0 ? true : false}
-              videoSource={movie.videoSource}
               age={movie.age}
               cast={movie.cast}
               genres={movie.genres}
               //category={movie.category}
-              imageString={movie.imageString}
               release={movie.release}
               duration={movie.duration}
+              watchList={movie.WatchLists.length > 0 ? true : false}
+              watchlistId={movie.WatchLists[0]?.id as string}
+              movieId={movie.id}
             />
           ))}
         </CarouselModal>

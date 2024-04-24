@@ -1,11 +1,12 @@
 "use client"
 
 import { PreviewModalInfo } from "./PreviewModalInfo"
-import ImageCard from "../../../components/ImageCard"
+import ImageCard from "../modals/image_modal/ImageCard"
 import { PlayCircle  } from 'lucide-react'
-import ShowDialogButton from "../../../components/button_controls/ShowDialogButton"
+import ShowDialogButton from "../button_controls/ShowDialogButton"
 
 interface PreviewModalProps {
+  id:number
   imageString: string
   videoSource: string
   title: string
@@ -18,9 +19,12 @@ interface PreviewModalProps {
   watchList: boolean
   watchlistId: string
   movieId: number
+  imageWrapperStyle: string
+  imageStyle: string
 }
 
 export default function PreviewModal({
+  id,
   imageString,
   videoSource,
   title,
@@ -32,34 +36,38 @@ export default function PreviewModal({
   duration,
   watchList,
   watchlistId,
-  movieId
+  movieId,
+  imageWrapperStyle,
+  imageStyle
 }: PreviewModalProps) {
-
+  // xl:w-[14.375rem]
   return (
-    <div className="group flex items-center justify-center">
-      <div className="relative flex rounded-sm cursor-pointer h-[17vw] sm:h-[8.3vw] w-[30vw] sm:w-[14.8vw] min-w-[150px] min-h-[85px]">
+    <div className="group group-hover:-z-50 ">
+      <div className={`${imageWrapperStyle} relative rounded-sm cursor-pointer `}> 
         <ImageCard
           imageString={imageString}
-          imageText={`${title} - ${movieId}.movie poster`}
-          imageStyle={`rounded-sm max-lg:brightness-75`}
+          imageText={`${title}-${id}.movie poster`}
+          imageStyle={imageStyle}
         />
+        
         <ShowDialogButton
           title={title}
           buttonStyle={"absolute z-50 top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"}
         >
-           <PlayCircle className="invisible max-lg:visible text-white w-10 h-10"/>
+           <PlayCircle className="invisible max-xl:visible text-white w-10 h-10"/>
         </ShowDialogButton>
       </div>
       <div
-        className="absolute group-hover:z-50 invisible group-hover:lg:visible group-hover:lg:scale-150 h-[7rem] w-[14rem] -top-10 transition-transform ease-in shadow-md shadow-black/90 cursor-pointer"
+        className="absolute group-hover:z-50 z-0 invisible group-hover:xl:visible group-hover:lg:scale-150 h-[7rem] w-[14rem] -top-10 transition-transform ease-in shadow-md shadow-black/90 cursor-pointer"
       >
         <ImageCard 
           imageString={imageString}
-          imageText={`${title} - ${movieId}.movie big-poster`}
+          imageText={`${title}-${id}.movie big-poster`}
           imageStyle={`rounded-t-sm`}
         />
+        {/* <img src={imageString}/> */}
         <PreviewModalInfo
-          key={movieId}
+          key={id}
           imageString={imageString}
           videoSource={videoSource}
           title={title}

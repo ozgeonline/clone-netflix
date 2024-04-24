@@ -12,9 +12,9 @@ export default async function HomeLayout({children} : {children: ReactNode}){
   }
 
   return (
-    <div className="w-screen">
+    <div className="w-full">
       <Navbar />
-      <div className="w-screen">
+      <div className="w-full">
         {children}
       </div>
     </div>

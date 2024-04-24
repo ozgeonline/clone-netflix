@@ -1,7 +1,7 @@
 "use client"
 
 import { InfoIcon, Play } from "lucide-react"
-import ShowDialogButton from "../../../components/button_controls/ShowDialogButton"
+import ShowDialogButton from "../button_controls/ShowDialogButton"
 
 interface iAppProps {
   title: string
@@ -9,7 +9,7 @@ interface iAppProps {
 
 export default function MovieButtons({title }: iAppProps) {
   return (
-    <div className="flex items-center justify-start text-[3vw] sm:text-lg font-semibold">   
+    <div className="flex text-[3vw] sm:text-lg font-semibold">   
       <ShowDialogButton
         title={title}
         buttonStyle={`text-black me-3 rounded-sm flex items-center justify-center bg-white hover:brightness-90 hover:ease-in transition-all w-[15vw] sm:w-[12vw] md:w-[10vw] lg:w-[8vw] h-[6vw] sm:h-[5vw] md:h-[4vw] lg:h-[3vw]

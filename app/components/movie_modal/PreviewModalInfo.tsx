@@ -2,11 +2,11 @@
 
 import { ChevronDown, Circle, Play } from "lucide-react"
 import Dialog from "../Dialog"
-import ActionWatchlist from "../../../components/button_controls/ActionWatchlist"
-import ShowDialogButton from "../../../components/button_controls/ShowDialogButton"
-import LikeDislikeButton from "../../../components/button_controls/LikeDislikeButton"
-import MovieInfo from "../../../components/info_controls/MovieInfo"
-import GenreList from "../../../components/info_controls/GenreList"
+import ActionWatchlist from "../button_controls/ActionWatchlist"
+import ShowDialogButton from "../button_controls/ShowDialogButton"
+import LikeDislikeButton from "../button_controls/LikeDislikeButton"
+import MovieInfo from "../info_controls/MovieInfo"
+import GenreList from "../info_controls/GenreList"
 
 interface PreviewModalProps {
   imageString: string
@@ -61,7 +61,7 @@ export function PreviewModalInfo({
         watchList={watchList}
       />
 
-      <div className="absolute w-full min-h-[5rem] z-[9999] pb-2 mt-20 sm:mt-28 bg-[#141414] rounded-b-sm shadow-md shadow-black/90">
+      <div className="absolute w-full min-h-[5rem] group-hover:z-[9999] pb-2 mt-20 sm:mt-28 bg-[#141414] rounded-b-sm shadow-md shadow-black/90">
         <h1 className="absolute font-bold text-[1em] line-clamp-1 left-3 -top-[1.5em] [text-shadow:_2px_2px_7px_rgb(0_0_0_/_30%)]" >
           {title}
         </h1>
@@ -80,9 +80,7 @@ export function PreviewModalInfo({
                 actionStyle={'w-6 h-6 p-1'}                      
               />
             </div>
-            <LikeDislikeButton
-              likeBtnStyle={'h-6 w-6 p-[0.3rem]'}
-            />
+            <LikeDislikeButton likeBtnStyle={'h-6 w-6 p-[0.3rem]'} />
           </div>
           <ShowDialogButton title={title} buttonStyle={"h-6 w-6"}>
             <ChevronDown className="p-[2px] border border-[#ffffffb3] bg-[#202020] rounded-full hover:brightness-125 hover:ease-in" />
@@ -101,6 +99,5 @@ export function PreviewModalInfo({
         </div>
       </div>
     </>
-   
   )
 }
