@@ -58,9 +58,8 @@ export default async function Watchlist() {
               release={movie.Movie.release}
               duration={movie.Movie.duration}
               watchList={movie.Movie.WatchLists.length > 0 ? true : false}
-              watchlistId={movie.Movie.WatchLists[0]?.id  as string}
-              movieId={movie.Movie.id}
-            />
+              watchlistId={movie.Movie.WatchLists[0]?.id as string}
+              movieId={movie.Movie.id} id={0} imageWrapperStyle={""} imageStyle={""} />
           ))}
         </CarouselModal> 
         : <div className="text-[#666] sm:text-lg select-none fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
