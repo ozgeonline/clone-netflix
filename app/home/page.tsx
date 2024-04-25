@@ -28,9 +28,9 @@ async function getData(userId:string) {
         },
       },
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    // orderBy: {
+    //   createdAt: "desc",
+    // },
     take: 10
   })
   return data
@@ -52,7 +52,7 @@ export default async function HomePage() {
         overview={movie.overview}
       />
       <div className="w-full flex flex-col 
-      px-5 sm:px-[2vw] xl:px-[3vw]
+      px-5 sm:px-[3vw] xl:px-[3.5vw]
       pb-96 -mt-[20vw] md:-mt-[15vw] lg:-mt-36">
         <h1 className="text-base sm:text-2xl group relative cursor-pointer mb-3">
           Continue Watching for you
@@ -82,7 +82,7 @@ export default async function HomePage() {
               movieId={movie.id}
             />
           ))}
-        </CarouselModal>
+        </CarouselModal>        
         
         
         {/* <h2 className="sm:text-2xl mb-3">Top 10 TV Shows in Today</h2>

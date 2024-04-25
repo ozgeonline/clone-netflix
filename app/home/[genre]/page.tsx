@@ -132,7 +132,10 @@ export default async function CategoryPage(
               duration={movie.duration}
               watchList={movie.WatchLists.length > 0 ? true : false}
               watchlistId={movie.WatchLists[0]?.id as string}
-              movieId={movie.id} imageWrapperStyle={""} imageStyle={""}/>
+              movieId={movie.id}
+              imageWrapperStyle="w-auto h-[8rem]"
+              imageStyle="rounded-sm max-lg:brightness-75 w-full h-full min-w-[15vw]"
+            />
           ))}
         </CarouselModal>
       </div>

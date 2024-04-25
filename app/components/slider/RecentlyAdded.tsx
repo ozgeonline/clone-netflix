@@ -32,7 +32,7 @@ export default function RecentlyAdded({
   movieId
 }: recentProps) {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full h-full"  aria-label={`${id}.Slider-item`}>
       <PreviewModal
         key={id}
         id={id}
@@ -48,9 +48,10 @@ export default function RecentlyAdded({
         watchList={watchList}
         watchlistId={watchlistId}
         movieId={movieId}
-        imageWrapperStyle={"w-auto h-[8rem]"}
+        imageWrapperStyle={"w-auto h-[20vw] md:h-[11vw] xl:h-[8.3vw]"}
         // h-[17vw] sm:h-[8.3vw] w-[30vw] sm:w-[15vw] min-w-[150px] min-h-[85px]
-        imageStyle={"rounded-sm max-lg:brightness-75 w-full h-full min-w-[15vw]"}
+        imageStyle={"rounded-sm max-lg:brightness-75 w-full h-full"}
+        
       />
     </div>
   )

@@ -46,7 +46,7 @@ export default async function Watchlist() {
           {data.map((movie) => (
             <PreviewModal 
               key={movie.Movie.id}
-              //id={movie.Movie.id}
+              id={movie.Movie.id}
               imageString={movie.Movie.imageString}
               videoSource={movie.Movie.videoSource}
               title={movie.Movie.title}
@@ -59,7 +59,10 @@ export default async function Watchlist() {
               duration={movie.Movie.duration}
               watchList={movie.Movie.WatchLists.length > 0 ? true : false}
               watchlistId={movie.Movie.WatchLists[0]?.id as string}
-              movieId={movie.Movie.id} id={0} imageWrapperStyle={""} imageStyle={""} />
+              movieId={movie.Movie.id}
+              imageWrapperStyle="w-auto h-[8rem]"
+              imageStyle="rounded-sm max-lg:brightness-75 w-full h-full min-w-[15vw]"
+            />
           ))}
         </CarouselModal> 
         : <div className="text-[#666] sm:text-lg select-none fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
