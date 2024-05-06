@@ -29,9 +29,9 @@ async function getData(userId:string) {
       },
     },
     orderBy: {
-      createdAt: "desc",
+      createdAt: "asc",
     },
-    take: 20
+    take: 50
   })
   return data
 }
@@ -39,7 +39,7 @@ async function getData(userId:string) {
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
   const data = await getData(session?.user?.email as string)
-  const movie = data[0]
+  const movie = data[13]
 
   return (
     <div className="overflow-x-hidden">
@@ -91,6 +91,7 @@ export default async function HomePage() {
         <CarouselModal sliderButtonClass="h-[162px]" sliderClass="space-x-1">
           {data
             .filter(movie => movie.category === "show")
+            .slice(0, 10)
             .map((show,index)=> (
               <Top10TV
                 key={index}
@@ -116,6 +117,7 @@ export default async function HomePage() {
         <CarouselModal sliderButtonClass="h-[162px]">
           {data
             .filter(movie => movie.category === "movie")
+            .slice(0, 10)
             .map((show,index)=> (
               <Top10TV
                 key={index}

@@ -117,7 +117,7 @@ export default async function CategoryPage(
         </h1>
         <CarouselModal>
           {data.map((movie) => (
-            <div className="relative w-full h-full max-w-[14.5rem]">
+            <div className="relative w-full h-full max-w-[14.5rem]" key={movie.id}>
               <PreviewModal 
                 key={movie.id}
                 id={movie.id}
