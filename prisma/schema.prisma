@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
 }
 
@@ -10,18 +10,18 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
   refresh_token_expires_in Int?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -36,6 +36,7 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@schema("auth")
 }
 
@@ -47,26 +48,27 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+
   @@schema("auth")
 }
 
 model Movie {
-  id            Int         @id @unique @default(autoincrement())
-  imageString   String
-  title         String
-  age           Int
-  duration      Float
-  overview      String
-  release       Int
-  videoSource   String
-  category      String
-  cast          String
-  genres        String
-  WatchLists    WatchList[]
-  WatchHistory  WatchHistory[]
-
+  id           Int            @id @unique @default(autoincrement())
+  imageString  String
+  title        String         
+  age          Int
+  duration     Float
+  overview     String
+  release      Int
+  videoSource  String
+  category     String
+  cast         String
+  genres       String
+  WatchLists   WatchList[]
+  WatchHistory WatchHistory[]
 
   createdAt DateTime @default(now())
+
   @@schema("public")
 }
 
@@ -76,15 +78,16 @@ model WatchList {
 
   Movie   Movie? @relation(fields: [movieId], references: [id])
   movieId Int
+
   @@schema("public")
 }
 
 model WatchHistory {
-  id     String @id @default(uuid())
-  userId String
+  id           String @id @default(uuid())
+  userId       String
   WatchHistory String
   videoSource  String
-  
+
   Movie   Movie? @relation(fields: [movieId], references: [id])
   movieId Int?
 
@@ -93,10 +96,10 @@ model WatchHistory {
   @@schema("public")
 }
 
-model Fqa { //m
-  id         Int @id
-  fqaQ       String
-  fqEx       String
+model Fqa {
+  id   Int    @id
+  fqaQ String
+  fqEx String
 
   @@schema("public")
 }

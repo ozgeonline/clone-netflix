@@ -36,7 +36,9 @@ export default function Top10TVShows({
 }: top10Props) {
 
   return (
-    <div className="relative flex group-hover:-z-10 w-[233px] h-[162px]">
+    <div className="relative flex w-full h-auto max-h-[25vw] sm:max-h-[20vw] md:max-h-[15vw] lg:max-h-[12vw]
+   
+    px-2">
       <svg
         id={svgDataArray[index].id}
         width={svgDataArray[index].width}
@@ -66,8 +68,8 @@ export default function Top10TVShows({
         watchList={watchList}
         watchlistId={watchlistId}
         movieId={movieId}
-        imageWrapperStyle={"w-[115px] h-[165px]"}
-        imageStyle={"rounded-e-sm max-lg:brightness-75"}
+        imageWrapperStyle={"w-[20vw] sm:w-[15vw] md:w-[12vw] lg:w-[11vw] xl:w-[8vw] h-full"}
+        imageStyle={"rounded-e-sm max-lg:brightness-75w-full h-full"}
       />
     </div>
   )

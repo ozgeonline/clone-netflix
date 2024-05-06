@@ -96,7 +96,7 @@ export default async function CategoryPage(
   const movie = data[0]
   
   return (
-    <div>
+    <div className="">
       {movie && (
         <MovieVideo
           key={movie.id}
@@ -108,7 +108,7 @@ export default async function CategoryPage(
         />
       )}
 
-      <div className="relative top-0 left-5 xl:left-10">
+      <div className="relative top-0 px-5 sm:px-[3vw] xl:px-[3.5vw]">
         <h1 className="sm:text-2xl">
           Popular {
             movie.category === "show" ? "TV" :
@@ -117,25 +117,27 @@ export default async function CategoryPage(
         </h1>
         <CarouselModal>
           {data.map((movie) => (
-            <PreviewModal 
-              key={movie.id}
-              id={movie.id}
-              imageString={movie.imageString}
-              videoSource={movie.videoSource}
-              title={movie.title}
-              overview={movie.overview}
-              age={movie.age}
-              cast={movie.cast}
-              genres={movie.genres}
-              //category={movie.category}
-              release={movie.release}
-              duration={movie.duration}
-              watchList={movie.WatchLists.length > 0 ? true : false}
-              watchlistId={movie.WatchLists[0]?.id as string}
-              movieId={movie.id}
-              imageWrapperStyle="w-auto h-[8rem]"
-              imageStyle="rounded-sm max-lg:brightness-75 w-full h-full min-w-[15vw]"
-            />
+            <div className="relative w-full h-full max-w-[14.5rem]">
+              <PreviewModal 
+                key={movie.id}
+                id={movie.id}
+                imageString={movie.imageString}
+                videoSource={movie.videoSource}
+                title={movie.title}
+                overview={movie.overview}
+                age={movie.age}
+                cast={movie.cast}
+                genres={movie.genres}
+                //category={movie.category}
+                release={movie.release}
+                duration={movie.duration}
+                watchList={movie.WatchLists.length > 0 ? true : false}
+                watchlistId={movie.WatchLists[0]?.id as string}
+                movieId={movie.id}
+                imageWrapperStyle="w-auto h-[20vw] md:h-[13vw] xl:h-[8.3vw] flex"
+                imageStyle="rounded-sm max-lg:brightness-75 w-full h-full max-w-[14.5rem]"
+              />
+            </div>
           ))}
         </CarouselModal>
       </div>

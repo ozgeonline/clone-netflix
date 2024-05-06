@@ -5,6 +5,7 @@ import ImageCard from "../modals/image_modal/ImageCard"
 import { PlayCircle  } from 'lucide-react'
 import ShowDialogButton from "../button_controls/ShowDialogButton"
 
+
 interface PreviewModalProps {
   id:number
   imageString: string
@@ -43,7 +44,9 @@ export default function PreviewModal({
   // xl:w-[14.375rem]
   return (
     <div className="group group-hover:-z-50 ">
-      <div className={`${imageWrapperStyle} relative rounded-sm cursor-pointer `}> 
+      <div 
+        className={`${imageWrapperStyle} relative rounded-sm cursor-pointer slide `}
+      > 
         <ImageCard
           imageString={imageString}
           imageText={`${title}-${id}.movie poster`}
@@ -65,7 +68,6 @@ export default function PreviewModal({
           imageText={`${title}-${id}.movie big-poster`}
           imageStyle={`rounded-t-sm`}
         />
-        {/* <img src={imageString}/> */}
         <PreviewModalInfo
           key={id}
           imageString={imageString}

@@ -16,10 +16,8 @@ export default function ImageCard({
       src={imageString}
       alt={imageText}
       className={`object-cover ${imageStyle}`}
-      width={0}
-      height={0}
+      fill
       sizes="100%"
-      
       quality={50}
     />
   )
