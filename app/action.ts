@@ -11,10 +11,23 @@ export async function addTowatchlist(formData: FormData) {
   const movieId = formData.get("movieId");
   const pathname = formData.get("pathname") as string;
   const session = await getServerSession(authOptions);
+  const userId = session?.user?.email as string;
 
-  const data = await prisma.watchList.create({
+  const existingEntry = await prisma.watchList.findFirst({
+    where: {
+      userId,
+      movieId: Number(movieId),
+    },
+  });
+
+  if (existingEntry) {
+    console.log("Movie is already in the watchlist");
+    return;
+  }
+
+  await prisma.watchList.create({
     data: {
-      userId: session?.user?.email as string,
+      userId,
       movieId: Number(movieId),
     },
   });
@@ -28,11 +41,20 @@ export async function deleteFromWatchlist(formData: FormData) {
   const watchlistId = formData.get("watchlistId") as string;
   const pathname = formData.get("pathname") as string;
 
-  const data = await prisma.watchList.delete({
+  const existingItem = await prisma.watchList.findUnique({
     where: {
       id: watchlistId,
     },
   });
+
+  if (existingItem) {
+    // If the item exists, proceed with deletion
+    await prisma.watchList.delete({
+      where: {
+        id: watchlistId,
+      },
+    });
+  }
 
   revalidatePath(pathname);
 }

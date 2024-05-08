@@ -48,8 +48,8 @@ export default function Dialog({
   const searchParams = useSearchParams() //access query parameters
   const showDialog = searchParams.get('showDialog') //Getting the value of the query parameter
 
-  const dialogRef = useRef<null | HTMLDialogElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const [playing, setPlaying] = useState<boolean>(false)
   const [muted, setMuted] = useState<boolean>(true)
@@ -78,6 +78,49 @@ export default function Dialog({
       }
     }
   }
+
+  // const handlePlayToggle = () => {
+  //   const playPromise = videoRef.current.play();
+    
+  //   if (playPromise) {
+  //     playPromise
+  //       .then(() => {
+  //         setPlaying(true);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error during video play:", error);
+  //         setPlaying(false); // Reset playing state if error occurs
+  //       });
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   if (playing && videoRef.current) {
+  //     videoRef.current.play().catch((error) => {
+  //       console.error("Error while playing video:", error);
+  //     });
+  //   } else if (videoRef.current) {
+  //     videoRef.current.pause();
+  //   }
+  // }, [playing]);
+
+  // const playPromise = videoRef.current?.play();
+
+  // if (playPromise) {
+  //   playPromise.catch((error) => {
+  //     console.error("Error in playing video:", error);
+  //   });
+  // }
+
+
+
+  // const isPlaying = videoRef.current  && !videoRef.current.pause && !videoRef.current.ended 
+  //   && videoRef.current.readyState > videoRef.current.HAVE_CURRENT_DATA;
+
+  // if (!isPlaying) {
+  //   videoRef.current.play();
+  // }
+  
 
   const handleMuteToggle = () => {
     if (videoRef.current) {
@@ -116,7 +159,7 @@ export default function Dialog({
                 loop
                 preload="auto"
                 playsInline
-                className="absolute top-0 left-0 -z-20 w-full h-[50vw] sm:h-[40vw] md:h-[30vw] object-cover brightness-75"
+                className="absolute top-0 left-0 -z-20 w-full h-[50vw] sm:h-[40vw] md:h-[30vw] object-fill brightness-75"
               />
               <div 
                 className="absolute w-full top-[50vw] sm:top-[40vw] md:top-[30vw] bg-none -z-10 shadow-[0_15px_50px_70px_rgba(0,0,0,1)] shadow-[#141414]  transform"

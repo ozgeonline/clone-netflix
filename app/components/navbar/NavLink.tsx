@@ -17,7 +17,7 @@ export default function NavLink({ path, label }: Props) {
         <li>
           <Link
             href={path}
-            className="text-white font-semibold text-sm"
+            className="text-white font-semibold text-sm tracking-wider cursor-default"
             prefetch={true}
           >
             {label}
@@ -26,7 +26,7 @@ export default function NavLink({ path, label }: Props) {
         ) : (
         <li>
           <Link
-            className="text-slate-300 text-sm"
+            className="text-white text-sm tracking-wider hover:text-[#b3b3b3] transition-colors ease-in"
             href={path}
             prefetch={true}
           >

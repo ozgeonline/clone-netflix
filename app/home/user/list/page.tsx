@@ -6,7 +6,9 @@ import { getServerSession } from "next-auth/next";
 
 async function getData(userId: string) {
   const data = await prisma.watchList.findMany({
-   
+    where: {
+      userId: userId,
+    },
     select: {
       Movie: {
         select: {
@@ -17,11 +19,7 @@ async function getData(userId: string) {
           overview: true,
           release: true,
           id: true,
-          WatchLists: {
-            where: {
-              userId: userId,
-            },
-          },
+          WatchLists: true,
           videoSource: true,
           cast: true,
           genres: true,
@@ -44,7 +42,7 @@ export default async function Watchlist() {
       {data.length > 0 ?
         <CarouselModal>
           {data.map((movie) => (
-            <div className="relative w-full h-full max-w-[14.5rem]" key={movie.Movie.id}>
+            <div className="relative w-full h-full max-w-[14.5rem]" >
               <PreviewModal 
                 key={movie.Movie.id}
                 id={movie.Movie.id}

@@ -61,7 +61,7 @@ export function PreviewModalInfo({
         watchList={watchList}
       />
 
-      <div className="absolute w-full min-h-[5rem] group-hover:z-[9999] pb-2 mt-20 sm:mt-28 bg-[#141414] rounded-b-sm shadow-md shadow-black/90">
+      <div className="absolute w-full min-h-[5rem]  pb-2 mt-20 sm:mt-28 bg-[#141414] rounded-b-sm shadow-md shadow-black/90">
         <h1 className="absolute font-bold text-[1em] line-clamp-1 left-3 -top-[1.5em] [text-shadow:_2px_2px_7px_rgb(0_0_0_/_30%)]" >
           {title}
         </h1>

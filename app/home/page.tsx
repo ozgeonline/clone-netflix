@@ -7,6 +7,7 @@ import MovieVideo from "../components/movie_modal/MovieVideo"
 import ContinueWatchingCard from "../components/slider/ContinueWatchingCard"
 import RecentlyAdded from "../components/slider/RecentlyAdded"
 import Top10TV from "../components/slider/Top10TV"
+import ContinueWatchingCardModal from "../components/slider/ContinueWatchingCardModal"
 
 async function getData(userId:string) {
   const data = await prisma.movie.findMany({
@@ -29,7 +30,7 @@ async function getData(userId:string) {
       },
     },
     orderBy: {
-      createdAt: "asc",
+      createdAt: "desc",
     },
     take: 50
   })
@@ -39,7 +40,7 @@ async function getData(userId:string) {
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
   const data = await getData(session?.user?.email as string)
-  const movie = data[13]
+  const movie = data[0]
 
   return (
     <div className="overflow-x-hidden">
@@ -51,93 +52,115 @@ export default async function HomePage() {
         title={movie.title}
         overview={movie.overview}
       />
-      <div className="w-full flex flex-col 
-        px-5 sm:px-[3vw] xl:px-[3.5vw]
-        pb-96 -mt-[20vw] md:-mt-[15vw] lg:-mt-36">
-        <h1 className="text-base sm:text-2xl group relative cursor-pointer mb-3">
-          Continue Watching for you
-          <span className="absolute -bottom-[2px] text-[1vw] font-semibold text-[#54b9c5] left-72 opacity-0 group-hover:opacity-100 transition-opacity ease-linear">
-            {`Explore All >`}
-          </span>  
-        </h1>
-        <ContinueWatchingCard />
-
-        <h2 className="sm:text-2xl mb-3">New Releases</h2>
-        <CarouselModal sliderButtonClass="h-[20vw] md:h-[13vw] xl:h-[8.3vw]" sliderClass="space-x-1 sm:space-x-2">
-          {data
-            .filter(movie => movie.release === 2024 || 2023)
-            .map((movie)=> (
-              <RecentlyAdded
-                key={movie.id}
-                id={movie.id}
-                imageString={movie.imageString}
-                videoSource={movie.videoSource}
-                title={movie.title}
-                overview={movie.overview}
-                cast={movie.cast}
-                genres={movie.genres}
-                age={movie.age}
-                release={movie.release}
-                duration={movie.duration}
-                watchList={movie.WatchLists.length > 0 ? true : false}
-                watchlistId={movie.WatchLists[0]?.id  as string}
-                movieId={movie.id}
-              />
-          ))}
-        </CarouselModal>        
-        
-        
-        <h2 className="sm:text-2xl mb-3">Top 10 TV Shows in Today</h2>
-        <CarouselModal sliderButtonClass="h-[162px]" sliderClass="space-x-1">
-          {data
-            .filter(movie => movie.category === "show")
-            .slice(0, 10)
-            .map((show,index)=> (
-              <Top10TV
-                key={index}
-                index={index}
-                id={show.id} 
-                imageString={show.imageString} 
-                videoSource={show.videoSource} 
-                title={show.title}
-                overview={show.overview}
-                cast={show.cast}
-                genres={show.genres}
-                age={show.age}
-                release={show.release}
-                duration={show.duration}
-                watchList={show.WatchLists.length > 0 ? true : false}
-                watchlistId={show.WatchLists[0]?.id  as string}
-                movieId={show.id}
-              />
-          ))}
-        </CarouselModal>
-
-        <h2 className="sm:text-2xl mb-3">Top 10 Movies in Today</h2>
-        <CarouselModal sliderButtonClass="h-[162px]">
-          {data
-            .filter(movie => movie.category === "movie")
-            .slice(0, 10)
-            .map((show,index)=> (
-              <Top10TV
-                key={index}
-                index={index}
-                id={show.id}
-                imageString={show.imageString} 
-                videoSource={show.videoSource}
-                title={show.title}
-                overview={show.overview}
-                cast={show.cast}
-                genres={show.genres}
-                age={show.age}
-                release={show.release}
-                duration={show.duration}
-                watchList={show.WatchLists.length > 0 ? true : false}
-                watchlistId={show.WatchLists[0]?.id  as string}
-                movieId={show.id}
-              />
+      <div
+        className="w-full flex flex-col px-5 sm:px-[3vw] xl:px-[3.5vw] -mt-[20vw] md:-mt-[15vw] lg:-mt-36 pb-96 space-y-1 sm:space-y-4 lg:space-y-8 xl:space-y-12"
+      >
+        <div>
+          <h1 className="relative title sm:text-2xl">
+            Continue Watching for you
+          </h1>
+          <CarouselModal
+            sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
+            sliderClass="space-x-1 sm:space-x-2"
+          >
+            {data
+              .slice(0, 5)
+              .map((movie,index) => (
+              <ContinueWatchingCardModal key={index} videoUrl={movie.videoSource} imageString={movie.imageString} />
             ))}
-        </CarouselModal>
+          </CarouselModal>
+        </div>
+
+        <div>
+          <h2 className="relative title sm:text-2xl">New Releases</h2>
+          <CarouselModal
+            sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
+            sliderClass="space-x-1 sm:space-x-2"
+          >
+            {data
+              .filter(movie => movie.release === 2024 || 2023)
+              .map((movie)=> (
+                <RecentlyAdded
+                  key={movie.id}
+                  id={movie.id}
+                  imageString={movie.imageString}
+                  videoSource={movie.videoSource}
+                  title={movie.title}
+                  overview={movie.overview}
+                  cast={movie.cast}
+                  genres={movie.genres}
+                  age={movie.age}
+                  release={movie.release}
+                  duration={movie.duration}
+                  watchList={movie.WatchLists.length > 0 ? true : false}
+                  watchlistId={movie.WatchLists[0]?.id as string}
+                  movieId={movie.id}
+                />
+            ))}
+          </CarouselModal>
+        </div>      
+        
+        <div>
+          <h2 className="relative title sm:text-2xl">Top 10 TV Shows in Today</h2>
+          <CarouselModal
+            sliderButtonClass="h-[30vw] sm:h-[22vw] md:h-[17vw] lg:h-[14vw] xl:h-[10.5vw]"
+            sliderClass="space-x-1 "
+          >
+            {data
+              .filter(movie => movie.category === "show")
+              .slice(0, 10)
+              .map((show,index)=> (
+                <Top10TV
+                  key={index}
+                  index={index}
+                  id={show.id}
+                  imageString={show.imageString}
+                  videoSource={show.videoSource}
+                  title={show.title}
+                  overview={show.overview}
+                  cast={show.cast}
+                  genres={show.genres}
+                  age={show.age}
+                  release={show.release}
+                  duration={show.duration}
+                  watchList={show.WatchLists.length > 0 ? true : false}
+                  watchlistId={show.WatchLists[0]?.id  as string}
+                  movieId={show.id}
+                />
+            ))}
+          </CarouselModal>
+        </div>
+
+        <div>
+          <h2 className="relative title sm:text-2xl">Top 10 Movies in Today</h2>
+          <CarouselModal
+            sliderButtonClass="h-[30vw] sm:h-[22vw] md:h-[17vw] lg:h-[14vw] xl:h-[10.5vw]"
+            sliderClass="space-x-1 "
+          >
+            {data
+              .filter(movie => movie.category === "movie")
+              .slice(0, 10)
+              .map((show,index)=> (
+                <Top10TV
+                  key={index}
+                  index={index}
+                  id={show.id}
+                  imageString={show.imageString}
+                  videoSource={show.videoSource}
+                  title={show.title}
+                  overview={show.overview}
+                  cast={show.cast}
+                  genres={show.genres}
+                  age={show.age}
+                  release={show.release}
+                  duration={show.duration}
+                  watchList={show.WatchLists.length > 0 ? true : false}
+                  watchlistId={show.WatchLists[0]?.id  as string}
+                  movieId={show.id}
+                />
+              ))}
+          </CarouselModal>
+        </div>
       </div>
     </div>
   );

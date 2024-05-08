@@ -1,14 +1,17 @@
+// Prisma generator configuration
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
 }
 
+// Database source configuration
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
   schemas  = ["public", "auth"]
 }
 
+// User-related models
 model Account {
   id                       String  @id @default(cuid())
   userId                   String
@@ -46,12 +49,14 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  accounts      Account[]
-  sessions      Session[]
+  accounts      Account[] // Relation to Account model
+  sessions      Session[] // Relation to Session model
+  watchLists    WatchList[] // WatchLists associated with this user
 
   @@schema("auth")
 }
 
+// Application-related models
 model Movie {
   id           Int            @id @unique @default(autoincrement())
   imageString  String
@@ -64,8 +69,8 @@ model Movie {
   category     String
   cast         String
   genres       String
-  WatchLists   WatchList[]
-  WatchHistory WatchHistory[]
+  WatchLists   WatchList[] // Relation to WatchList model
+  WatchHistory WatchHistory[] // Relation to WatchHistory model
 
   createdAt DateTime @default(now())
 
@@ -75,10 +80,12 @@ model Movie {
 model WatchList {
   id     String @id @default(uuid())
   userId String
+  movieId Int?
 
+  user User? @relation(fields: [userId], references: [email]) // Relation to User
   Movie   Movie? @relation(fields: [movieId], references: [id])
-  movieId Int
 
+ 
   @@schema("public")
 }
 
@@ -92,14 +99,6 @@ model WatchHistory {
   movieId Int?
 
   createdAt DateTime @default(now())
-
-  @@schema("public")
-}
-
-model Fqa {
-  id   Int    @id
-  fqaQ String
-  fqEx String
 
   @@schema("public")
 }

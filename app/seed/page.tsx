@@ -75,7 +75,7 @@ export default function SeedDatabase() {
             overview: "Unsettling events put a group of brilliant friends on edge as a mystery unravels with origins tracing back to China during the Cultural Revolution.",
             release: 2024,
             videoSource: "https://utfs.io/f/80829026-549f-4f55-ba98-dbb5097a67cd-rajv4y.mp4",
-            category: "show",
+            category: "show,new",
             cast: "Jess Hong, Liam Cunningham, Eiza González",
             genres: "Drama, Sci-Fi"
           },
@@ -158,7 +158,7 @@ export default function SeedDatabase() {
             imageString: "https://utfs.io/f/e82f18a0-d791-4eae-bca0-1024887dfc28-9xa3qj.webp",
             overview: "Rachel runs from her wedding and meets the friends in the coffee place. Ross is depressed about his divorce but he still has a crush on Rachel.",
             release: 2003,
-            videoSource: "https://utfs.io/f/228fa952-1a9a-41ec-9c11-bdec6b7587d2-9xa3qj.mp4",
+            videoSource: "https://utfs.io/f/dca8f186-07c9-4f95-9db3-f346184a7ed6-9xa3qj.mp4",
             category: "show",
             cast: "Jennifer Aniston, Courteney Cox, Lisa Kudrow",
             genres: "Sitcoms, Comedies"

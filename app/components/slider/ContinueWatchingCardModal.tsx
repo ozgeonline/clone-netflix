@@ -62,7 +62,7 @@ const ContinueWatchingCardModal: React.FC<VideoPlayerProps> = ({ videoUrl,imageS
         onEnded={handleVideoEnded}
         onPlay={handleVideoClick}
         onLoadedMetadata={handleVideoLoadedData}
-        className={`object-cover rounded-sm flex h-[17vw] sm:h-[8.3vw] w-[30vw] sm:w-[14.8vw] min-w-[150px] min-h-[85px]`}
+        className={`object-cover rounded-sm flex w-auto h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw] overflow-hidden`}
     >
       <source src={videoUrl} type="video/mp4"/>
       Your browser does not support the video tag.

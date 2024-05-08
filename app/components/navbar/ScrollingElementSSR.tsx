@@ -29,7 +29,7 @@ return (
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      zIndex: "10",
+      zIndex: "1000000000000",
       position: "fixed",
       transition: "all 0.3s"
     }}

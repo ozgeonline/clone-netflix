@@ -89,6 +89,7 @@
 
   .navbar {
     background-color: #141414;
+    z-index: 10000000000000;
 
   }
   /*?--scroll---*/
@@ -135,6 +136,42 @@
 
   .slide-animation{
    transition: transform 0.5s ease-in-out;
+  }
+
+  /* Title */
+  .title {
+    position: relative;
+    cursor: pointer;
+  }
+  .title::after {
+    content: 'Explore All >';
+    position: absolute;
+    bottom: -5px;
+    margin-left: 5px;
+    font-size: 0.55em;
+    font-weight: bold;
+    color: #54b9c5;
+    opacity: 0;
+    transform: translateX(0);
+    transition: all 0.5s ease-in-out;
+  }
+  .title:hover::after {
+    transform: translateX(20%);
+    opacity: 1;
+  }
+
+  @media (min-width: 640px) {
+    .title{
+      margin-bottom: 0.3rem;
+    }
+    
+  }
+
+  @media (min-width: 1024px) {
+    .title{
+      margin-bottom: 0.75rem;
+    }
+    
   }
   
 
