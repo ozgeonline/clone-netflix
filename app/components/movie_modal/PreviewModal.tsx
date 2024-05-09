@@ -67,7 +67,7 @@ export default function PreviewModal({
           imageStyle="rounded-t-sm"
         />
         <PreviewModalInfo
-          key={id}
+          // key={id}
           imageString={imageString}
           videoSource={videoSource}
           title={title}

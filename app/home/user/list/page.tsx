@@ -40,12 +40,12 @@ export default async function Watchlist() {
         My List
       </h1>
       {data.length > 0 ?
-        <CarouselModal>
+        (<CarouselModal>
           {data.map((movie) => (
-            <div className="relative w-full h-full" key={movie.Movie?.id} aria-label={`${movie.Movie?.id}.poster`}>
+            <div className="relative w-full h-full" >
               <PreviewModal 
-                key={movie.Movie?.id as number}
-                id={movie.Movie?.id as number}
+              
+                id={movie.Movie?.id}
                 imageString={movie.Movie?.imageString as string}
                 videoSource={movie.Movie?.videoSource as string}
                 title={movie.Movie?.title as string}
@@ -64,7 +64,7 @@ export default async function Watchlist() {
               />
             </div>
           ))}
-        </CarouselModal> 
+        </CarouselModal> )
         : <div className="text-[#666] sm:text-lg select-none fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
             You haven&acute;t added any titles to your list yet.
           </div>
