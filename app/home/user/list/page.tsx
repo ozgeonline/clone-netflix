@@ -43,8 +43,7 @@ export default async function Watchlist() {
         <CarouselModal>
           {data.map((movie,index) => (
             <div className="relative w-full h-full max-w-[14.5rem]" key={index}>
-              <PreviewModal 
-                key={movie.Movie.id}
+              <PreviewModal
                 id={movie.Movie.id}
                 imageString={movie.Movie.imageString}
                 videoSource={movie.Movie.videoSource}
