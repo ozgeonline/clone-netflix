@@ -43,7 +43,7 @@ export default function PreviewModal({
 }: PreviewModalProps) {
   // xl:w-[14.375rem]
   return (
-    <div className="group ">
+    <div className="group " aria-label={`${id}.poster`}>
       <div className={`${imageWrapperStyle} relative rounded-sm cursor-pointer slide `} > 
         <ImageCard
           imageString={imageString}

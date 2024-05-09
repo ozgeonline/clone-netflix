@@ -115,10 +115,7 @@ export default async function CategoryPage(
             movie.category === "movie" ? "Movie" : "Netflix"
           } Series
         </h1>
-        <CarouselModal
-          sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
-          sliderClass="space-x-1 sm:space-x-2"
-        >
+        
           {data.map((movie) => (
             <div className="relative w-full h-full" key={movie.id}>
               <PreviewModal 
@@ -142,7 +139,7 @@ export default async function CategoryPage(
               />
             </div>
           ))}
-        </CarouselModal>
+       
       </div>
     </div>
   )

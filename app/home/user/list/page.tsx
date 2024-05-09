@@ -41,23 +41,24 @@ export default async function Watchlist() {
       </h1>
       {data.length > 0 ?
         <CarouselModal>
-          {data.map((movie,index) => (
-            <div className="relative w-full h-full max-w-[14.5rem]" key={index}>
-              <PreviewModal
-                id={movie.Movie.id}
-                imageString={movie.Movie.imageString}
-                videoSource={movie.Movie.videoSource}
-                title={movie.Movie.title}
-                overview={movie.Movie.overview}
+          {data.map((movie) => (
+            <div className="relative w-full h-full" key={movie.Movie?.id} aria-label={`${movie.Movie?.id}.poster`}>
+              <PreviewModal 
+                key={movie.Movie?.id as number}
+                id={movie.Movie?.id as number}
+                imageString={movie.Movie?.imageString as string}
+                videoSource={movie.Movie?.videoSource as string}
+                title={movie.Movie?.title as string}
+                overview={movie.Movie?.overview as string}
                 //category={movie.Movie.category}
-                cast={movie.Movie.cast}
-                genres={movie.Movie.genres}
-                age={movie.Movie.age}
-                release={movie.Movie.release}
-                duration={movie.Movie.duration}
-                watchList={movie.Movie.WatchLists.length > 0 ? true : false}
-                watchlistId={movie.Movie.WatchLists[0]?.id as string}
-                movieId={movie.Movie.id}
+                cast={movie.Movie?.cast as string}
+                genres={movie.Movie?.genres as string}
+                age={movie.Movie?.age as number}
+                release={movie.Movie?.release as number}
+                duration={movie.Movie?.duration as number}
+                watchList={movie.Movie?.WatchLists.length > 0 ? true : false}
+                watchlistId={movie.Movie?.WatchLists[0]?.id as string}
+                movieId={movie.Movie?.id as number}
                 imageWrapperStyle="w-auto h-[8rem]"
                 imageStyle="rounded-sm max-lg:brightness-75 w-full h-full"
               />

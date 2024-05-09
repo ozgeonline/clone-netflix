@@ -75,7 +75,7 @@ export default function SeedDatabase() {
             overview: "Unsettling events put a group of brilliant friends on edge as a mystery unravels with origins tracing back to China during the Cultural Revolution.",
             release: 2024,
             videoSource: "https://utfs.io/f/80829026-549f-4f55-ba98-dbb5097a67cd-rajv4y.mp4",
-            category: "show,new",
+            category: "show",
             cast: "Jess Hong, Liam Cunningham, Eiza González",
             genres: "Drama, Sci-Fi"
           },
@@ -137,7 +137,7 @@ export default function SeedDatabase() {
             videoSource: "https://utfs.io/f/5ec95ef0-ef8d-4ec0-a092-2fd62cb1c3ab-ejmwt5.mp4",
             category: "show",
             cast: "Anya Taylor-Joy, Bill Camp, Marielle Heller",
-            genres: "Drama"
+            genres: "Drama, Emotional"
           },
           {
             title: "Black Mirror",
@@ -197,7 +197,7 @@ export default function SeedDatabase() {
             videoSource: "https://utfs.io/f/b5fee1a7-a8c6-45e6-96c5-3b756a7c6b88-drhytp.mp4",
             category: "show",
             cast: "Cem Yılmaz, Zafer Algöz, Ezgi Mola",
-            genres: "Comedies"
+            genres: "Comedies, showbiz"
           },
           {
             title: "Our Living World",
@@ -209,7 +209,7 @@ export default function SeedDatabase() {
             videoSource: "https://utfs.io/f/07807f3f-1d8f-4988-be85-7e4fb23447ee-7187ju.mp4",
             category: "show",
             cast: "Cate Blanchett",
-            genres: "Nature"
+            genres: "Nature, Docuseries"
           },
           {
             title: "Ölümlü Dünya 2",
@@ -221,7 +221,7 @@ export default function SeedDatabase() {
             videoSource: "https://utfs.io/f/ad5daa6b-152c-4a4b-a07f-afad123e5ec8-bywlm4.mp4",
             category: "movie",
             cast: "Ahmet Mümtaz Taylan, Alper Kul, Doğu Demirkol",
-            genres: "Comedies"
+            genres: "Comedies, Absurd"
           },
           {
             title: "Gran Turismo",
@@ -317,7 +317,7 @@ export default function SeedDatabase() {
             videoSource: "https://utfs.io/f/a0ba64ea-5138-491e-be46-6e1e63d80e0e-v75ypc.mp4",
             category: "movie",
             cast: "Aamir Khan, Kareena Kapoor, Chaitanya Akkineni",
-            genres: "Romantic"
+            genres: "Romantic, Drama"
           },
           {
             title: "Honeymoonish",
@@ -341,7 +341,7 @@ export default function SeedDatabase() {
             videoSource: "https://utfs.io/f/e595f2e0-9732-45ad-a331-d7a6e2da968e-l0w74w.mp4",
             category: "movie",
             cast: "Deniz Celiloğlu, Merve Dizdar, Musab Ekici",
-            genres: "Drama"
+            genres: "Drama, Social"
           },
           {
             title: "The Pianist",
@@ -353,7 +353,7 @@ export default function SeedDatabase() {
             videoSource: "https://utfs.io/f/5660b620-b6ca-446e-b4ed-9dc3fe65b8ff-8qora0.mp4",
             category: "movie",
             cast: "Adrien Brody, Thomas Kretschmann, Frank Finlay",
-            genres: "Drama"
+            genres: "Drama, Violent"
           },
           {
             title: "PK",
@@ -365,7 +365,7 @@ export default function SeedDatabase() {
             videoSource: "https://utfs.io/f/a99435c3-7724-4a46-b358-a35ddce1c228-esglic.mp4",
             category: "movie",
             cast: "Aamir Khan, Anushka Sharma, Sanjay Dutt",
-            genres: "Romantic"
+            genres: "Romantic, Fantasy"
           },
           {
             title: "Murder Mystery",

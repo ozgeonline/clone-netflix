@@ -10,11 +10,11 @@ export default function GenreList({
   children
 }: genreProps) {
 
-  const genre = genres.split(",")
+  const genre = genres?.split(",")
 
   return (
     <>
-      {genre.map((item, index) => (
+      {genre?.map((item, index) => (
         <div key={index} className="flex items-center">
           <div className="hover:cursor-pointer hover:underline text-zinc-200 text-xs sm:text-sm">
             {item}

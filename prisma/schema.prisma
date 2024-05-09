@@ -51,7 +51,7 @@ model User {
   image         String?
   accounts      Account[] // Relation to Account model
   sessions      Session[] // Relation to Session model
-  watchLists    WatchList[] // WatchLists associated with this user
+ 
 
   @@schema("auth")
 }
@@ -81,11 +81,9 @@ model WatchList {
   id     String @id @default(uuid())
   userId String
   movieId Int?
-
-  user User? @relation(fields: [userId], references: [email]) // Relation to User
+  
   Movie   Movie? @relation(fields: [movieId], references: [id])
 
- 
   @@schema("public")
 }
 
