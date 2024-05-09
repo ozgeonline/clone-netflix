@@ -43,7 +43,7 @@ export default function PreviewModal({
 }: PreviewModalProps) {
   // xl:w-[14.375rem]
   return (
-    <div className="group " aria-label={`${id}.poster`}>
+    <div className="group ">
       <div className={`${imageWrapperStyle} relative rounded-sm cursor-pointer slide `} > 
         <ImageCard
           imageString={imageString}
@@ -67,7 +67,7 @@ export default function PreviewModal({
           imageStyle="rounded-t-sm"
         />
         <PreviewModalInfo
-          // key={id}
+          key={id}
           imageString={imageString}
           videoSource={videoSource}
           title={title}

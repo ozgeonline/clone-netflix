@@ -17,7 +17,6 @@ interface recentProps {
   movieId: number
 }
 
-
 export default function RecentlyAdded({
   id,
   imageString,
@@ -33,11 +32,9 @@ export default function RecentlyAdded({
   watchlistId,
   movieId
 }: recentProps) {
- 
   return (
-    <div className="relative w-full h-full group "  aria-label={`${id}.Slider-item`} >
+    <div className="relative w-full h-full group" aria-label={`${id}.Slider-item`} >
       <PreviewModal
-        key={id}
         id={id}
         imageString={imageString}
         videoSource={videoSource}
@@ -53,7 +50,6 @@ export default function RecentlyAdded({
         movieId={movieId}
         imageWrapperStyle="w-auto h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
         imageStyle="rounded-sm max-lg:brightness-75 w-full h-full"
-        
       />
     </div>
   )

@@ -34,23 +34,25 @@ async function getData(userId: string) {
 export default async function Watchlist() {
   const session = await getServerSession(authOptions);
   const data = await getData(session?.user?.email as string);
+
   return (
-    <div className="flex flex-col  px-5 sm:px-[3vw] xl:px-[3.5vw] relative">
-      <h1 className="text-white text-3xl mt-24 ">
+    <div className="flex flex-col px-5 sm:px-[3vw] xl:px-[3.5vw] relative">
+      <h1 className="relative title sm:text-2xl mt-24 ">
         My List
       </h1>
       {data.length > 0 ?
-        (<CarouselModal>
+        (<CarouselModal
+          sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
+          sliderClass="space-x-1 sm:space-x-2"
+        >
           {data.map((movie,index) => (
-            <div className="relative w-full h-full" key={index}>
-              <PreviewModal 
-              
-                id={movie.Movie?.id}
+            <div key={index} className="relative w-full h-full max-w-[14.5rem]">
+              <PreviewModal
+                id={movie.Movie?.id as number}
                 imageString={movie.Movie?.imageString as string}
                 videoSource={movie.Movie?.videoSource as string}
                 title={movie.Movie?.title as string}
                 overview={movie.Movie?.overview as string}
-                //category={movie.Movie.category}
                 cast={movie.Movie?.cast as string}
                 genres={movie.Movie?.genres as string}
                 age={movie.Movie?.age as number}
@@ -59,7 +61,7 @@ export default async function Watchlist() {
                 watchList={movie.Movie?.WatchLists.length > 0 ? true : false}
                 watchlistId={movie.Movie?.WatchLists[0]?.id as string}
                 movieId={movie.Movie?.id as number}
-                imageWrapperStyle="w-auto h-[8rem]"
+                imageWrapperStyle="w-auto h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
                 imageStyle="rounded-sm max-lg:brightness-75 w-full h-full"
               />
             </div>
