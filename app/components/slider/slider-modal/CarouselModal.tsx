@@ -84,9 +84,9 @@ export default function CarouselModal ({
     isMd ? 24 :
     isSm ? 16 : 4;
 
-    console.log("currentSlide",currentSlide)
-    console.log("slideWidth",slideWidth)
-    console.log("sliderRef.current",sliderRef.current)
+    // console.log("currentSlide",currentSlide)
+    // console.log("slideWidth",slideWidth)
+    // console.log("sliderRef.current",sliderRef.current)
 
     const handleClick = (direction: "prev" | "next") => {
       const maxIndex = slides.length - slidesPerView;
@@ -101,7 +101,7 @@ export default function CarouselModal ({
     }
   };
   
-  console.log("currentSlide :",currentSlide);
+  // console.log("currentSlide :",currentSlide);
 
   useEffect(() => {
     const transitionTimeout = setTimeout(() => {
@@ -120,7 +120,7 @@ export default function CarouselModal ({
   };
 
   const translateX = -currentSlide * slideWidth;
-  console.log("translateX", translateX)
+  // console.log("translateX", translateX)
 
     // useEffect(() => {
     //   if (sliderRef.current) {
@@ -131,11 +131,11 @@ export default function CarouselModal ({
     // }, [currentSlide, slideWidth]);
 
     const maxIndex = slides.length / slidesPerView;
-    console.log("maxIndex",Math.floor(maxIndex))
+    // console.log("maxIndex",Math.floor(maxIndex))
     const goToSlide = (slideNumber: number) => {
       setCurrentSlide(slideNumber);
     };
-    console.log(goToSlide)
+    // console.log(goToSlide)
     //  const goToSlide = (slideNumber: SetStateAction<number>) => {
     //   setCurrentSlide(slideNumber);
     // };
