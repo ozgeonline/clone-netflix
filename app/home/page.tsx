@@ -81,7 +81,7 @@ export default async function HomePage() {
             {data
               .filter(movie => movie.release === 2024 )
               .map((movie)=> (
-                <div className="relative w-full h-full group" aria-label={`${movie.id}.Slider-item`} >
+                <div className="relative w-full h-full group" key={movie.id} aria-label={`${movie.id}.Slider-item`} >
                   <PreviewModal
                     key={movie.id}
                     id={movie.id}
@@ -145,7 +145,7 @@ export default async function HomePage() {
             {data
               .filter(movie => movie.age < 13)
               .map((movie)=> (
-                <div className="relative w-full h-full group" aria-label={`${movie.id}.Slider-item`} >
+                <div className="relative w-full h-full group" key={movie.id} aria-label={`${movie.id}.Slider-item`} >
                   <PreviewModal
                     key={movie.id}
                     id={movie.id}
@@ -178,7 +178,7 @@ export default async function HomePage() {
             {data
               .filter(movie => movie.category === "movie" && movie.genres.toLowerCase().includes("comedy"))
               .map((movie)=> (
-                <div className="relative w-full h-full group" aria-label={`${movie.id}.Slider-item`} >
+                <div className="relative w-full h-full group" key={movie.id} aria-label={`${movie.id}.Slider-item`} >
                   <PreviewModal
                     key={movie.id}
                     id={movie.id}
@@ -242,7 +242,7 @@ export default async function HomePage() {
             {data
               .filter(movie => movie.category === "show" && movie.genres.toLowerCase().includes("dramas"))
               .map((movie)=> (
-                <div className="relative w-full h-full group" aria-label={`${movie.id}.Slider-item`} >
+                <div className="relative w-full h-full group" key={movie.id} aria-label={`${movie.id}.Slider-item`} >
                   <PreviewModal
                     key={movie.id}
                     id={movie.id}
@@ -275,7 +275,7 @@ export default async function HomePage() {
             {data
               .filter(movie =>  movie.genres.toLowerCase().includes("action"))
               .map((movie)=> (
-                <div className="relative w-full h-full group" aria-label={`${movie.id}.Slider-item`} >
+                <div className="relative w-full h-full group" key={movie.id} aria-label={`${movie.id}.Slider-item`} >
                   <PreviewModal
                     key={movie.id}
                     id={movie.id}
