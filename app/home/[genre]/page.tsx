@@ -5,7 +5,7 @@ import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth";
 import PreviewModal from "@/app/components/movie_modal/PreviewModal";
 import SortBySelect from "@/app/components/modals/select_modal/SortBySelect";
-import CategoryPageWrapper from "@/app/components/modals/select_modal/CategoryPageWrapper";
+//import CategoryPageWrapper from "@/app/components/modals/select_modal/CategoryPageWrapper";
 
 async function getData(category: string, userId: string) {
 
