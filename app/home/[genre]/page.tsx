@@ -4,6 +4,8 @@ import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth";
 import PreviewModal from "@/app/components/movie_modal/PreviewModal";
+import SortBySelect from "@/app/components/modals/select_modal/SortBySelect";
+import CategoryPageWrapper from "@/app/components/modals/select_modal/CategoryPageWrapper";
 
 async function getData(category: string, userId: string) {
 
@@ -56,30 +58,6 @@ async function getData(category: string, userId: string) {
       })
       return data
     }
-    // case "recently": {
-    //   const data = await prisma.movie.findMany({
-    //     where: { category: "recent" },
-    //     select: {
-    //       id: true,
-    //       title: true,
-    //       imageString: true,
-    //       videoSource: true,
-    //       overview: true,
-    //       release: true,
-    //       duration: true,
-    //       age: true,
-    //       cast: true,
-    //       genres: true,
-    //       category: true,
-    //       WatchLists: {
-    //         where: { 
-    //           userId: userId
-    //         }
-    //       }
-    //     }
-    //   })
-    //   return data
-    // }
     case "new": {
       const data = await prisma.movie.findMany({
         where: { release : 2024 },
@@ -106,7 +84,6 @@ async function getData(category: string, userId: string) {
     }
     case "audio": {
       const data = await prisma.movie.findMany({
-        // where: { release : 2024 },
         select: {
           id: true,
           title: true,
@@ -126,6 +103,7 @@ async function getData(category: string, userId: string) {
           }
         }
       })
+
       return data
     }
     default: {
@@ -137,26 +115,30 @@ async function getData(category: string, userId: string) {
 export default async function CategoryPage(
   { params} : { params: {
     genre: string
-  }}) {
-  
-  const session = await getServerSession(authOptions)
-  const data = await getData(params.genre,session?.user?.email as string,)
-  const movie = data[0]
-  
+    title:string
+  }},) {
+    
+    const session = await getServerSession(authOptions)
+    const data = await getData(params.genre, session?.user?.email as string)
+    const movie = data[0]
+
   return (
-    <div className="">
+    <div>
       {params.genre === "audio" ? (
-        <div className="top-28 relative px-5 sm:px-[3vw] xl:px-[3.5vw]">
-          <h1 className="relative title sm:text-xl">
-            Browse by Languages
-          </h1>
-       
+        <div className="top-24 relative px-5 sm:px-[3vw] xl:px-[3.5vw]">
+          <div className="flex justify-between mb-24">
+            <h1 className="sm:text-3xl">
+              Browse by Languages
+            </h1>
+            <SortBySelect data={data} />
+          </div>
+
           <div 
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 
             gap-x-[0.4vw] gap-y-[7.5vw] md:gap-y-[5.5vw] lg:gap-y-[4.5vw] xl:gap-y-[4vw]"
           >
             {data.map((movie) => (
-              <div key={movie.id} className="relative w-full">
+              <div key={movie.title} className="relative w-full">
                 <PreviewModal
                   key={movie.id}
                   id={movie.id}
@@ -179,6 +161,9 @@ export default async function CategoryPage(
             ))}
           </div>
        </div>
+      
+     
+     
       ) : (
         <>
           {movie &&  params.genre !== "new" &&(

@@ -1,6 +1,6 @@
 import Link from "next/link"
-import links from "../../data/link"
-import Lang__Select from "../modals/LangSelect"
+import links from "../../../data/link_tr-footer"
+import Lang__Select from "../../modals/select_modal/LangSelect"
 
 export default function Footer() {
   return (

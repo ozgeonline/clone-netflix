@@ -2,9 +2,9 @@
 
 import * as React from 'react'
 import { Plus } from 'lucide-react'
-import fqaData from '../../data/FAQ'
+import fqaData from '../../../data/FAQ'
 import { useState } from 'react'
-import UserGetStartedInput from '../modals/input_modal/UserGetStartedInput'
+import UserGetStartedInput from '../../modals/input_modal/UserGetStartedInput'
 
 export default function FQA() {
 

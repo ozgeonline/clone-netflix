@@ -1,14 +1,21 @@
 import prisma from "../utils/db"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "../utils/auth"
+import dynamic from 'next/dynamic';
 
-import CarouselModal from "../components/slider/slider-modal/CarouselModal"
-import MovieVideo from "../components/movie_modal/MovieVideo"
-import ContinueWatchingCard from "../components/slider/ContinueWatchingCard"
-import RecentlyAdded from "../components/slider/RecentlyAdded"
-import Top10TV from "../components/slider/Top10TV"
-import ContinueWatchingCardModal from "../components/slider/ContinueWatchingCardModal"
-import PreviewModal from "../components/movie_modal/PreviewModal"
+// import CarouselModal from "../components/slider/slider-modal/CarouselModal"
+// import MovieVideo from "../components/movie_modal/MovieVideo"
+// import Top10TV from "../components/slider/Top10TV"
+// import ContinueWatchingCardModal from "../components/slider/ContinueWatchingCardModal"
+// import PreviewModal from "../components/movie_modal/PreviewModal"
+//import ContinueWatchingCard from "../components/slider/ContinueWatchingCard"
+//import RecentlyAdded from "../components/slider/RecentlyAdded"
+
+const MovieVideo = dynamic(() => import('../components/movie_modal/MovieVideo'));
+const CarouselModal = dynamic(() => import('../components/slider/slider-modal/CarouselModal'), { ssr: false });
+const ContinueWatchingCardModal = dynamic(() => import('../components/slider/ContinueWatchingCardModal'));
+const PreviewModal = dynamic(() => import('../components/movie_modal/PreviewModal'));
+const Top10TV = dynamic(() => import('../components/slider/Top10TV'));
 
 async function getData(userId:string) {
   const data = await prisma.movie.findMany({
@@ -46,7 +53,7 @@ export default async function HomePage() {
   return (
     <div className="overflow-x-hidden">
       <MovieVideo
-        key={movie?.id}
+        key={movie.id}
         id={movie.id}
         imageString={movie.imageString}
         videoSource={movie.videoSource}
@@ -54,9 +61,9 @@ export default async function HomePage() {
         overview={movie.overview}
       />
       <div
-        className="w-full flex flex-col px-5 sm:px-[3vw] xl:px-[3.5vw] -mt-[20vw] md:-mt-[15vw] lg:-mt-36 pb-96 space-y-1 sm:space-y-4 lg:space-y-8 xl:space-y-12"
+        className="w-full flex flex-col px-5 sm:px-[3vw] xl:px-[3.5vw] -mt-[20vw] md:-mt-[15vw] lg:-mt-36 pb-24 space-y-1 sm:space-y-4 lg:space-y-8 xl:space-y-12"
       >
-        <div>
+        {/* <div>
           <h1 className="relative title sm:text-2xl">
             Continue Watching for you
           </h1>
@@ -70,7 +77,7 @@ export default async function HomePage() {
               <ContinueWatchingCardModal key={index} videoUrl={movie.videoSource} imageString={movie.imageString} />
             ))}
           </CarouselModal>
-        </div>
+        </div> */}
 
         <div>
           <h2 className="relative title sm:text-2xl">New on Netflix</h2>
@@ -298,7 +305,7 @@ export default async function HomePage() {
             ))}
           </CarouselModal>
         </div>
-
+        
       </div>
     </div>
   );

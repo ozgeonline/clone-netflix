@@ -55,7 +55,8 @@ export default function PreviewModal({
           title={title}
           buttonStyle="absolute z-50 top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"
         >
-           <PlayCircle className="invisible max-xl:visible text-white w-10 h-10"/>
+           <PlayCircle className="invisible max-xl:visible text-white w-10 h-10" aria-label={title}/>
+           <span className="hidden">Play Button</span>
         </ShowDialogButton>
       </div>
       <div

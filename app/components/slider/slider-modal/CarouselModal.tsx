@@ -9,12 +9,14 @@ interface CarouselModalProps {
   sliderButtonClass?: string;
   sliderClass?:string
   children: React.ReactNode[];
+  title?:string
 }
 
 export default function CarouselModal ({
   children: slides,
   sliderButtonClass,
-  sliderClass 
+  sliderClass,
+  title
 }: CarouselModalProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
@@ -141,11 +143,13 @@ export default function CarouselModal ({
     // };
 
   return (
-    <div className='max-sm:overflow-x-scroll max-sm:overflow-y-hidden overflow-css'>
+    <div 
+      className='max-sm:overflow-x-scroll max-sm:overflow-y-hidden overflow-css'
+      aria-label={`Open video player for ${title}`}
+    >
       <div
         ref={sliderRef}
         className={`${sliderClass} relative flex`}
-       
       >
         {slides.slice(currentSlide, currentSlide + slidesPerView)}
       </div>
@@ -153,6 +157,7 @@ export default function CarouselModal ({
         <Button 
           onClick={() => handleClick("prev")}
           variant='link'
+          aria-label='Previous Button'
           className={
             `absolute bottom-0 -left-5 sm:-left-[3vw] xl:-left-[3.5vw] transition-all sm:w-[2.5vw] xl:w-[3vw] px-0 rounded-none 2xl:rounded-s-none 2xl:rounded-e-sm bg-black/80 hover:bg-black/90 group` +
             ` ${sliderButtonClass}`
@@ -181,6 +186,7 @@ export default function CarouselModal ({
         <Button 
           onClick={() => handleClick("next")}
           variant='link'
+          aria-label='Next Button'
           className={
             `absolute bottom-0 -right-5 sm:-right-[3vw] xl:-right-[3.5vw] transition-all sm:w-[2.5vw] xl:w-[3vw] px-0 rounded-none 2xl:rounded-s-none 2xl:rounded-e-sm bg-black/80 hover:bg-black/90 group` +
             ` ${sliderButtonClass}`

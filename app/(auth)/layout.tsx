@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import Image__Bg from "../components/modals/image_modal/ImageBackground"
 import Image__Logo from "../components/modals/image_modal/ImageLogo"
-import Lang__Select from "../components/modals/LangSelect"
+import Lang__Select from "../components/modals/select_modal/LangSelect"
 import Signin_Button from "../components/modals/signin_button_modal/Signin_Button"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "../utils/auth"

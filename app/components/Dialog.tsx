@@ -134,12 +134,14 @@ export default function Dialog({
         <dialog
           ref={dialogRef}
           className="fixed z-10 rounded-sm bg-[#181818] backdrop:bg-black/80 pb-5 sm:max-w-[850px] cursor-context-menu overflow-css"
+          aria-labelledby={`Open video player for ${title}`}
         >
           <div className="flex flex-col relative">
             <div className='absolute right-12'>
               <Link
                 href={pathName}
                 onClick={closeDialog}
+                aria-label={`close video player for ${title}`}
                 className="fixed mt-5 mb-2 p-1 text-white cursor-pointer rounded-full border-none outline-none bg-[#141414] hover:brightness-150 transition-all ease-in"
                 scroll={false}
               >

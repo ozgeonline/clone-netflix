@@ -1,6 +1,6 @@
-import CardAnimationWatch from "@/app/components/section/CardAnimationWatch"
-import FAQ from "@/app/components/section/FAQ"
-import Footer from "@/app/components/section/Footer"
+import CardAnimationWatch from "@/app/components/section/tr_en-page/CardAnimationWatch"
+import FAQ from "@/app/components/section/tr_en-page/FAQ"
+import Footer from "@/app/components/section/tr_en-page/Footer"
 import UserGetStartedInput from "@/app/components/modals/input_modal/UserGetStartedInput"
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/utils/auth";
