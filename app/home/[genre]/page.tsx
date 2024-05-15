@@ -7,101 +7,55 @@ import PreviewModal from "@/app/components/movie_modal/PreviewModal";
 import SortBySelect from "@/app/components/modals/select_modal/SortBySelect";
 //import CategoryPageWrapper from "@/app/components/modals/select_modal/CategoryPageWrapper";
 
-async function getData(category: string, userId: string) {
+async function getData(category: string, userId: string, sortOrder: 'asc' | 'desc') {
+
+  const sortCondition = sortOrder === 'asc' ? 'asc' : 'desc';
+
+  const selectFields = {
+    id: true,
+    title: true,
+    imageString: true,
+    videoSource: true,
+    overview: true,
+    release: true,
+    duration: true,
+    age: true,
+    cast: true,
+    genres: true,
+    category: true,
+    WatchLists: {
+      where: { 
+        userId: userId
+      }
+    }
+  }
 
   switch (category) {
     case "shows": {
       const data = await prisma.movie.findMany({
         where: { category: "show" },
-        select: {
-          id: true,
-          title: true,
-          imageString: true,
-          videoSource: true,
-          overview: true,
-          release: true,
-          duration: true,
-          age: true,
-          cast: true,
-          genres: true,
-          category: true,
-          WatchLists: {
-            where: { 
-              userId: userId
-            }
-          }
-        }
+        select: selectFields,
       })
       return data
     } 
     case "movies": {
       const data = await prisma.movie.findMany({
         where: { category: "movie" },
-        select: {
-          id: true,
-          title: true,
-          imageString: true,
-          videoSource: true,
-          overview: true,
-          release: true,
-          duration: true,
-          age: true,
-          cast: true,
-          genres: true,
-          category: true,
-          WatchLists: {
-            where: { 
-              userId: userId
-            }
-          }
-        }
+        select: selectFields,
       })
       return data
     }
     case "new": {
       const data = await prisma.movie.findMany({
         where: { release : 2024 },
-        select: {
-          id: true,
-          title: true,
-          imageString: true,
-          videoSource: true,
-          overview: true,
-          release: true,
-          duration: true,
-          age: true,
-          cast: true,
-          genres: true,
-          category: true,
-          WatchLists: {
-            where: { 
-              userId: userId
-            }
-          }
-        }
+        select: selectFields,
       })
       return data
     }
     case "audio": {
       const data = await prisma.movie.findMany({
-        select: {
-          id: true,
-          title: true,
-          imageString: true,
-          videoSource: true,
-          overview: true,
-          release: true,
-          duration: true,
-          age: true,
-          cast: true,
-          genres: true,
-          category: true,
-          WatchLists: {
-            where: { 
-              userId: userId
-            }
-          }
-        }
+        select: selectFields,
+        orderBy: { title: sortCondition }
       })
 
       return data
@@ -117,10 +71,13 @@ export default async function CategoryPage(
     genre: string
     title:string
   }},) {
-    
+
     const session = await getServerSession(authOptions)
-    const data = await getData(params.genre, session?.user?.email as string)
+    const initialSortOrder: 'asc' | 'desc' = undefined;
+    const data = await getData(params.genre, session?.user?.email as string, initialSortOrder)
     const movie = data[0]
+
+    console.log("initialSortOrder",initialSortOrder)
 
   return (
     <div>
@@ -162,8 +119,6 @@ export default async function CategoryPage(
           </div>
        </div>
       
-     
-     
       ) : (
         <>
           {movie &&  params.genre !== "new" &&(

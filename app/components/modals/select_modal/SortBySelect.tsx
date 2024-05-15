@@ -4,16 +4,6 @@ import React, { useEffect, useState } from 'react';
 interface Movie {
   id: number;
   title: string;
-  // imageString: string;
-  // videoSource: string;
-  // overview: string;
-  // release: number;
-  // duration: number;
-  // age: number;
-  // cast: string;
-  // genres: string;
-  // category: string;
-  // WatchLists: boolean;
 }
 
 const SortBySelect: React.FC<{ data: Movie[] }> = ({ data }) => {
