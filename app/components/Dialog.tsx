@@ -57,14 +57,17 @@ export default function Dialog({
   useEffect(() => {
     if (showDialog === title ) {
         dialogRef.current?.showModal()
+        document.body.classList.add('no-scroll') 
     } else {
         dialogRef.current?.close()
+        document.body.classList.remove('no-scroll')
     }
   }, [showDialog])
 
   const closeDialog = () => {
     dialogRef.current?.close()
     onClose()
+    document.body.classList.remove('no-scroll')
   }
 
   const handlePlayToggle = () => {
@@ -133,7 +136,7 @@ export default function Dialog({
     ? (
         <dialog
           ref={dialogRef}
-          className="fixed z-10 rounded-sm bg-[#181818] backdrop:bg-black/80 pb-5 sm:max-w-[850px] cursor-context-menu overflow-css"
+          className="fixed z-50 rounded-sm bg-[#181818] backdrop:bg-black/80 pb-5 sm:max-w-[850px] cursor-context-menu overflow-css"
           aria-labelledby={`Open video player for ${title}`}
         >
           <div className="flex flex-col relative">

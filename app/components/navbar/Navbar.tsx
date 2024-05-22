@@ -4,6 +4,8 @@ import { links } from "./Navlinks.constant"
 import NavLink from "./NavLink"
 import ScrollingElementSSR from "./ScrollingElementSSR"
 import Image__Logo from "../modals/image_modal/ImageLogo"
+import SearchComponent from "../modals/input_modal/SearchInputComponent"
+import Link from "next/link"
 
 export default function Navbar() {
   return (
@@ -18,10 +20,11 @@ export default function Navbar() {
           </ul>
         </div>
        
-        <div className="flex items-center lg:space-x-5 space-x-0 pr-5 sm:pr-10">
-          <Search className="hidden lg:flex w-5 h-5 text-gray-300 cursor-pointer" />
-          <div className="hidden lg:flex cursor-pointer ">Kids</div>
-          <Bell className="hidden lg:flex h-5 w-5 text-gray-300 cursor-pointer" />
+        <div className="relative flex items-center lg:space-x-5 space-x-0 pr-5 sm:pr-10">
+          {/* <Search className="hidden lg:flex w-5 h-5 text-gray-300 cursor-pointer" /> */}
+          <SearchComponent />
+          <Link className="hidden lg:flex cursor-pointer " href="/home/kids">Kids</Link>
+          <Bell className="hidden lg:flex h-5 w-5 text-gray-300 cursor-not-allowed" />
           <UserNav />
         </div>
       </div>

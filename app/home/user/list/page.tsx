@@ -37,7 +37,7 @@ export default async function Watchlist() {
 
   return (
     <div className="flex flex-col px-5 sm:px-[3vw] xl:px-[3.5vw] relative">
-      <h1 className="relative title sm:text-2xl mt-24 ">
+      <h1 className="sm:text-2xl mt-24 mb-5">
         My List
       </h1>
       {data.length > 0 ?

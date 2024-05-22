@@ -1,38 +1,101 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface Movie {
-  id: number;
   title: string;
 }
+interface SortBySelectProps {
+  data: Movie[];
+  sortOrder: 'default' | 'asc' | 'desc';
+  onSortChange: (order: 'default' | 'asc' | 'desc') => void;
+}
 
-const SortBySelect: React.FC<{ data: Movie[] }> = ({ data }) => {
+const SortBySelect = ({data, sortOrder, onSortChange }: SortBySelectProps) => {
   const [sortedData, setSortedData] = useState<Movie[]>(data);
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleSortChange = (value: 'default' | 'asc' | 'desc') => {
+    onSortChange(value);
+    setShowDropdown(false);
+
+    const currentParams = new URLSearchParams(searchParams);
+    currentParams.set('sortOrder', value);
+    router.push(`?${currentParams.toString()}`);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setShowDropdown(false);
+    }
+  };
+  
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  type SortOption = {
+    label: string;
+    value: 'default' | 'asc' | 'desc';
+  };
+  const sortOptions: SortOption[] = [
+    { label: 'Suggestions for you', value: 'default' },
+    { label: 'A-Z', value: 'asc' },
+    { label: 'Z-A', value: 'desc' },
+  ];
+
+  const renderOptions = () => (
+    <div className="absolute flex flex-col z-10 min-w-full sm:min-w-[14rem] sm:right-0 bg-black border opacity-80">
+      {sortOptions.map(option => (
+        <div
+          key={option.value}
+          className="px-2 cursor-pointer hover:underline text-sm"
+          onClick={() => handleSortChange(option.value)}
+        >
+          {option.label}
+        </div>
+      ))}
+    </div>
+  );
 
   useEffect(() => {
+    if (sortOrder === 'default') {
+      setSortedData(data);
+      return;
+    }
     const sorted = [...data].sort((a, b) =>
       sortOrder === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)
     );
     setSortedData(sorted);
   }, [data, sortOrder]);
 
-  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value as any;
-    setSortOrder(value);
-  };
-
-  console.log("sortedData",sortedData)
-
   return (
-    <select
-      onChange={handleSortChange}
-      className="px-2 py-1 w-60 h-7 bg-black border border-white text-sm font-semibold tracking-wider outline-none hover:bg-[#333] cursor-pointer"
-      value={sortOrder}
-    >
-      <option value="asc">A-Z</option>
-      <option value="desc">Z-A</option>
-    </select>
+     <div ref={dropdownRef} className="relative">
+      <div
+        onClick={() => setShowDropdown(!showDropdown)}
+        className="flex max-sm:flex-col sm:space-x-2 max-sm:space-y-2 cursor-pointer"
+      >
+        <div className='inline-flex flex-nowrap max-sm:text-sm'>
+          Sort by
+        </div>
+        <div 
+          className={`
+            ${showDropdown ? "bg-[#333]" : "bg-black "} hover:bg-[#333] transition-colors ease-in 
+            min-w-[10rem] sm:min-w-[14rem] max-sm:text-sm border border-white px-2 font-semibold justify-between flex items-center
+          `}
+        >
+          {sortOrder === 'default' ? 'Suggestions For You' : sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
+          <span className='text-xs'>&#11206;</span>
+        </div>
+      </div>
+      {showDropdown && renderOptions()}
+    </div>
   );
 };
 

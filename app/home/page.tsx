@@ -3,17 +3,8 @@ import { getServerSession } from "next-auth/next"
 import { authOptions } from "../utils/auth"
 import dynamic from 'next/dynamic';
 
-// import CarouselModal from "../components/slider/slider-modal/CarouselModal"
-// import MovieVideo from "../components/movie_modal/MovieVideo"
-// import Top10TV from "../components/slider/Top10TV"
-// import ContinueWatchingCardModal from "../components/slider/ContinueWatchingCardModal"
-// import PreviewModal from "../components/movie_modal/PreviewModal"
-//import ContinueWatchingCard from "../components/slider/ContinueWatchingCard"
-//import RecentlyAdded from "../components/slider/RecentlyAdded"
-
 const MovieVideo = dynamic(() => import('../components/movie_modal/MovieVideo'));
 const CarouselModal = dynamic(() => import('../components/slider/slider-modal/CarouselModal'), { ssr: false });
-const ContinueWatchingCardModal = dynamic(() => import('../components/slider/ContinueWatchingCardModal'));
 const PreviewModal = dynamic(() => import('../components/movie_modal/PreviewModal'));
 const Top10TV = dynamic(() => import('../components/slider/Top10TV'));
 
@@ -60,6 +51,7 @@ export default async function HomePage() {
         title={movie.title}
         overview={movie.overview}
       />
+    
       <div
         className="w-full flex flex-col px-5 sm:px-[3vw] xl:px-[3.5vw] -mt-[20vw] md:-mt-[15vw] lg:-mt-36 pb-24 space-y-1 sm:space-y-4 lg:space-y-8 xl:space-y-12"
       >
@@ -88,7 +80,7 @@ export default async function HomePage() {
             {data
               .filter(movie => movie.release === 2024 )
               .map((movie)=> (
-                <div className="relative w-full h-full group" key={movie.id} aria-label={`${movie.id}.Slider-item`} >
+                <div className="relative w-full h-full " key={movie.id} aria-label={`${movie.id}.Slider-item`} >
                   <PreviewModal
                     key={movie.id}
                     id={movie.id}
@@ -308,5 +300,6 @@ export default async function HomePage() {
         
       </div>
     </div>
+ 
   );
 }
