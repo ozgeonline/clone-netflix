@@ -31,8 +31,8 @@ export default async function UserButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild >
-        <Button variant="ghost" className="relative h-8 w-8 rounded-sm">
-          <Avatar className="h-8 w-8 rounded-sm" rel="preload">
+        <Button variant="ghost" className="relative h-7 w-7 sm:h-8 sm:w-8 rounded-sm">
+          <Avatar className="h-7 w-7 sm:h-8 sm:w-8 rounded-sm" rel="preload">
             <AvatarImage src={avatarSrc} alt="Profile picture" fetchPriority="high" loading="eager"/>
             <AvatarFallback className="rounded-sm uppercase" delayMs={0} >
               {userShortName}
@@ -60,19 +60,19 @@ export default async function UserButton() {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuGroup>
-          <DropdownMenuItem className="flex items-center hover:underline hover:cursor-pointer">
+          <DropdownMenuItem className="flex items-center hover:underline hover:cursor-not-allowed">
             <Pencil className="ms-0 opacity-100 w-6 h-6  text-zinc-400"/>
             <span className="ps-2">Manage Profiles</span>
           </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center hover:underline hover:cursor-pointer">
+          <DropdownMenuItem className="flex items-center hover:underline hover:cursor-not-allowed">
             <FolderSync className="ms-0 opacity-100 w-6 h-6  text-zinc-400"/>
             <span className="ps-2">Transfer Profiles</span>
           </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center hover:underline hover:cursor-pointer">
+          <DropdownMenuItem className="flex items-center hover:underline hover:cursor-not-allowed">
             <UserRound className="ms-0 opacity-100 w-6 h-6  text-zinc-400"/>
             <span className="ps-2">Account</span>
           </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center hover:underline hover:cursor-pointer">
+          <DropdownMenuItem className="flex items-center hover:underline hover:cursor-not-allowed">
             <HelpCircle className="ms-0 opacity-100 w-6 h-6  text-zinc-400"/>
             <span className="ps-2">Help Center</span>
           </DropdownMenuItem>
@@ -80,7 +80,7 @@ export default async function UserButton() {
 
         <DropdownMenuSeparator />
         <UserSignOutButton />
-        
+
       </DropdownMenuContent>
     </DropdownMenu>
   )

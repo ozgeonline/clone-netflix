@@ -54,13 +54,15 @@ export default function Dialog({
   const [playing, setPlaying] = useState<boolean>(false)
   const [muted, setMuted] = useState<boolean>(true)
 
+  const body = document.body.classList
+
   useEffect(() => {
     if (showDialog === title ) {
         dialogRef.current?.showModal()
-        document.body.classList.add('no-scroll') 
+        body.add('no-scroll') 
     } else {
         dialogRef.current?.close()
-        document.body.classList.remove('no-scroll')
+        body.remove('no-scroll')
     }
   }, [showDialog])
 

@@ -3,7 +3,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react';
 
-const SearchComponent: React.FC = () => {
+
+const SearchInputComponent: React.FC = () => {
   
   const [openSearch, setOpenSearch] = useState(false)
   const [query, setQuery] = useState('');
@@ -19,7 +20,7 @@ const SearchComponent: React.FC = () => {
     if (value) {
       router.push(`/home/query?query=${value}`);
     } else {
-      router.push(`/home`);
+      router.push(`/home/query`);
     }
 };
 
@@ -47,17 +48,17 @@ const SearchComponent: React.FC = () => {
   }, [openSearch]);
 
   return (
-    <div className='flex flex-col relative items-center left-0'>
+    <div className='hidden sm:flex relative items-center'>
       <div
         ref={searchRef}
         className={`
-          search-container ${openSearch ? "open bg-black/80 border border-white" : ""}
-          flex justify-between relative
+          search-container ${openSearch ? "w-40 sm:w-50 md:w-60 bg-black/80 border border-white" : ""}
+          flex justify-between relative h-7 sm:h-8
         `}
       >
         <Search
           onClick={() => handleOpenSearch(openSearch)}
-          className='inline-flex h-8 w-8 p-1 cursor-pointer'
+          className='inline-flex h-6 w-6 sm:h-8 sm:w-8 p-1 cursor-pointer'
         />
         <input
           type='search'
@@ -65,8 +66,8 @@ const SearchComponent: React.FC = () => {
           value={query}
           onChange={handleInputChange}
           className={`
-            input-search-field ${openSearch ? "open" : "hidden"} 
-            rounded-none outline-none bg-transparent h-8 placeholder:text-sm
+            input-search-field ${openSearch ? "w-full opacity-100" : "hidden"} 
+            rounded-none outline-none bg-transparent h-6 sm:h-8 placeholder:text-sm placeholder:max-sm:text-xs
           `}
           placeholder='Titles, genres'
         />
@@ -75,4 +76,4 @@ const SearchComponent: React.FC = () => {
   );
 };
 
-export default SearchComponent;
+export default SearchInputComponent;

@@ -104,6 +104,7 @@ type CategoryPageProps = {
   searchParams: {
     sortOrder?: 'default' | 'asc' | 'desc';
     query?: string 
+    showDialog?:string
   };
 };
 export default async function CategoryPage({
@@ -113,7 +114,8 @@ export default async function CategoryPage({
 
     const session = await getServerSession(authOptions)
     const sortOrder = searchParams.sortOrder || 'default';
-    const query = searchParams.query
+    const query = searchParams.query || '';
+    const showDialog = searchParams.showDialog || '';
     const data = await getData(params.genre, session?.user?.email as string, sortOrder, query)
     const movie = data[0]
         
@@ -170,13 +172,12 @@ export default async function CategoryPage({
       
       ) :
       params.genre === "query" && data.length>0 ? (
-        <div className="relative px-5 sm:px-[3vw] xl:px-[3.5vw] top-20">
-          <CarouselModal
-            sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
-            sliderClass="space-x-1 sm:space-x-2"
+        <div className="top-14 sm:top-24 relative px-5 sm:px-[3vw] xl:px-[3.5vw]">
+          <div 
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-[0.4vw] gap-y-[5.5vw] md:gap-y-[5.5vw] lg:gap-y-[4.5vw] xl:gap-y-[4vw]"
           >
             {data.map((movie) => (
-              <div key={movie.id} className="relative w-full h-full max-w-[14.5rem]">
+              <div key={movie.title} className="relative w-full">
                 <PreviewModal
                   key={movie.id}
                   id={movie.id}
@@ -197,7 +198,7 @@ export default async function CategoryPage({
                 />
               </div>
             ))}
-          </CarouselModal>
+          </div>
         </div>
       ) :
       params.genre === "query" && data.length<=0 ? (

@@ -141,9 +141,9 @@
     width: 2rem;
   }
   
-  .search-container.open {
+  /* .search-container.open {
     width: 15rem;
-  }
+  } */
   
   .input-search-field {
     transition: width 0.4s ease, opacity 0.4s ease;
@@ -151,10 +151,10 @@
     opacity: 0;
   }
   
-  .input-search-field {
+  /* .input-search-field.open {
     width: 100%;
     opacity: 1;
-  }
+  } */
   
 
   .subtitles:hover ~ p {

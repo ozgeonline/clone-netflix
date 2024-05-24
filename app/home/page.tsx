@@ -42,7 +42,7 @@ export default async function HomePage() {
   const movie = data[0]
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-hidden">
       <MovieVideo
         key={movie.id}
         id={movie.id}
