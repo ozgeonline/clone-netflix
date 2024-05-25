@@ -76,7 +76,7 @@ import Footer from "../../section/tr_en-page/Footer"
             <Link 
               className="text-white hover:underline"
               href={linkRef}
-              prefetch={false}
+              prefetch={true}
             >
               {linkInfo}
             </Link>
