@@ -15,15 +15,11 @@ export default function GenreList({
   return (
     <>
       {genre.map((item, index) => (
-        <div key={index} className="flex items-center">
-          <div className="hover:cursor-pointer hover:underline text-zinc-200 text-xs sm:text-sm">
+        <div key={index} className="flex items-center text-white">
+          <div className="hover:cursor-pointer hover:underline text-textColor text-xs">
             {item}
           </div>
-          {index !== genre.length - 1 && 
-            <div  className='text-zinc-200'>
-              {children}
-            </div>
-          }
+          {index !== genre.length - 1 && <> {children} </>}
         </div>
       ))}
     </>

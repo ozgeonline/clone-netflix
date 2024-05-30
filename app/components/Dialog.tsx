@@ -6,11 +6,13 @@ import Image from 'next/image'
 import React, { useRef, useEffect, useState } from 'react'
 import { PauseCircle, Play, Subtitles, Volume2, VolumeX, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import MovieInfo from './info_controls/MovieInfo'
-import GenreList from './info_controls/GenreList'
-import CastList from './info_controls/CastList'
-import ActionWatchlist from './button_controls/ActionWatchlist'
-import LikeDislikeButton from './button_controls/LikeDislikeButton'
+import dynamic from 'next/dynamic'
+
+const MovieInfo = dynamic(() => import("./info_controls/MovieInfo"));
+const GenreList = dynamic(() => import("./info_controls/GenreList"));
+const CastList = dynamic(() => import("./info_controls/CastList"));
+const ActionWatchlist = dynamic(() => import("./button_controls/ActionWatchlist"));
+const LikeDislikeButton = dynamic(() => import("./button_controls/LikeDislikeButton"));
 
 type Props = {
   onClose: () => void,
@@ -54,15 +56,11 @@ export default function Dialog({
   const [playing, setPlaying] = useState<boolean>(false)
   const [muted, setMuted] = useState<boolean>(true)
 
-  const body = document.body.classList
-
   useEffect(() => {
     if (showDialog === title ) {
-        dialogRef.current?.showModal()
-        body.add('no-scroll') 
+        dialogRef.current?.showModal() 
     } else {
         dialogRef.current?.close()
-        body.remove('no-scroll')
     }
   }, [showDialog])
 
@@ -71,6 +69,19 @@ export default function Dialog({
     onClose()
     document.body.classList.remove('no-scroll')
   }
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dialogRef.current && !dialogRef.current.contains(event.target as Node)) {
+      dialogRef.current?.close()
+      onClose()
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   const handlePlayToggle = () => {
     if (videoRef.current !== undefined) {
@@ -139,22 +150,27 @@ export default function Dialog({
         <dialog
           ref={dialogRef}
           className="fixed z-50 rounded-sm bg-[#181818] backdrop:bg-black/80 pb-5 sm:max-w-[850px] cursor-context-menu overflow-css"
-          aria-labelledby={`Open video player for ${title}`}
+          aria-label={`Open video dialog for ${title}`}
         >
           <div className="flex flex-col relative">
             <div className='absolute right-12'>
               <Link
                 href={pathName}
                 onClick={closeDialog}
-                aria-label={`close video player for ${title}`}
-                className="fixed mt-5 mb-2 p-1 text-white cursor-pointer rounded-full border-none outline-none bg-[#141414] hover:brightness-150 transition-all ease-in"
+                className="fixed mt-5 mb-2 p-1 text-white cursor-pointer rounded-full border-none outline-none bg-bg_main hover:brightness-150 transition-all ease-in"
                 scroll={false}
               >
-                <X className='w-6 h-6'/>
+                <X className='size-6' />
               </Link>
             </div>
             <div className='absolute left-3 top-3'>
-              <Image src="https://utfs.io/f/c5583de1-747d-42e4-84d7-e52d3274dc9a-hru0oc.webp" alt="logo" width={20} height={20}/>
+              <Image 
+                src="https://utfs.io/f/c5583de1-747d-42e4-84d7-e52d3274dc9a-hru0oc.webp"
+                alt="logo"
+                width={20}
+                height={20}
+                loading='lazy'
+              />
             </div>
             <div className='relative'>
               <video
@@ -189,19 +205,19 @@ export default function Dialog({
                       watchList={watchList}
                       watchlistId={watchlistId}
                       movieId={movieId}
-                      actionStyle={'h-[7vw] sm:h-[5vw] md:h-[4vw] lg:h-[3vw] xl:h-[2.5vw] w-[7vw] sm:w-[5vw] md:w-[4vw] lg:w-[3vw] xl:w-[2.5vw]'}                      
+                      actionStyle="size-[7vw] sm:size-[5vw] md:size-[4vw] lg:size-[3vw] xl:size-[2.5vw]"                 
                     />
                   </div>
                   <LikeDislikeButton
-                    likeBtnStyle={'h-[7vw] sm:h-[5vw] md:h-[4vw] lg:h-[3vw] xl:h-[2.5vw] w-[7vw] sm:w-[5vw] md:w-[4vw] lg:w-[3vw] xl:w-[2.5vw]'}
+                    likeBtnStyle="size-[7vw] sm:size-[5vw] md:size-[4vw] lg:size-[3vw] xl:size-[2.5vw]"
                   />
                 </div>
                 <Button
                   onClick={handleMuteToggle}
                   variant="link"
                   size="icon"
-                  className="h-[7vw] sm:h-[5vw] md:h-[4vw] lg:h-[3vw] xl:h-[2.5vw] w-[7vw] sm:w-[5vw] md:w-[4vw] lg:w-[3vw] xl:w-[2.5vw]
-                  z-50 text-lg font-medium bg-neutral-800 bg-opacity-50 border-2 border-zinc-500 rounded-full hover:brightness-150 hover:ease-in transition-all"
+                  className="size-[7vw] sm:size-[5vw] md:size-[4vw] lg:size-[3vw] xl:size-[2.5vw] z-50 text-lg font-medium
+                  bg-neutral-800 bg-opacity-50 border-2 border-zinc-500 rounded-full hover:brightness-150 hover:ease-in transition-all"
                 >
                   {
                     muted
@@ -214,17 +230,17 @@ export default function Dialog({
               {/* info-controls */}
               <div className="flex flex-col px-5 sm:px-10">
                 <div className='flex items-center space-x-2'>
-                  <div className="flex items-center space-x-2 justify-start">
-                    <MovieInfo age={age} fontHD={'text-[11px]'}  />
+                  <div className="flex items-center space-x-2 justify-start ">
+                    <MovieInfo age={age} fontAge="leading-5" fontHD="text-[11px]"  />
                   </div>
                   <div className='relative '>
-                    <Subtitles className="text-gray-400 h-5 w-5 subtitles" />
+                    <Subtitles className="text-gray-400 size-5 subtitles" />
                     <p
                       className='absolute hidden w-[26em] p-1 -top-8 sm:-top-12 -left-[15em] sm:-left-[10em] max-sm:text-[0.5em]
                     bg-zinc-200 text-center font-semibold rounded-sm ease-in transition-all'
                     >
                       Subtitles for the deaf and hard of hearing are available
-                      <span className='absolute -z-10 top-[1em] left-[15em] sm:left-[10em] sm:top-5 w-4 h-4 rotate-45 bg-zinc-200'></span>
+                      <span className='absolute -z-10 top-[1em] left-[15em] sm:left-[10em] sm:top-5 size-4 rotate-45 bg-zinc-200'></span>
                     </p>
                   </div>
                 </div>
@@ -232,10 +248,10 @@ export default function Dialog({
                 <div className="flex items-stretch sm:items-center justify-between space-x-1 mt-1">
                   <div className='flex sm:space-x-2 items-start max-sm:flex-col'>
                     <div className='flex space-x-2 max-[380px]:flex-wrap'>
-                      <div className="flex items-center px-2 text-xs sm:text-sm h-6 text-zinc-200 border border-zinc-500">
+                      <div className="flex items-center max-sm:text-xs h-6 text-whiteColor_200">
                         {duration}h
                       </div>
-                      <div className="text-zinc-400 font-thin max-sm:text-xs">
+                      <div className="text-whiteColor_200 font-thin max-sm:text-xs">
                         {release}
                       </div>
                     </div>
@@ -246,17 +262,17 @@ export default function Dialog({
                   
                   <div className='flex flex-col items-start'>
                     <div className='flex items-center max-sm:flex-wrap'>
-                      <h2 className="text-xs sm:text-sm text-zinc-500">Casts: </h2>
+                      <h2 className="text-xs sm:text-sm text-[#777]">Casts: </h2>
                       <CastList cast={cast} />
                     </div>
                     <div className='flex items-center space-x-1 max-sm:flex-wrap'>
-                      <h2 className="text-xs sm:text-sm text-zinc-500">Genres: </h2>
+                      <h2 className="text-xs sm:text-sm text-[#777]">Genres: </h2>
                       <GenreList genres={genres}>,</GenreList>
                     </div>
                   </div>
                 </div>
 
-                <div className="text-zinc-200 mt-5 lg:line-clamp-3 lg:hover:line-clamp-6 max-sm:text-xs text-justify hover:ease-in transition-all cursor-pointer">
+                <div className="text-white mt-5 lg:line-clamp-3 lg:hover:line-clamp-6 max-sm:text-xs sm:text-sm text-justify hover:ease-in transition-all cursor-pointer">
                   {overview}
                 </div>
               </div>

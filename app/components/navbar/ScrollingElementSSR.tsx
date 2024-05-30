@@ -2,7 +2,6 @@
 import { useState, useEffect, ReactNode } from 'react'
 
 const ScrollingElementSSR = ({children} : {children: ReactNode}) => {
-
 const [scrolling, setScrolling] = useState(false)
 
 useEffect(() => {
@@ -15,7 +14,6 @@ useEffect(() => {
   }
 
   window.addEventListener('scroll', handleScroll)
-
   return () => {
     window.removeEventListener('scroll', handleScroll)
   }

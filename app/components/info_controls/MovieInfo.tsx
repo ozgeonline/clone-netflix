@@ -1,10 +1,12 @@
 interface infoProps {
-  age: number
-  fontHD: string
+  age?: number
+  fontAge?: string
+  fontHD?: string
 }
 
 export default function MovieInfo({
   age,
+  fontAge,
   fontHD
 }: infoProps) {
   return (
@@ -12,15 +14,15 @@ export default function MovieInfo({
       <div className='font-semibold text-[#46d369]'>
         100% Match
       </div>
-      <div className='text-zinc-400'>
+      <div className='text-whiteColor_200'>
         Episodes
       </div>
-      <div className='flex items-center justify-center border py-0 px-1  border-zinc-500 text-zinc-400 cursor-pointer line-clamp-none max-sm:text-xs'>
+      <div className={`${fontAge} flex items-center justify-center px-1 border border-gray-400 text-whiteColor_100 cursor-pointer line-clamp-none max-sm:text-xs`}>
         {age}+
       </div>
-      <div className={`${fontHD} flex items-center border rounded-sm py-0 px-1 border-gray-400  text-gray-400 tracking-widest line-clamp-none`}>
+      <div className={`${fontHD} flex items-center rounded-sm px-1 border border-gray-400 text-whiteColor_100 tracking-widest line-clamp-none`}>
         HD
-      </div> 
+      </div>
     </>
   )
 }

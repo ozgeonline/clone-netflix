@@ -1,12 +1,14 @@
-import { Bell, ChevronDown,ChevronUp  } from "lucide-react"
-import UserNav from "./UserNav"
+import { Bell } from "lucide-react"
 import { links } from "./Navlinks.constant"
 import NavLink from "./NavLink"
-import ScrollingElementSSR from "./ScrollingElementSSR"
 import Image__Logo from "../modals/image_modal/ImageLogo"
-import SearchInputComponent from "../modals/input_modal/SearchInputComponent"
 import Link from "next/link"
-import DropdownMenu from "./DropdownMenu"
+import dynamic from 'next/dynamic';
+
+const UserNav = dynamic(() => import('./UserNav'));
+const ScrollingElementSSR = dynamic(() => import('./ScrollingElementSSR'));
+const SearchMovieInput = dynamic(() => import('../modals/input_modal/SearchMovieInput'));
+const DropdownMenu = dynamic(() => import('./DropdownMenu'));
 
 export default function Navbar() {
   return (
@@ -30,10 +32,9 @@ export default function Navbar() {
         </div>
        
         <div className="relative flex items-center lg:space-x-5 space-x-2 px-5 sm:px-[3vw] xl:px-[3.5vw]">
-          {/* <Search className="hidden lg:flex w-5 h-5 text-gray-300 cursor-pointer" /> */}
-          <SearchInputComponent />
+          <SearchMovieInput />
           <Link className="hidden lg:flex cursor-pointer " href="/home/kids">Kids</Link>
-          <Bell className="hidden lg:flex h-5 w-5 text-gray-300 cursor-not-allowed" />
+          <Bell className="hidden lg:flex size-5 text-gray-300 cursor-not-allowed" />
           <UserNav />
         </div>
       </div>

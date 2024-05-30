@@ -22,7 +22,6 @@ export default function ShowDialogButton({
     <Link
       href={`${pathName}?showDialog=${encodeURIComponent(title)}`}
       className={buttonStyle}
-      aria-label={`Open video player for ${title}`}
       scroll={false}
     >
       {children}

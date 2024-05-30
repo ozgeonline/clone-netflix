@@ -1,5 +1,4 @@
 "use client"
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,9 +8,7 @@ interface Props {
 }
 
 export default function NavLink({ path, label }: Props) {
-
   const pathName = usePathname();
-  
   return (
     <>
       {pathName === path ? (

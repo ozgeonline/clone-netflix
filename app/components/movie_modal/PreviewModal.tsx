@@ -1,10 +1,11 @@
 "use client"
 
-import { PreviewModalInfo } from "./PreviewModalInfo"
-import ImageCard from "../modals/image_modal/ImageCard"
 import { PlayCircle  } from 'lucide-react'
-import ShowDialogButton from "../button_controls/ShowDialogButton"
+import { PreviewModalInfo } from "./PreviewModalInfo"
+import dynamic from 'next/dynamic';
 
+const ImageCard = dynamic(() => import('../modals/image_modal/ImageCard'));
+const ShowDialogButton = dynamic(() => import('../button_controls/ShowDialogButton'));
 
 interface PreviewModalProps {
   id:number
@@ -20,8 +21,9 @@ interface PreviewModalProps {
   watchList: boolean
   watchlistId: string
   movieId: number
-  imageWrapperStyle: string
-  imageStyle: string
+  imageCardWrapper?: boolean
+  top10Wrapper?: boolean
+  imageStyle?: string
 }
 
 export default function PreviewModal({
@@ -38,24 +40,30 @@ export default function PreviewModal({
   watchList,
   watchlistId,
   movieId,
-  imageWrapperStyle,
+  imageCardWrapper,
+  top10Wrapper,
   imageStyle
 }: PreviewModalProps) {
-  // xl:w-[14.375rem]
   return (
     <div className="group ">
-      <div className={`${imageWrapperStyle} relative rounded-sm cursor-pointer slide `} > 
+      <div 
+        className={`
+          relative rounded-sm cursor-pointer slide 
+          ${imageCardWrapper && "w-auto h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"}
+          ${top10Wrapper && "h-full w-[21vw] sm:w-[15vw] md:w-[12vw] lg:w-[9vw] xl:w-[7.5vw]"}
+        `}
+      > 
         <ImageCard
           imageString={imageString}
-          imageText={`${title}-${id}.movie poster`}
-          imageStyle={imageStyle}
+          imageText={`${title}-${id}.movie poster `}
+          imageStyle={`${imageStyle} max-lg:brightness-75w-full h-full`}
         />
         
         <ShowDialogButton
           title={title}
-          buttonStyle="absolute z-50 top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 outline-none "
+          buttonStyle="absolute z-50 top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 outline-none"
         >
-           <PlayCircle className="invisible max-xl:visible text-zinc-300 w-8 h-8 outline-none " aria-label={title}/>
+           <PlayCircle className="invisible max-xl:visible text-zinc-300 size-8 outline-none " aria-label={title}/>
            <span className="hidden">Play Button</span>
         </ShowDialogButton>
       </div>

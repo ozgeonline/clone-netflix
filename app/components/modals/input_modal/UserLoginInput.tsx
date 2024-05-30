@@ -1,103 +1,85 @@
 "use client"
 
-import Link from "next/link"
-import GithubSignInButton from "../signin_button_modal/Github_Signin_Button"
-import GoogleSignInButton from "../signin_button_modal/Google_Signin_Button"
-import UserLoginInput_Modal from "./UserLoginInput_Modal"
-import Footer from "../../section/tr_en-page/Footer"
+import { useState, useCallback, useMemo, useRef, useEffect, ReactNode } from "react";
+import debounce from 'lodash.debounce';
 
-  type formInfo = {
-    title: string
-    buttonTitle: string
-    linkTitle: string
-    linkInfo: string
-    linkRef: string
-  }
+type UserLoginInputModalProps = {
+  children?:ReactNode
+  inputStyle?:string
+  valueAndValidateTrueColor?:string
+  valueAndValidateFalseColor?:string
+  inputWrapper?:string
+  errorMsgColor?:string
+}
+export default function UserLoginInput({
+  children,
+  inputStyle,
+  inputWrapper,
+  errorMsgColor,
+  valueAndValidateTrueColor,
+  valueAndValidateFalseColor,
+}:UserLoginInputModalProps) {
 
-  export default function UserLoginInput({
-    title,
-    buttonTitle,
-    linkTitle,
-    linkInfo,
-    linkRef
-  }: formInfo) {
-    return (
-      <div className="mt-0 md:mt-28 z-10">
-        <div 
-          className="flex flex-col w-screen md:max-w-md items-center justify-center
-          md:mx-auto px-10 sm:px-32 py-40 md:p-8  
-          rounded bg-black md:bg-black/80"
+  const [inputValue, setInputValue] = useState("")
+  const [isTouched, setIsTouched] = useState(false)
+  
+  const debouncedHandleInputChange = useRef(debounce((value) => {
+    setInputValue(value);
+  }, 300)).current;
+
+  useEffect(() => {
+    return () => {
+      debouncedHandleInputChange.cancel();
+    };
+  }, [debouncedHandleInputChange]);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setInputValue(value);
+  };
+  
+  const handleInputBlur = useCallback(() => {
+    setIsTouched(true);
+  }, []);
+
+  const validateEmail = useCallback((email: string): boolean => {
+    const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }, []);
+
+  const emailIsValid = useMemo(() => validateEmail(inputValue), [inputValue, validateEmail]);
+
+  return (
+    <div className={inputWrapper}>
+      <input
+        type="email"
+        name="email"
+        placeholder="Email address"
+        value={inputValue}
+        onBlur={handleInputBlur}
+        onChange={handleInputChange}
+        autoComplete="email"
+        required
+        className={`input-field ${inputStyle} opacity-80 text-white rounded-sm w-full px-6
+          ${(inputValue && emailIsValid) ? `${valueAndValidateTrueColor}`
+            : (!inputValue || !emailIsValid) && isTouched ? `${valueAndValidateFalseColor}` 
+            : "border border-[#3d3c3b]"
+          }
+        `}
+      />
+
+      {isTouched && !emailIsValid && (
+        <label 
+          htmlFor="email"
+          className={`${errorMsgColor} absolute top-14 left-0 w-full max-w-[370px] text-xs sm:text-sm text-start`}
         >
-          <form 
-            method="post"
-            action="/api/auth/signin"
-            encType="multipart/form-data"
-            className="w-full md:w-[314px]"
-          >
-            <h1 className="text-3xl font-semibold text-white pt-2">
-              {title}
-            </h1>
-            <div className="space-y-7 mt-5">
-              <UserLoginInput_Modal />
-              <button
-                type="submit"
-                className="bg-[#e50914] w-full md:w-[314px] py-3 rounded-sm"
-              >
-                {buttonTitle}
-              </button>
+          Please enter a valid email address.
+        </label>
+      )}
 
-              <div className="flex justify-between">
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="checkbox"
-                    name="checkbox"
-                    aria-label="checkbox"
-                    className="cursor-not-allowed w-4 h-4 opacity-50"
-                    checked
-                    disabled
-                  />
-                  <label
-                    htmlFor="checkbox"
-                    className="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Remember me
-                  </label>
-                </div>
-                <div className="text-xs cursor-pointer text-[#959393] hover:underline">
-                  Need help?
-                </div>
-              </div>
-            </div>
-          </form>
-
-          <div className="text-gray-500 text-sm mt-2">
-            {linkTitle}
-            <Link 
-              className="text-white hover:underline"
-              href={linkRef}
-              prefetch={true}
-            >
-              {linkInfo}
-            </Link>
-          </div>
-
-          <div className="flex w-full justify-center items-center gap-x-3 mt-6">
-            <GithubSignInButton />
-            <GoogleSignInButton />
-          </div>
-
-          <div className="text-gray-500 text-xs mt-5 w-full md:w-[314px]">
-            This page is protected by Google reCAPTCHA to ensure you&apos;re not a bot. 
-            <span className="text-blue-600 hover:underline hover:cursor-pointer">
-              Learn more.
-            </span>
-          </div>
-        </div>
-        
-        <div className="md:mt-14">
-          <Footer />
-        </div>
+      <div className={`${isTouched && !emailIsValid && "max-sm:mt-7"}`}>
+        {children}
       </div>
-    )
-  }
+    </div>
+  )
+}

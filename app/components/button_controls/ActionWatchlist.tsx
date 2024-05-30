@@ -19,18 +19,17 @@ export default function ActionWatchlist({
   actionStyle
 }:actionProps) {
 
-  const pathName = usePathname() 
+  const pathName = usePathname()
   return (
     <>
-      {watchList ? (
+      { watchList ? (
         <form action={deleteFromWatchlist}>
           <input type="hidden" name="watchlistId" value={watchlistId} />
           <input type="hidden" name="pathname" value={pathName} />
           <Button
             size="icon"
             variant="link"
-            className={`${actionStyle} border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-in
-            `}
+            className={`${actionStyle} border rounded-full bg-bg_main border-whiteColor_100 opacity-70 hover:brightness-150 hover:ease-in`}
           > 
             <Check />
           </Button>
@@ -42,8 +41,7 @@ export default function ActionWatchlist({
           <Button
             size="icon"
             variant="link"
-            className={`${actionStyle} border rounded-full bg-[#141414] border-[#ffffffb3] opacity-70 hover:brightness-150 hover:ease-in
-            `}
+            className={`${actionStyle} border rounded-full bg-bg_main border-whiteColor_100 opacity-70 hover:brightness-150 hover:ease-in`}
           >
             <Plus />
           </Button>

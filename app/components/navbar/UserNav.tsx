@@ -31,8 +31,8 @@ export default async function UserButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild >
-        <Button variant="ghost" className="relative h-7 w-7 sm:h-8 sm:w-8 rounded-sm">
-          <Avatar className="h-7 w-7 sm:h-8 sm:w-8 rounded-sm" rel="preload">
+        <Button variant="ghost" className="relative size-7 sm:size-8 rounded-sm">
+          <Avatar className="size-7 sm:size-8 rounded-sm" rel="preload">
             <AvatarImage src={avatarSrc} alt="Profile picture" fetchPriority="high" loading="eager"/>
             <AvatarFallback className="rounded-sm uppercase" delayMs={0} >
               {userShortName}
@@ -47,7 +47,7 @@ export default async function UserButton() {
             <Image 
               src={userImg} 
               alt="user random image" 
-              className="rounded-sm w-7 h-7 hover:cursor-pointer"
+              className="rounded-sm size-7 hover:cursor-pointer"
             />
             <div className="flex flex-col space-y-2 ps-2">
               <p className="text-sm font-medium leading-none hover:underline hover:cursor-pointer">
@@ -61,19 +61,19 @@ export default async function UserButton() {
         </DropdownMenuLabel>
         <DropdownMenuGroup>
           <DropdownMenuItem className="flex items-center hover:underline hover:cursor-not-allowed">
-            <Pencil className="ms-0 opacity-100 w-6 h-6  text-zinc-400"/>
+            <Pencil className="ms-0  size-6  text-zinc-400"/>
             <span className="ps-2">Manage Profiles</span>
           </DropdownMenuItem>
           <DropdownMenuItem className="flex items-center hover:underline hover:cursor-not-allowed">
-            <FolderSync className="ms-0 opacity-100 w-6 h-6  text-zinc-400"/>
+            <FolderSync className="ms-0 size-6  text-zinc-400"/>
             <span className="ps-2">Transfer Profiles</span>
           </DropdownMenuItem>
           <DropdownMenuItem className="flex items-center hover:underline hover:cursor-not-allowed">
-            <UserRound className="ms-0 opacity-100 w-6 h-6  text-zinc-400"/>
+            <UserRound className="ms-0 size-6  text-zinc-400"/>
             <span className="ps-2">Account</span>
           </DropdownMenuItem>
           <DropdownMenuItem className="flex items-center hover:underline hover:cursor-not-allowed">
-            <HelpCircle className="ms-0 opacity-100 w-6 h-6  text-zinc-400"/>
+            <HelpCircle className="ms-0 size-6  text-zinc-400"/>
             <span className="ps-2">Help Center</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>

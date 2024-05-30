@@ -8,7 +8,7 @@ import { signIn } from "next-auth/react"
 export default function GoogleSignInButton() {
   return (
     <Button onClick={() => signIn('google')} variant="outline" size="icon">
-      <Image src={GoogleIcon} alt="Google icon" className="w-6 h-6" loading="lazy" quality={50}/>
+      <Image src={GoogleIcon} alt="Google icon" className="size-6" loading="lazy"/>
     </Button>
   )
 }

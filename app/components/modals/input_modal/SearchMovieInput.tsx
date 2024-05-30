@@ -3,15 +3,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react';
 
-
 const SearchInputComponent: React.FC = () => {
   
   const [openSearch, setOpenSearch] = useState(false)
-  const [query, setQuery] = useState('');
-
+  const [query, setQuery] = useState<string>();
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
   
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -22,7 +21,29 @@ const SearchInputComponent: React.FC = () => {
     } else {
       router.push(`/home/query`);
     }
-};
+  };
+
+  // const debouncedNavigate = useCallback(
+  //   debounce((value: string) => {
+  //     if (value) {
+  //       router.push(`${pathname}/query?query=${value}`);
+  //     } else {
+  //       router.back();
+        
+  //     }
+  //   }, 1000), // Adjust the delay as needed
+  //   [router]
+  // );
+  // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = event.target.value;
+  //   setQuery(value);
+  //   debouncedNavigate(value);
+  // };
+  // useEffect(() => {
+  //   return () => {
+  //     debouncedNavigate.cancel();
+  //   };
+  // }, [debouncedNavigate]);
 
   const handleOpenSearch = ( value:boolean) => {
     setOpenSearch(prevState => !prevState);
@@ -58,18 +79,18 @@ const SearchInputComponent: React.FC = () => {
       >
         <Search
           onClick={() => handleOpenSearch(openSearch)}
-          className='inline-flex h-6 w-6 sm:h-8 sm:w-8 p-1 cursor-pointer'
+          className='inline-flex size-6 sm:size-8 p-1 cursor-pointer'
         />
         <input
           type='search'
           ref={inputRef}
           value={query}
           onChange={handleInputChange}
+          placeholder='Titles, genres'
           className={`
             input-search-field ${openSearch ? "w-full opacity-100" : "hidden"} 
-            rounded-none outline-none bg-transparent h-6 sm:h-8 placeholder:text-sm placeholder:max-sm:text-xs
+            rounded-none outline-none bg-transparent h-6 sm:h-8 placeholder:max-sm:text-xs placeholder:text-sm
           `}
-          placeholder='Titles, genres'
         />
       </div>
     </div>

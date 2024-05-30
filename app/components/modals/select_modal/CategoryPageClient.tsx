@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useEffect, Suspense, useTransition } from 'react';
+import { useState, useEffect, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import SortBySelect from '@/app/components/modals/select_modal/SortBySelect';
-import Loading_Animate from '../../Loading_Animate';
+import dynamic from 'next/dynamic';
+import Loading_Animate from '@/app/components/Loading_Animate';
+
+const SortBySelect = dynamic(() => import('@/app/components/modals/select_modal/SortBySelect'));
 
 interface Movie {
   id: number;
@@ -54,7 +56,7 @@ const CategoryPageClient = ({ initialData, initialSortOrder, title }: CategoryPa
     <div>
       {isPending ? (
         <>
-          <div className='absolute z-10 w-full h-full top-[50vh] left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#141414] bg-opacity-80'>
+          <div className='absolute z-[9999] w-full h-full top-[50vh] left-1/2 -translate-x-1/2 -translate-y-1/2 bg-bg_main/80'>
             <Loading_Animate/>
           </div>
           <SortBySelect data={data} sortOrder={sortOrder} onSortChange={handleSortChange} />

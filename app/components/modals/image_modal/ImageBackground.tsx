@@ -10,7 +10,6 @@ export default function Image__Bg() {
         className="-z-10 brightness-50 object-cover"
         fill
         priority
-        quality={50}
         sizes="(min-height:640px) 95vh, 80vh, width:100vw"
       />
     </div>

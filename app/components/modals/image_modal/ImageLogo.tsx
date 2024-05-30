@@ -13,9 +13,9 @@ export default function Image__Logo({logoStyle}:logoProps) {
         alt="Logo"
         fill
         sizes="100%"
-        quality={50}
         aria-label="Netflix Logo"
         className="z-50"
+        priority
       />
     </Link>
   )

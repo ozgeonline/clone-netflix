@@ -1,13 +1,14 @@
-import MovieVideo from "@/app/components/movie_modal/MovieVideo";
-import CarouselModal from "@/app/components/slider/slider-modal/CarouselModal";
 import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth/next";
-import PreviewModal from "@/app/components/movie_modal/PreviewModal";
-import CategoryPageClient from "../../components/modals/select_modal/CategoryPageClient";
+import MovieVideo from "@/app/components/movie_modal/MovieVideo";
+import dynamic from 'next/dynamic';
+
+const CarouselModal = dynamic(() => import('@/app/components/slider/slider-modal/CarouselModal'), { ssr: false });
+const PreviewModal = dynamic(() => import('@/app/components/movie_modal/PreviewModal'));
+const CategoryPageClient = dynamic(() => import('../../components/modals/select_modal/CategoryPageClient'));
 
 async function getData(category: string, userId: string, sortOrder: 'default' | 'asc' | 'desc', query: string ) {
-
   const selectFields = {
     id: true,
     title: true,
@@ -27,7 +28,6 @@ async function getData(category: string, userId: string, sortOrder: 'default' | 
     }
   }
   
-
   switch (category) {
     case "shows": {
       const data = await prisma.movie.findMany({
@@ -103,8 +103,7 @@ type CategoryPageProps = {
   };
   searchParams: {
     sortOrder?: 'default' | 'asc' | 'desc';
-    query?: string 
-    showDialog?:string
+    query?: string
   };
 };
 export default async function CategoryPage({
@@ -115,7 +114,6 @@ export default async function CategoryPage({
     const session = await getServerSession(authOptions)
     const sortOrder = searchParams.sortOrder || 'default';
     const query = searchParams.query || '';
-    const showDialog = searchParams.showDialog || '';
     const data = await getData(params.genre, session?.user?.email as string, sortOrder, query)
     const movie = data[0]
         
@@ -129,121 +127,24 @@ export default async function CategoryPage({
       );
     }
 
-  
   return (
     <div>
       {
-      params.genre === "audio" ? (
-        <div className="top-14 sm:top-24 relative px-5 sm:px-[3vw] xl:px-[3.5vw]">
-          <div className="flex max-sm:flex-col max-sm:space-y-2 sm:justify-between sm:items-center mb-14 sm:mb-24 ">
-            <h1 className="text-2xl md:text-3xl">
-              Browse by sort
-            </h1>
-            <CategoryPageClient initialData={data} initialSortOrder={sortOrder} title={params.title} />
-          </div>
+        params.genre === "audio" ? (
+          <div className="top-14 sm:top-24 relative px-5 sm:px-[3vw] xl:px-[3.5vw]">
+            <div className="flex max-sm:flex-col max-sm:space-y-2 sm:justify-between sm:items-center mb-14 sm:mb-24 ">
+              <h1 className="text-2xl md:text-3xl">
+                Browse by sort
+              </h1>
+              <CategoryPageClient initialData={data} initialSortOrder={sortOrder} title={params.title} />
+            </div>
 
-          <div 
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-[0.4vw] gap-y-[5.5vw] md:gap-y-[5.5vw] lg:gap-y-[4.5vw] xl:gap-y-[4vw]"
-          >
-            {data.map((movie) => (
-              <div key={movie.title} className="relative w-full">
-                <PreviewModal
-                  key={movie.id}
-                  id={movie.id}
-                  imageString={movie.imageString}
-                  videoSource={movie.videoSource}
-                  title={movie.title}
-                  overview={movie.overview}
-                  age={movie.age}
-                  cast={movie.cast}
-                  genres={movie.genres}
-                  release={movie.release}
-                  duration={movie.duration}
-                  watchList={movie.WatchLists.length > 0 ? true : false}
-                  watchlistId={movie.WatchLists[0]?.id as string}
-                  movieId={movie.id}
-                  imageWrapperStyle="flex w-auto h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
-                  imageStyle="rounded-sm max-lg:brightness-75 w-full h-full"
-                />
-              </div>
-            ))}
-          </div>
-       </div>
-      
-      ) :
-      params.genre === "query" && data.length>0 ? (
-        <div className="top-14 sm:top-24 relative px-5 sm:px-[3vw] xl:px-[3.5vw]">
-          <div 
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-[0.4vw] gap-y-[5.5vw] md:gap-y-[5.5vw] lg:gap-y-[4.5vw] xl:gap-y-[4vw]"
-          >
-            {data.map((movie) => (
-              <div key={movie.title} className="relative w-full">
-                <PreviewModal
-                  key={movie.id}
-                  id={movie.id}
-                  imageString={movie.imageString}
-                  videoSource={movie.videoSource}
-                  title={movie.title}
-                  overview={movie.overview}
-                  age={movie.age}
-                  cast={movie.cast}
-                  genres={movie.genres}
-                  release={movie.release}
-                  duration={movie.duration}
-                  watchList={movie.WatchLists.length > 0 ? true : false}
-                  watchlistId={movie.WatchLists[0]?.id as string}
-                  movieId={movie.id}
-                  imageWrapperStyle="flex w-auto h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
-                  imageStyle="rounded-sm max-lg:brightness-75 w-full h-full"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      ) :
-      params.genre === "query" && data.length<=0 ? (
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs space-y-2">
-          <p>{`Your search for "${query}" did not have any matches.`}</p>
-          <p>Suggestions:</p>
-          <ul className="list-disc ml-10">
-            <li>Try different keywords</li>
-            <li>Looking for a movie or TV show?</li>
-            <li>Try using a movie, TV show title</li>
-            <li>Try a genre, like comedy, romantic, sports, or drama</li>
-          </ul>
-        </div>
-      ):(
-        <>
-          {movie &&  params.genre !== "new" && (
-            <MovieVideo
-              key={movie.id}
-              id={movie.id}
-              imageString={movie.imageString} 
-              videoSource={movie.videoSource} 
-              title={movie.title} 
-              overview={movie.overview} 
-            />
-          )}
-
-          <div 
-            className={`${params.genre === "new" ? "top-28" : "top-0"} relative px-5 sm:px-[3vw] xl:px-[3.5vw]`}
-          >
-            <h1 className="relative title sm:text-xl">
-              {
-                params.genre === "new" ? "New on Netflix" : 
-                params.genre === "kids" ? "We Think You’ll Love These" : 
-                movie.category === "show" ? "Popular TV Series" :
-                movie.category === "movie" ? "Popular Movie Series" : 
-                "Netflix Series"
-              }
-            </h1>
-            <CarouselModal
-              sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
-              sliderClass="space-x-1 sm:space-x-2"
+            <div 
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-[0.4vw] gap-y-[5.5vw] md:gap-y-[5.5vw] lg:gap-y-[4.5vw] xl:gap-y-[4vw]"
             >
               {data.map((movie) => (
-                <div key={movie.id} className="relative w-full h-full max-w-[14.5rem]">
-                  <PreviewModal 
+                <div key={movie.title} className="relative w-full">
+                  <PreviewModal
                     key={movie.id}
                     id={movie.id}
                     imageString={movie.imageString}
@@ -258,15 +159,111 @@ export default async function CategoryPage({
                     watchList={movie.WatchLists.length > 0 ? true : false}
                     watchlistId={movie.WatchLists[0]?.id as string}
                     movieId={movie.id}
-                    imageWrapperStyle="flex w-auto h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
+                    imageCardWrapper={true}
+                    imageStyle="rounded-sm"
+                  />
+                </div>
+              ))}
+            </div>
+        </div>
+        
+        ) : params.genre === "query" && data.length>0 ? (
+          <div className="top-14 sm:top-24 relative px-5 sm:px-[3vw] xl:px-[3.5vw]">
+            <div 
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-[0.4vw] gap-y-[5.5vw] md:gap-y-[5.5vw] lg:gap-y-[4.5vw] xl:gap-y-[4vw]"
+            >
+              {data.map((movie) => (
+                <div key={movie.title} className="relative w-full">
+                  <PreviewModal
+                    key={movie.id}
+                    id={movie.id}
+                    imageString={movie.imageString}
+                    videoSource={movie.videoSource}
+                    title={movie.title}
+                    overview={movie.overview}
+                    age={movie.age}
+                    cast={movie.cast}
+                    genres={movie.genres}
+                    release={movie.release}
+                    duration={movie.duration}
+                    watchList={movie.WatchLists.length > 0 ? true : false}
+                    watchlistId={movie.WatchLists[0]?.id as string}
+                    movieId={movie.id}
+                    imageCardWrapper={true}
                     imageStyle="rounded-sm max-lg:brightness-75 w-full h-full"
                   />
                 </div>
               ))}
-            </CarouselModal>
+            </div>
           </div>
-        </>
-      )}
-    </div>
-  )
-}
+
+        ) : params.genre === "query" && data.length<=0 ? (
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs space-y-2">
+            <p>{`Your search for "${query}" did not have any matches.`}</p>
+            <p>Suggestions:</p>
+            <ul className="list-disc ml-10">
+              <li>Try different keywords</li>
+              <li>Looking for a movie or TV show?</li>
+              <li>Try using a movie, TV show title</li>
+              <li>Try a genre, like comedy, romantic, sports, or drama</li>
+            </ul>
+          </div>
+
+        ):(
+          <>
+            {movie &&  params.genre !== "new" && (
+              <MovieVideo
+                key={movie.id}
+                id={movie.id}
+                imageString={movie.imageString} 
+                videoSource={movie.videoSource} 
+                title={movie.title} 
+                overview={movie.overview} 
+              />
+            )}
+
+            <div 
+              className={`${params.genre === "new" ? "top-28" : "top-0"} relative px-5 sm:px-[3vw] xl:px-[3.5vw]`}
+            >
+              <h1 className="relative title sm:text-xl">
+                {
+                  params.genre === "new" ? "New on Netflix" : 
+                  params.genre === "kids" ? "We Think You’ll Love These" : 
+                  movie.category === "show" ? "Popular TV Series" :
+                  movie.category === "movie" ? "Popular Movie Series" : 
+                  "Netflix Series"
+                }
+              </h1>
+              <CarouselModal
+                sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
+                sliderClass="space-x-1 sm:space-x-2"
+              >
+                {data.map((movie) => (
+                  <div key={movie.id} className="relative w-full h-full max-w-[14.5rem]">
+                    <PreviewModal 
+                      key={movie.id}
+                      id={movie.id}
+                      imageString={movie.imageString}
+                      videoSource={movie.videoSource}
+                      title={movie.title}
+                      overview={movie.overview}
+                      age={movie.age}
+                      cast={movie.cast}
+                      genres={movie.genres}
+                      release={movie.release}
+                      duration={movie.duration}
+                      watchList={movie.WatchLists.length > 0 ? true : false}
+                      watchlistId={movie.WatchLists[0]?.id as string}
+                      movieId={movie.id}
+                      imageCardWrapper={true}
+                      imageStyle="rounded-sm max-lg:brightness-75 w-full h-full"
+                    />
+                  </div>
+                ))}
+              </CarouselModal>
+            </div>
+          </>
+        )}
+      </div>
+    )
+  }

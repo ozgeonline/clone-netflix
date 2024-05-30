@@ -3,8 +3,8 @@ import { ReactNode, Suspense } from "react"
 import { authOptions } from "../utils/auth"
 import { redirect } from "next/navigation"
 import Navbar from "../components/navbar/Navbar"
-import Loading_Animate from "../components/Loading_Animate"
-import Footer from "../components/section/tr_en-page/Footer"
+//import Loading_Animate from "../components/Loading_Animate"
+import AuthFooter from "../components/section/AuthFooter"
 
 export default async function HomeLayout({children} : {children: ReactNode}){
   const session = await getServerSession(authOptions)
@@ -17,11 +17,9 @@ export default async function HomeLayout({children} : {children: ReactNode}){
     <div className="w-full">
       <Navbar />
       <div className="w-full">
-        <Suspense fallback={<Loading_Animate />}>
-          {children}
-        </Suspense>
+        {children}
       </div>
-      {/* <Footer /> */}
+     <AuthFooter />
     </div>
   )
 }

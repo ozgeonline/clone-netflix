@@ -27,5 +27,6 @@ export const authOptions = {
       },
       from: process.env.EMAIL_FROM
     }),
-  ]
+  ],
+  
 } satisfies NextAuthOptions;

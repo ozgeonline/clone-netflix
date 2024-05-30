@@ -1,14 +1,14 @@
 import Image from "next/image"
 import cardData from "@/app/data/card"
 
-export default  function CardAnimationWatch() {
- 
+export default function CardAnimationWatch() {
   return (
     <div className="bg-black">
       {cardData.map((card) => (
         <div 
           key={card.id} 
-          className={`border-t-8 py-16 md:py-20 lg:px-5 xl:px-36 flex flex-col lg:flex-row items-center justify-center
+          className={`
+            flex flex-col lg:flex-row items-center justify-center border-t-8 py-16 md:py-20 lg:px-5 xl:px-36 
             ${card.id % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"}
           `}
         >
@@ -29,6 +29,7 @@ export default  function CardAnimationWatch() {
               width="0"
               height="0"
               sizes="100vw"
+              loading="lazy"
             />
           </div>
         </div>

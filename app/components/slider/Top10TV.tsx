@@ -1,5 +1,7 @@
 import svgDataArray from "./slider-modal/SvgData"
-import PreviewModal from "../movie_modal/PreviewModal"
+import dynamic from 'next/dynamic'
+
+const PreviewModal = dynamic(() => import("../movie_modal/PreviewModal"));
 
 interface top10Props {
   index:number
@@ -66,8 +68,8 @@ export default function Top10TVShows({
         watchList={watchList}
         watchlistId={watchlistId}
         movieId={movieId}
-        imageWrapperStyle={"w-[21vw] sm:w-[15vw] md:w-[12vw] lg:w-[9vw] xl:w-[7.5vw] h-full"}
-        imageStyle={"rounded-e-sm max-lg:brightness-75w-full h-full"}
+        top10Wrapper={true}
+        imageStyle="rounded-e-sm"
       />
     </div>
   )

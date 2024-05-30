@@ -1,4 +1,4 @@
-import UserLoginInput from "@/app/components/modals/input_modal/UserLoginInput"
+import UserAuthLoginPage from "@/app/components/UserAuthLoginPage"
 import { authOptions } from "@/app/utils/auth";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
@@ -11,7 +11,7 @@ export default async function SignUp() {
   }
 
   return (
-    <UserLoginInput
+    <UserAuthLoginPage
       title="Sign Up"
       buttonTitle="Sign Up"
       linkTitle="Alredy Have a account? "

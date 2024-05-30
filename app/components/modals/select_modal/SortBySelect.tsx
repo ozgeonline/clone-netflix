@@ -69,6 +69,7 @@ const SortBySelect = ({data, sortOrder, onSortChange }: SortBySelectProps) => {
       setSortedData(data);
       return;
     }
+
     const sorted = [...data].sort((a, b) =>
       sortOrder === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)
     );
@@ -76,7 +77,7 @@ const SortBySelect = ({data, sortOrder, onSortChange }: SortBySelectProps) => {
   }, [data, sortOrder]);
 
   return (
-     <div ref={dropdownRef} className="relative">
+    <div ref={dropdownRef} className="relative">
       <div
         onClick={() => setShowDropdown(!showDropdown)}
         className="flex max-sm:flex-col sm:space-x-2 max-sm:space-y-2 cursor-pointer"
@@ -86,8 +87,8 @@ const SortBySelect = ({data, sortOrder, onSortChange }: SortBySelectProps) => {
         </div>
         <div 
           className={`
-            ${showDropdown ? "bg-[#333]" : "bg-black "} hover:bg-[#333] transition-colors ease-in 
-            min-w-[10rem] sm:min-w-[14rem] max-sm:text-sm border border-white px-2 font-semibold justify-between flex items-center
+            ${showDropdown ? "bg-[#333]" : "bg-black "} 
+            hover:bg-[#333] transition-colors ease-in justify-between flex items-center min-w-[10rem] sm:min-w-[14rem] max-sm:text-sm border border-white px-2 font-semibold 
           `}
         >
           {sortOrder === 'default' ? 'Suggestions For You' : sortOrder === 'asc' ? 'A-Z' : 'Z-A'}

@@ -1,8 +1,10 @@
-import PreviewModal from "@/app/components/movie_modal/PreviewModal";
-import CarouselModal from "@/app/components/slider/slider-modal/CarouselModal";
 import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth/next";
+import dynamic from 'next/dynamic';
+
+const CarouselModal = dynamic(() => import('@/app/components/slider/slider-modal/CarouselModal'), { ssr: false });
+const PreviewModal = dynamic(() => import('@/app/components/movie_modal/PreviewModal'));
 
 async function getData(userId: string) {
   const data = await prisma.watchList.findMany({
@@ -61,8 +63,8 @@ export default async function Watchlist() {
                 watchList={movie.Movie?.WatchLists.length > 0 ? true : false}
                 watchlistId={movie.Movie?.WatchLists[0]?.id as string}
                 movieId={movie.Movie?.id as number}
-                imageWrapperStyle="w-auto h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
-                imageStyle="rounded-sm max-lg:brightness-75 w-full h-full"
+                imageCardWrapper={true}
+                imageStyle="rounded-sm"
               />
             </div>
           ))}

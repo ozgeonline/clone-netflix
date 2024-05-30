@@ -17,8 +17,7 @@ export default function ImageCard({
       alt={imageText}
       className={`object-cover ${imageStyle}`}
       fill
-      sizes="100%"
-      quality={50}
+      sizes="auto"
     />
   )
 }

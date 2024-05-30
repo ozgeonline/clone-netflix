@@ -32,13 +32,11 @@ export default function DropdownMenu({ children }: DropdownMenuProps) {
 
   const handleClick = () => setIsOpen(false);
   
-
-
   return (
     <div ref={navbarRef} className="flex lg:hidden mx-5 transition-all ease-in">
       <button
         type="button"
-        className="flex flex-col text-xs font-medium text-white focus:outline-none"
+        className="flex flex-col text-xs font-medium text-white hover:outline-none"
         onMouseOver={toggleDropdown}
         onClick={toggleDropdown}
       >

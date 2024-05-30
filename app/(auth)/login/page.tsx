@@ -1,4 +1,4 @@
-import UserLoginInput from "@/app/components/modals/input_modal/UserLoginInput"
+import UserAuthLoginPage from "@/app/components/UserAuthLoginPage"
 import { authOptions } from "@/app/utils/auth";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
@@ -11,7 +11,7 @@ export default async function Login() {
   }
 
   return (
-    <UserLoginInput 
+    <UserAuthLoginPage
       title="Log in"
       buttonTitle="Log in"
       linkTitle="Need help? "

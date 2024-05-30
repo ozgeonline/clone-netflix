@@ -121,7 +121,7 @@
   }
 
   .input-field:focus::placeholder {
-      font-size: 12px; /* when input is focused */
+      font-size: 12px;
       position: absolute;
       top: 0.2rem;
       left: 1.5rem;
