@@ -168,7 +168,7 @@ export default async function CategoryPage({
         </div>
         
         ) : params.genre === "query" && data.length>0 ? (
-          <div className="top-14 sm:top-24 relative px-5 sm:px-[3vw] xl:px-[3.5vw]">
+          <div className="flex flex-col top-14 sm:top-32 relative px-5 sm:px-[3vw] xl:px-[3.5vw]">
             <div 
               className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-[0.4vw] gap-y-[5.5vw] md:gap-y-[5.5vw] lg:gap-y-[4.5vw] xl:gap-y-[4vw]"
             >

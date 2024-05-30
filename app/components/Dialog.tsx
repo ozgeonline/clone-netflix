@@ -261,13 +261,13 @@ export default function Dialog({
                   </div>
                   
                   <div className='flex flex-col items-start'>
-                    <div className='flex items-center max-sm:flex-wrap'>
+                    <div className='flex items-center max-sm:flex-wrap '>
                       <h2 className="text-xs sm:text-sm text-[#777]">Casts: </h2>
-                      <CastList cast={cast} />
+                      <CastList cast={cast}/>
                     </div>
                     <div className='flex items-center space-x-1 max-sm:flex-wrap'>
                       <h2 className="text-xs sm:text-sm text-[#777]">Genres: </h2>
-                      <GenreList genres={genres}>,</GenreList>
+                      <GenreList genres={genres} genreDialogStyle={true}>,</GenreList>
                     </div>
                   </div>
                 </div>

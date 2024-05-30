@@ -2,11 +2,15 @@ import React from "react"
 
 interface genreProps {
   genres?: string
+  genreDialogStyle?:boolean
+  genreInfoStyle?:boolean
   children:React.ReactNode
 }
 
 export default function GenreList({
   genres,
+  genreDialogStyle,
+  genreInfoStyle,
   children
 }: genreProps) {
 
@@ -16,7 +20,13 @@ export default function GenreList({
     <>
       {genre.map((item, index) => (
         <div key={index} className="flex items-center text-white">
-          <div className="hover:cursor-pointer hover:underline text-textColor text-xs">
+          <div 
+            className={`
+              ${genreDialogStyle && "text-xs sm:text-sm hover:underline"}
+              ${genreInfoStyle && "text-[10px]"}
+              cursor-pointer text-textColor 
+            `}
+          >
             {item}
           </div>
           {index !== genre.length - 1 && <> {children} </>}

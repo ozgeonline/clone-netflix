@@ -52,7 +52,7 @@ export default async function HomePage() {
         overview={movie.overview}
       />
     
-      <div className="w-full flex flex-col px-5 sm:px-[3vw] xl:px-[3.5vw] -mt-[20vw] md:-mt-[15vw] lg:-mt-36 pb-24 space-y-1 sm:space-y-4 lg:space-y-8 xl:space-y-12">
+      <div className="w-full flex flex-col px-5 sm:px-[3vw] xl:px-[3.5vw] -mt-[20vw] md:-mt-[15vw] lg:-mt-36 pb-24 space-y-1 sm:space-y-4 lg:space-y-8 xl:space-y-12 mb-14">
         <Section title="New on Netflix" movies={initialData.filter(movie => movie.release === 2024)} />
         <SectionTop10 title="Top 10 TV Shows Today" movies={initialData.filter(movie => movie.category === "show").slice(0, 10)} />
         <Section title="Family Time TV" movies={initialData.filter(movie => movie.age < 13)} />

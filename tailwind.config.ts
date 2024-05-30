@@ -58,6 +58,7 @@ module.exports = {
         background_red: "#e50914",
         whiteColor_100: "#ffffffb3",
         whiteColor_200: "#bcbcbc",
+        grayColor_700:"#777"
       },
       borderRadius: {
         lg: "var(--radius)",

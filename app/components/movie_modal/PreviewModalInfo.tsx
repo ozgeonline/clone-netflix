@@ -63,7 +63,7 @@ export function PreviewModalInfo({
         watchList={watchList}
       />
 
-      <div className="absolute w-full min-h-[5rem] pb-2 mt-20 sm:mt-28 bg-bg_main rounded-b-sm shadow-md shadow-black/90">
+      <div className="z-50 absolute w-full min-h-[5rem] pb-2 mt-20 sm:mt-28 bg-bg_main rounded-b-sm shadow-md shadow-black/90">
         <h1 className="absolute font-bold text-[1em] line-clamp-1 left-3 -top-[1.5em] [text-shadow:_2px_2px_7px_rgb(0_0_0_/_30%)]" >
           {title}
         </h1>
@@ -94,8 +94,8 @@ export function PreviewModalInfo({
           <MovieInfo age={age} fontHD="text-[8px]"  /> 
         </div>
         
-        <div className='flex flex-wrap items-center space-x-1 pt-3 px-2 text-[10px]'>
-          <GenreList genres={genres}>
+        <div className='flex flex-wrap items-center space-x-1 pt-3 px-2'>
+          <GenreList genres={genres} genreInfoStyle={true}>
             <Circle className="fill-gray-500 text-gray-500 size-[3px] ms-1"/>
           </GenreList>
         </div>

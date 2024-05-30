@@ -23,6 +23,7 @@ export default function ShowDialogButton({
       href={`${pathName}?showDialog=${encodeURIComponent(title)}`}
       className={buttonStyle}
       scroll={false}
+      aria-label={`${title} Dialog Open`}
     >
       {children}
     </Link>
