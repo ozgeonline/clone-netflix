@@ -47,6 +47,8 @@ async function getData(category: string, userId: string, sortOrder: 'default' | 
       const data = await prisma.movie.findMany({
         where: { release : 2024 },
         select: selectFields,
+        take:50,
+        orderBy: { createdAt: "asc", },
       })
       return data
     }
@@ -222,9 +224,7 @@ export default async function CategoryPage({
               />
             )}
 
-            <div 
-              className={`${params.genre === "new" ? "top-28" : "top-0"} relative px-5 sm:px-[3vw] xl:px-[3.5vw]`}
-            >
+            <div className={`${params.genre === "new" ? "top-28" : "top-0"}  relative px-5 sm:px-[3vw] xl:px-[3.5vw]`} >
               <h1 className="relative title sm:text-xl">
                 {
                   params.genre === "new" ? "New on Netflix" : 
@@ -235,11 +235,12 @@ export default async function CategoryPage({
                 }
               </h1>
               <CarouselModal
-                sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
-                sliderClass="space-x-1 sm:space-x-2"
+                 sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
+                 sliderClass=""
+                //  title={movie.title}
               >
                 {data.map((movie) => (
-                  <div key={movie.id} className="relative w-full h-full max-w-[14.5rem]">
+                  <div key={movie.id} className="relative w-full h-full " aria-label={`${movie.id}.Slider-item`}>
                     <PreviewModal 
                       key={movie.id}
                       id={movie.id}

@@ -45,18 +45,18 @@ export default function PreviewModal({
   imageStyle
 }: PreviewModalProps) {
   return (
-    <div className="group ">
+    <div className="group">
       <div 
         className={`
           relative rounded-sm cursor-pointer slide 
-          ${imageCardWrapper && "w-auto h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"}
+          ${imageCardWrapper && " h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"}
           ${top10Wrapper && "h-full w-[21vw] sm:w-[15vw] md:w-[12vw] lg:w-[9vw] xl:w-[7.5vw]"}
         `}
       > 
         <ImageCard
           imageString={imageString}
           imageText={`${title}-${id}.movie poster `}
-          imageStyle={`${imageStyle} max-lg:brightness-75w-full h-full`}
+          imageStyle={`${imageStyle} max-lg:brightness-75 h-full w-full `}
         />
         
         <ShowDialogButton
@@ -68,12 +68,12 @@ export default function PreviewModal({
         </ShowDialogButton>
       </div>
       <div
-        className="invisible group-hover:xl:visible group-hover:lg:scale-150 absolute group-hover:z-50 h-[7rem] w-[14rem] -top-10 transition-transform group-hover:duration-400 ease-in shadow-md shadow-black/90 cursor-pointer"
+        className="invisible group-hover:z-50 group-hover:xl:visible group-hover:lg:scale-150 absolute h-[7rem] w-[14rem] inset-x-10 -top-10 transition-transform group-hover:duration-400 ease-in shadow-md shadow-black/90 cursor-pointer"
       >
         <ImageCard 
           imageString={imageString}
           imageText={`${title}-${id}.movie big-poster`}
-          imageStyle="rounded-t-sm"
+          imageStyle="rounded-t-sm w-full h-full"
         />
         <PreviewModalInfo
           key={id}

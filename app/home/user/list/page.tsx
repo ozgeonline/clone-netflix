@@ -37,18 +37,16 @@ export default async function Watchlist() {
   const session = await getServerSession(authOptions);
   const data = await getData(session?.user?.email as string);
 
+
   return (
     <div className="flex flex-col px-5 sm:px-[3vw] xl:px-[3.5vw] relative">
       <h1 className="sm:text-2xl mt-24 mb-5">
         My List
       </h1>
-      {data.length > 0 ?
-        (<CarouselModal
-          sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
-          sliderClass="space-x-1 sm:space-x-2"
-        >
-          {data.map((movie,index) => (
-            <div key={index} className="relative w-full h-full max-w-[14.5rem]">
+      { data.length > 0 ? (
+        <CarouselModal sliderButtonClass={`h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]`} >
+          {data.map((movie) => (
+            <div key={movie.Movie.id} className="relative w-full h-full max-w-[14.5rem]">
               <PreviewModal
                 id={movie.Movie?.id as number}
                 imageString={movie.Movie?.imageString as string}

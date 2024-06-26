@@ -72,7 +72,7 @@ interface SectionProps {
 
 const Section: React.FC<SectionProps> = ({ title, movies }) => (
   <div>
-    <h2 className="relative title sm:text-2xl">{title}</h2>
+    <h2 className="relative title sm:text-2xl px-2 -z-50">{title}</h2>
     <CarouselModal
       sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
       sliderClass="space-x-1 sm:space-x-2"
@@ -104,11 +104,11 @@ const Section: React.FC<SectionProps> = ({ title, movies }) => (
 );
 
 const SectionTop10: React.FC<SectionProps> = ({ title, movies }) => (
-  <div>
-    <h2 className="relative title sm:text-2xl">{title}</h2>
+  <div className="">
+    <h2 className="relative title sm:text-2xl -z-50">{title}</h2>
     <CarouselModal
       sliderButtonClass="h-[30vw] sm:h-[22vw] md:h-[17vw] lg:h-[14vw] xl:h-[10.5vw]"
-      sliderClass="space-x-1"
+     
     >
       {movies.map((movie,index) => (
         <Top10TV

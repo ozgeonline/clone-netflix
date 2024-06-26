@@ -2,8 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { ChevronRight, ChevronLeft } from 'lucide-react'
-import { SetStateAction, useEffect, useRef, useState } from 'react'
-import { motion } from "framer-motion"
+import {  useEffect, useRef, useState } from 'react'
 
 interface CarouselModalProps {
   sliderButtonClass?: string;
@@ -20,28 +19,11 @@ export default function CarouselModal ({
 }: CarouselModalProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [slideWidth, setSlideWidth] = useState(0);
+  const [sliderWidth, setSliderWidth] = useState<number>();
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const [newslides, setNewSlides] = useState(slides);
+  const [clickCount,setClickCount] = useState<number>(0)
 
-  //update slide width
-  const firstSlide = sliderRef.current?.querySelector('.slide');
-  const updateSlideWidth = () => {
-    if (sliderRef.current) {
-      if (firstSlide) {
-        setSlideWidth(firstSlide.clientWidth);
-      }
-    }
-  };
-
-  useEffect(() => {
-    updateSlideWidth()
-    window.addEventListener('resize', updateSlideWidth)
-
-    return () => {
-      window.removeEventListener('resize', updateSlideWidth)
-    }
-  }, []);
-  
   type Breakpoint = 'sm' | 'md' | 'lg' | 'xl';
 
   const breakpointConditions: Record<Breakpoint, (width: number) => boolean> = {
@@ -74,142 +56,118 @@ export default function CarouselModal ({
     }
   }, []);
 
+  const updateSliderWidth = () => {
+    if (sliderRef.current) {
+      const width = sliderRef.current.clientWidth;
+      setSliderWidth(width);
+    }
+  };
+
+  useEffect(() => {
+    updateSliderWidth();
+    window.addEventListener('resize', updateSliderWidth);
+    return () => {
+      window.removeEventListener('resize', updateSliderWidth);
+    };
+  }, []);
+
   const slidesPerView  = 
     isXl ? 6 :
     isLg ? 5 :
     isMd ? 4 :
     isSm ? 3 : 2;
 
-  const slidesTotalSpace =
-    isXl ? 40 :
-    isLg ? 32 :
-    isMd ? 24 :
-    isSm ? 16 : 4;
+  const handleClick = (direction: "prev" | "next") => {
+    const slideItems = Array.from(sliderRef.current?.children || []);
+    const maxIndex = slideItems.length -slidesPerView
+    if (isTransitioning) return;
 
-    // console.log("currentSlide",currentSlide)
-    // console.log("slideWidth",slideWidth)
-    // console.log("sliderRef.current",sliderRef.current)
+    setClickCount(prev=>prev+1)
+    setIsTransitioning(true);
 
-    const handleClick = (direction: "prev" | "next") => {
-      const maxIndex = slides.length - slidesPerView;
-      setIsTransitioning(true);
+    if (direction === "prev") {
+     
+      const startIndex = clickCount === 0 ? maxIndex : slidesPerView
+      
+      for (let i = 0; i < slidesPerView; i++) {
+        sliderRef.current.insertAdjacentElement("afterbegin", slideItems[slideItems.length - 1 - i]);
+        console.log("i-", i);
+        setCurrentSlide(slideItems.length - 1 - i);
+      }
 
-    if (direction === "prev" && currentSlide > 0) {
-      setCurrentSlide((i) => Math.max(i - slidesPerView, 0));
-    }
-    if (direction === "next" && currentSlide < maxIndex) {
-      //sliderRef.current.scrollBy({ left: -sliderRef.current.clientWidth });
-      setCurrentSlide((i) => Math.min(i + slidesPerView, maxIndex));
-    }
+      setTimeout(() => setIsTransitioning(false), 600);
+
+    } else if (direction === "next") {
+       
+        console.log("next count",clickCount)
+        const startIndex = clickCount === 0 ? maxIndex : slidesPerView
+        for (let i = 0; i < startIndex; i++) {
+          sliderRef.current?.insertAdjacentElement("beforeend", slideItems[i]);
+          console.log("i-", i);
+        }
+        
+        setCurrentSlide((i) => Math.min(slideItems.length-slidesPerView,maxIndex));
+      }
+      setTimeout(() => setIsTransitioning(false), 600);
   };
-  
-  // console.log("currentSlide :",currentSlide);
+
 
   useEffect(() => {
-    const transitionTimeout = setTimeout(() => {
-      setIsTransitioning(false);
-    }, 500);
-
-    return () => {
-      clearTimeout(transitionTimeout);
-    };
-  }, [currentSlide]);
-
-  const transitionSettings = {
-    type: 'tween',
-    duration: 0.5,
-    ease: 'easeInOut',
-  };
-
-  const translateX = -currentSlide * slideWidth;
-  // console.log("translateX", translateX)
-
-    // useEffect(() => {
-    //   if (sliderRef.current) {
-    //     const translateX = -currentSlide * slideWidth; // Negative translation for leftward motion
-    //     sliderRef.current.style.transition = 'transform 0.5s';
-    //     sliderRef.current.style.transform = `translate3d(${translateX}px, 0, 0)`;
-    //   }
-    // }, [currentSlide, slideWidth]);
-
-    const maxIndex = slides.length / slidesPerView;
-    // console.log("maxIndex",Math.floor(maxIndex))
-    const goToSlide = (slideNumber: number) => {
-      setCurrentSlide(slideNumber);
-    };
-    // console.log(goToSlide)
-    //  const goToSlide = (slideNumber: SetStateAction<number>) => {
-    //   setCurrentSlide(slideNumber);
-    // };
-
+    if (sliderRef.current) {
+      const slideWidth = sliderWidth / slidesPerView;
+      const newTransform = -currentSlide * slideWidth;
+      sliderRef.current.style.transition = isTransitioning ? 'transform 0.6s ease' : 'none';
+      sliderRef.current.style.transform = `translateX(${newTransform}px)`;
+    }
+  }, [currentSlide, sliderWidth, slidesPerView, isTransitioning]);
+  
   return (
-    <div 
-      className='max-sm:overflow-x-scroll max-sm:overflow-y-hidden overflow-css'
-      aria-label={`Open video player for ${title}`}
-    >
+    <div className='max-sm:overflow-x-scroll max-sm:overflow-y-hidden overflow-css'>
       <div
         ref={sliderRef}
-        className={`${sliderClass} relative flex`}
+        className={`flex relative ${isTransitioning ? 'transition-transform duration-500 ease-in-out' : ''}`}
       >
-        {slides.slice(currentSlide, currentSlide + slidesPerView)}
+       {slides.map((child, index) => (
+          <div
+            key={index}
+            aria-label={`${index}-slide item`}
+            className=""
+          >
+            <div 
+              style={{ width: `${sliderWidth / slidesPerView}px` }}
+              className='px-2'
+            >
+              {child}
+            </div>
+          </div>
+        ))}
       </div>
-      <div className='w-full relative  h-full'>
+    
+      <div className='w-full relative h-full'>
         <Button 
           onClick={() => handleClick("prev")}
           variant='link'
           aria-label='Previous Button'
           className={
-            `absolute bottom-0 -left-5 sm:-left-[3vw] xl:-left-[3.5vw] transition-all sm:w-[2.5vw] xl:w-[3vw] px-0 rounded-none 2xl:rounded-s-none 2xl:rounded-e-sm bg-black/80 hover:bg-black/90 group` +
-            ` ${sliderButtonClass}`
+            `${sliderButtonClass} group/prev absolute bottom-0 -left-5 sm:-left-[3vw] xl:-left-[3.5vw] sm:w-[2.5vw] xl:w-[3vw] ` +
+            `transition-all ease-in px-0 rounded-none 2xl:rounded-s-none 2xl:rounded-e-sm bg-black/80 `
+            // `${sliderButtonClass} ${clickCount<=0 ? "hidden" : "block"}`
           }
-          style={{display: `${currentSlide<=0 ? "none" : "block"}`}}
         >
-          <ChevronLeft className='w-3 sm:w-10 h-4 sm:h-10 text-transparent group-hover:text-white  max-md:pr-5'/>
-          <div className="absolute -top-5 left-[1430px] ">
-              <div className="flex items-center justify-center gap-1 ">
-                {Array.from({ length: Math.round(slides.length/slidesPerView) }).map(
-                    (_: number, i: number) => (
-                      <div
-                        key={i}
-                        onClick={() => goToSlide(i)}
-                        className={`
-                          hover:cursor-pointer transition-all w-3 h-1 bg-red-700
-                          ${i === currentSlide ? "bg-opacity-100" : "bg-opacity-50"}
-                        `}
-                        >{`${i}`}</div>
-                        
-                    )
-                  )}
-              </div>
-          </div>
+          <ChevronLeft className='w-3 sm:w-10 h-4 sm:h-10 text-transparent group-hover/prev:text-white max-md:pr-5'/>
+          
         </Button>
         <Button 
           onClick={() => handleClick("next")}
           variant='link'
           aria-label='Next Button'
           className={
-            `absolute bottom-0 -right-5 sm:-right-[3vw] xl:-right-[3.5vw] transition-all sm:w-[2.5vw] xl:w-[3vw] px-0 rounded-none 2xl:rounded-s-none 2xl:rounded-e-sm bg-black/80 hover:bg-black/90 group` +
-            ` ${sliderButtonClass}`
+            `absolute group/next bottom-0 -right-5 sm:-right-[3vw] xl:-right-[3.5vw] transition-all sm:w-[2.5vw] xl:w-[3vw] px-0 rounded-none 2xl:rounded-e-none 2xl:rounded-s-sm bg-black/80 ` +
+            ` ${sliderButtonClass} ${slides.length <= slidesPerView ? "hidden" : "block"}`
           }
-          style={{ display: `${currentSlide >= slides.length - slidesPerView ? "none" : "block"}` }}
+          
         >
-          <ChevronRight className='w-3 sm:w-10 h-4 sm:h-10 text-transparent group-hover:text-white max-md:pr-5'/>
-         {/* <div className="absolute -top-5 left-[1430px] ">
-              <div className="flex items-center justify-center gap-1 ">
-                {Array.from({ length:  Math.round(slides.length/slidesPerView)}).map(
-                    (_: number, i: number) => (
-                      <div
-                        key={i}
-                        onClick={() => goToSlide(i)}
-                        className={`
-                          hover:cursor-pointer transition-all w-3 h-1 bg-red-600
-                          ${currentSlide === i ? "bg-opacity-100" : "bg-opacity-50"}
-                        `}
-                      ></div>
-                    )
-                  )}
-              </div>
-          </div> */}
+          <ChevronRight className='w-3 sm:w-10 h-4 sm:h-10 text-transparent group-hover/next:text-white max-md:pr-5'/>
         </Button>
       </div>
     </div>

@@ -165,6 +165,13 @@
    transition: transform 0.5s ease-in-out;
   }
 
+  /* .slide {
+    transition: transform 0.5s ease-in-out;
+  }
+  .slider-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  } */
   /* Title */
   .title {
     position: relative;
@@ -212,6 +219,55 @@
   transform: translateX(-100%);
 }
 
+.imageWrapper {
+  flex: 0 0 auto;
+  transition: transform 10s ease;
+  width: auto;
+  margin: 8px;
+}
+
+
+.move {
+  position: relative; 
+   /*
+  width: 100px; 
+  height: 100px; 
+  background-color: blue;  */
+  animation: moveAnimation 2s forwards; 
+  transition: transform 1s ease;
+}
+
+/* Keyframes for the animation */
+@keyframes moveAnimation {
+  0% {
+    right: -1000px;
+  }
+  100% {
+    right: 0;
+  }
+}
+
+/* Pseudo-element for the initial state */
+.move::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -1000px;
+  /* width: 100px;
+  height: 100px;
+  background-color: inherit;  */
+}
+
+/* Pseudo-element for the final state */
+.move::after {
+  content: '';
+  /* position: absolute;*/
+  top: 0; 
+  right: 0;
+  /* width: 100px; 
+  height: 100px; 
+  background-color: inherit; */
+}
 
 
   @media (min-width: 640px) {

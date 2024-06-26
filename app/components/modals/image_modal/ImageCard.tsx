@@ -9,14 +9,15 @@ interface ImageCard {
 export default function ImageCard({
   imageString,
   imageText,
-  imageStyle
+  imageStyle,
 }: ImageCard) {
   return (
     <Image
       src={imageString}
       alt={imageText}
       className={`object-cover ${imageStyle}`}
-      fill
+      width={0}
+      height={0}
       sizes="auto"
     />
   )
