@@ -18,7 +18,7 @@ export default function CarouselModal ({
   title
 }: CarouselModalProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
-  const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const [currentSlide, setCurrentSlide] = useState<number>(slides.length);
   const [sliderWidth, setSliderWidth] = useState<number>();
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
   const [newslides, setNewSlides] = useState(slides);
@@ -77,38 +77,90 @@ export default function CarouselModal ({
     isMd ? 4 :
     isSm ? 3 : 2;
 
+    console.log(sliderRef.current)
+
+  // const handleClick = (direction: "prev" | "next") => {
+
+  //   const slideItems = Array.from(sliderRef.current?.children || []);
+  //   const maxIndex = slideItems.length - slidesPerView;
+
+  //   if (isTransitioning) return;
+
+  //   setClickCount(prev=>prev+1)
+  //   setIsTransitioning(true);
+
+  //   if (direction === "prev") {
+      
+  //     // for (let i = 0; i < slidesPerView; i++) {
+  //     //   sliderRef.current.insertAdjacentElement(
+  //     //     "afterbegin",
+  //     //     slideItems[slideItems.length - 1 - i]
+  //     //   );
+  //     // }
+  //     // setCurrentSlide((prev) => (prev - slidesPerView + slideItems.length) % slideItems.length);
+
+  //     setCurrentSlide((i) => Math.max(i - slidesPerView, 0));
+  //     console.log("prev current",currentSlide)
+
+  //   } else if (direction === "next") {
+       
+  //       const startIndex = clickCount === 0 ? maxIndex : slidesPerView
+        
+  //       for (let i = 0; i < startIndex; i++) {
+  //         sliderRef.current?.insertAdjacentElement(
+  //           "beforeend", 
+  //           slideItems[i]
+  //         );
+         
+  //         //setCurrentSlide((i) => Math.min(slideItems.length-slidesPerView+i,maxIndex));
+          
+  //       }
+  //        setCurrentSlide((prev) => (prev + slidesPerView) % slideItems.length);
+  //       console.log(currentSlide)
+  //       //setCurrentSlide((i) => Math.min(i + slidesPerView, maxIndex));
+  //     }
+  //     setTimeout(() => setIsTransitioning(false), 600);
+  // };
+
   const handleClick = (direction: "prev" | "next") => {
-    const slideItems = Array.from(sliderRef.current?.children || []);
-    const maxIndex = slideItems.length -slidesPerView
     if (isTransitioning) return;
 
-    setClickCount(prev=>prev+1)
+    const totalSlides = slides.length;
+    const maxIndex = (totalSlides * 2) - slidesPerView;
+
     setIsTransitioning(true);
 
     if (direction === "prev") {
-     
-      const startIndex = clickCount === 0 ? maxIndex : slidesPerView
-      
-      for (let i = 0; i < slidesPerView; i++) {
-        sliderRef.current.insertAdjacentElement("afterbegin", slideItems[slideItems.length - 1 - i]);
-        console.log("i-", i);
-        setCurrentSlide(slideItems.length - 1 - i);
+      if (currentSlide <= slidesPerView) {
+        setCurrentSlide((current) => current - slidesPerView);
+        setTimeout(() => {
+          sliderRef.current!.style.transition = 'none';
+          setCurrentSlide(totalSlides + (currentSlide - slidesPerView));
+          setTimeout(() => {
+            sliderRef.current!.style.transition = 'transform 0.6s ease';
+            setIsTransitioning(false);
+          }, 50);
+        }, 600);
+      } else {
+        setCurrentSlide((i) => i - slidesPerView);
+        setTimeout(() => setIsTransitioning(false), 600);
       }
-
-      setTimeout(() => setIsTransitioning(false), 600);
-
     } else if (direction === "next") {
-       
-        console.log("next count",clickCount)
-        const startIndex = clickCount === 0 ? maxIndex : slidesPerView
-        for (let i = 0; i < startIndex; i++) {
-          sliderRef.current?.insertAdjacentElement("beforeend", slideItems[i]);
-          console.log("i-", i);
-        }
-        
-        setCurrentSlide((i) => Math.min(slideItems.length-slidesPerView,maxIndex));
+      if (currentSlide >= maxIndex) {
+        setCurrentSlide((current) => current + slidesPerView);
+        setTimeout(() => {
+          sliderRef.current!.style.transition = 'none';
+          setCurrentSlide((currentSlide - totalSlides) + slidesPerView);
+          setTimeout(() => {
+            sliderRef.current!.style.transition = 'transform 0.6s ease';
+            setIsTransitioning(false);
+          }, 50);
+        }, 600);
+      } else {
+        setCurrentSlide((i) => i + slidesPerView);
+        setTimeout(() => setIsTransitioning(false), 600);
       }
-      setTimeout(() => setIsTransitioning(false), 600);
+    }
   };
 
 
@@ -125,9 +177,10 @@ export default function CarouselModal ({
     <div className='max-sm:overflow-x-scroll max-sm:overflow-y-hidden overflow-css'>
       <div
         ref={sliderRef}
-        className={`flex relative ${isTransitioning ? 'transition-transform duration-500 ease-in-out' : ''}`}
+        className='flex'
+        // className={`flex relative ${isTransitioning ? 'transition-transform duration-500 ease-in-out' : ''}`}
       >
-       {slides.map((child, index) => (
+       {slides.concat(slides, slides).map((child, index) => (
           <div
             key={index}
             aria-label={`${index}-slide item`}
@@ -159,7 +212,7 @@ export default function CarouselModal ({
         </Button>
         <Button 
           onClick={() => handleClick("next")}
-          variant='link'
+          variant='link' 
           aria-label='Next Button'
           className={
             `absolute group/next bottom-0 -right-5 sm:-right-[3vw] xl:-right-[3.5vw] transition-all sm:w-[2.5vw] xl:w-[3vw] px-0 rounded-none 2xl:rounded-e-none 2xl:rounded-s-sm bg-black/80 ` +
