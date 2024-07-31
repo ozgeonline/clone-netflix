@@ -4,11 +4,11 @@ import { ChevronDown, Circle, Play } from "lucide-react"
 import dynamic from 'next/dynamic';
 
 const Dialog = dynamic(() => import('../Dialog'));
-const ActionWatchlist = dynamic(() => import('../button_controls/ActionWatchlist'));
-const ShowDialogButton = dynamic(() => import('../button_controls/ShowDialogButton'));
-const LikeDislikeButton = dynamic(() => import('../button_controls/LikeDislikeButton'));
-const MovieInfo = dynamic(() => import('../info_controls/MovieInfo'));
-const GenreList = dynamic(() => import('../info_controls/GenreList'));
+const ActionWatchlist = dynamic(() => import('../card_modals/card-button__controls/ActionWatchlist'));
+const ShowDialogButton = dynamic(() => import('../card_modals/card-button__controls/ShowDialogButton'));
+const LikeDislikeButton = dynamic(() => import('../card_modals/card-button__controls/LikeDislikeButton'));
+const MovieInfo = dynamic(() => import('../card_modals/card-info__controls/MovieInfo'));
+const GenreList = dynamic(() => import('../card_modals/card-info__controls/GenreList'));
 
 interface PreviewModalProps {
   imageString: string
@@ -63,7 +63,7 @@ export function PreviewModalInfo({
         watchList={watchList}
       />
 
-      <div className="z-50 absolute  left-0 right-0 w-full min-h-[5rem] pb-2  bg-bg_main rounded-b-sm shadow-md shadow-black/90">
+      <div className="z-50 absolute  left-0 right-0 w-full min-h-[5rem] pb-2 bg-main-dark rounded-b-sm shadow-md shadow-black/90">
         <h1 className="absolute font-bold text-[1em] line-clamp-1 left-3 -top-[1.5em] [text-shadow:_2px_2px_7px_rgb(0_0_0_/_30%)]" >
           {title}
         </h1>

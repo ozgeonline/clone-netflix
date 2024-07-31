@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useCallback, useMemo, useRef, useEffect, ReactNode } from "react";
+import { useState, useCallback, useMemo, useRef, useEffect, ReactNode, ChangeEvent} from "react";
 import debounce from 'lodash.debounce';
+import "./nonAuth.css"
 
 type UserLoginInputModalProps = {
   children?:ReactNode
@@ -23,9 +24,11 @@ export default function UserLoginInput({
   const [inputValue, setInputValue] = useState("")
   const [isTouched, setIsTouched] = useState(false)
   
-  const debouncedHandleInputChange = useRef(debounce((value) => {
-    setInputValue(value);
-  }, 300)).current;
+  const debouncedHandleInputChange = useRef(
+    debounce((value: string) => {
+      setInputValue(value);
+    }, 50)
+  ).current;
 
   useEffect(() => {
     return () => {
@@ -33,10 +36,19 @@ export default function UserLoginInput({
     };
   }, [debouncedHandleInputChange]);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setInputValue(value);
+    const inputType = (event.nativeEvent as InputEvent).inputType;
+    
+    if (inputType === 'deleteContentBackward' || inputType === 'deleteContentForward') {
+      debouncedHandleInputChange.cancel();
+      setInputValue(value);
+    } else {
+      debouncedHandleInputChange(value);
+    }
+    //console.log(value)
   };
+  
   
   const handleInputBlur = useCallback(() => {
     setIsTouched(true);
@@ -60,10 +72,12 @@ export default function UserLoginInput({
         onChange={handleInputChange}
         autoComplete="email"
         required
-        className={`input-field ${inputStyle} opacity-80 text-white rounded-sm w-full px-6
+        className={`
+          input-field ${inputStyle} 
+          opacity-80 text-white rounded-sm w-full px-6
           ${(inputValue && emailIsValid) ? `${valueAndValidateTrueColor}`
             : (!inputValue || !emailIsValid) && isTouched ? `${valueAndValidateFalseColor}` 
-            : "border border-[#3d3c3b]"
+            : "border border-muted-foreground"
           }
         `}
       />
@@ -71,13 +85,20 @@ export default function UserLoginInput({
       {isTouched && !emailIsValid && (
         <label 
           htmlFor="email"
-          className={`${errorMsgColor} absolute top-14 left-0 w-full max-w-[370px] text-xs sm:text-sm text-start`}
+          className={`
+            ${errorMsgColor}
+            absolute top-14 left-0 w-full max-w-[370px] text-xs sm:text-sm text-start
+          `}
         >
           Please enter a valid email address.
         </label>
       )}
 
-      <div className={`${isTouched && !emailIsValid && "max-sm:mt-7"}`}>
+      <div 
+        className={`
+          ${isTouched && !emailIsValid && "max-sm:mt-7"}
+        `}
+      >
         {children}
       </div>
     </div>

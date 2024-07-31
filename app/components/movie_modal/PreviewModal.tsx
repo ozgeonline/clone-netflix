@@ -4,8 +4,8 @@ import { PlayCircle  } from 'lucide-react'
 import { PreviewModalInfo } from "./PreviewModalInfo"
 import dynamic from 'next/dynamic';
 
-const ImageCard = dynamic(() => import('../modals/image_modal/ImageCard'));
-const ShowDialogButton = dynamic(() => import('../button_controls/ShowDialogButton'));
+const ImageCard = dynamic(() => import('../card_modals/ImageCard'));
+const ShowDialogButton = dynamic(() => import('../card_modals/card-button__controls/ShowDialogButton'));
 
 interface PreviewModalProps {
   id:number

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import dynamic from "next/dynamic";
 
-const UserLoginInput = dynamic(() => import("@/app/components/modals/input_modal/UserLoginInput"));
+const UserLoginInput = dynamic(() => import("@/app/components/modals/non-auth-page__modal/UserLoginInput"));
 const CardAnimationWatch = dynamic(() => import("@/app/components/section/CardAnimationWatch"));
 const FAQ = dynamic(() => import("@/app/components/section/FAQ"));
 const Footer = dynamic(() => import("@/app/components/section/Footer"));
@@ -37,17 +37,18 @@ export default async function Tr() {
             className="flex flex-col sm:flex-row w-full items-center justify-center sm:space-x-2 max-sm:space-y-2"
           >
             <UserLoginInput
-              inputWrapper="flex flex-col max-sm:w-full relative"
-              inputStyle="bg-bg_main sm:w-[370px] h-12 sm:h-14"
-              errorMsgColor="text-errTextColor"
-              valueAndValidateTrueColor="border-2 border-[#2bb871]"
-              valueAndValidateFalseColor="border-2 border-errTextColor"
+              inputWrapper="relative flex flex-col max-sm:w-full"
+              inputStyle="bg-main-dark sm:w-[370px] h-12 sm:h-14"
+              errorMsgColor="text-inputInfo-err_color"
+              valueAndValidateTrueColor="border-2 border-inputInfo-succ_color"
+              valueAndValidateFalseColor="border-2 border-inputInfo-err_color"
             />
             <button 
               type="submit"
-              className="z-10 flex items-center justify-center rounded-sm text-lg sm:text-2xl bg-background_red hover:brightness-90 w-40 sm:w-[13rem] h-12 sm:h-14"
+              className="z-10 flex items-center justify-center rounded-sm text-lg sm:text-2xl bg-main-red hover:brightness-90 w-40 sm:w-52 h-12 sm:h-14"
             >
-              Get Started <ChevronRight className="ml-2 max-sm:p-1" size="32px"/>
+              Get Started 
+              <ChevronRight className="ml-2 max-sm:p-1" size="32px"/>
             </button>
           </form>
         </>

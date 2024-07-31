@@ -8,11 +8,11 @@ import { PauseCircle, Play, Subtitles, Volume2, VolumeX, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import dynamic from 'next/dynamic'
 
-const MovieInfo = dynamic(() => import("./info_controls/MovieInfo"));
-const GenreList = dynamic(() => import("./info_controls/GenreList"));
-const CastList = dynamic(() => import("./info_controls/CastList"));
-const ActionWatchlist = dynamic(() => import("./button_controls/ActionWatchlist"));
-const LikeDislikeButton = dynamic(() => import("./button_controls/LikeDislikeButton"));
+const MovieInfo = dynamic(() => import("./card_modals/card-info__controls/MovieInfo"));
+const GenreList = dynamic(() => import("./card_modals/card-info__controls/GenreList"));
+const CastList = dynamic(() => import("./card_modals/card-info__controls/CastList"));
+const ActionWatchlist = dynamic(() => import("./card_modals/card-button__controls/ActionWatchlist"));
+const LikeDislikeButton = dynamic(() => import("./card_modals/card-button__controls/LikeDislikeButton"));
 
 type Props = {
   onClose: () => void,
@@ -157,7 +157,7 @@ export default function Dialog({
               <Link
                 href={pathName}
                 onClick={closeDialog}
-                className="fixed mt-5 mb-2 p-1 text-white cursor-pointer rounded-full border-none outline-none bg-bg_main hover:brightness-150 transition-all ease-in"
+                className="fixed mt-5 mb-2 p-1 text-white cursor-pointer rounded-full border-none outline-none bg-main-dark hover:brightness-150 transition-all ease-in"
                 scroll={false}
               >
                 <X className='size-6' />
@@ -248,10 +248,10 @@ export default function Dialog({
                 <div className="flex items-stretch sm:items-center justify-between space-x-1 mt-1">
                   <div className='flex sm:space-x-2 items-start max-sm:flex-col'>
                     <div className='flex space-x-2 max-[380px]:flex-wrap'>
-                      <div className="flex items-center max-sm:text-xs h-6 text-whiteColor_200">
+                      <div className="flex items-center max-sm:text-xs h-6 text-main-white_300">
                         {duration}h
                       </div>
-                      <div className="text-whiteColor_200 font-thin max-sm:text-xs">
+                      <div className="text-main-white_300 font-thin max-sm:text-xs">
                         {release}
                       </div>
                     </div>

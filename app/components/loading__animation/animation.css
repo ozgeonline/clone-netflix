@@ -1,0 +1,16 @@
+/*? ----------- RedCircle__Animation ---------- */
+.animate {
+  animation: spin-slow 1s linear infinite;
+}
+.animate::before{
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #e50914;
+  border-radius: 100%;
+  top: 2.6px;
+  right: -1px;
+  transform: translateX(-100%);
+}
+

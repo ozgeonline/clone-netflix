@@ -6,7 +6,7 @@ import { ChevronRight, Plus } from 'lucide-react'
 import fqaData from '@/app/data/FAQ'
 import dynamic from 'next/dynamic'
 
-const UserLoginInput = dynamic(() => import("@/app/components/modals/input_modal/UserLoginInput"));
+const UserLoginInput = dynamic(() => import("@/app/components/modals/non-auth-page__modal/UserLoginInput"));
 
 export default function FQA() {
 
@@ -57,14 +57,14 @@ export default function FQA() {
         <form 
           method="post" 
           action="/api/auth/signin" 
-          className="flex flex-col sm:flex-row items-center justify-center sm:space-x-2 max-sm:space-y-2 w-full"
+          className="flex flex-col sm:flex-row items-center justify-center sm:space-x-2 max-sm:space-y-2 w-full border-inputInfo-succ_color"
         >
           <UserLoginInput
             inputWrapper="flex flex-col max-sm:w-full relative"
             inputStyle="bg-[#141414] sm:w-[370px] h-[48px] sm:h-[56px] flex"
-            errorMsgColor="text-errTextColor"
-            valueAndValidateTrueColor="border-2 border-[#2bb871]"
-            valueAndValidateFalseColor="border-2 border-errTextColor"
+            errorMsgColor="text-inputInfo-err_color"
+            valueAndValidateTrueColor="border-2 border-inputInfo-succ_color"
+            valueAndValidateFalseColor="border-2 border-inputInfo-err_color"
           />
           <button 
             type="submit"

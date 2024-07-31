@@ -3,9 +3,9 @@
 import { useState, useEffect, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
-import Loading_Animate from '@/app/components/Loading_Animate';
+import RedCircle_Animation from '@/app/components/loading__animation/RedCircle__Animation';
 
-const SortBySelect = dynamic(() => import('@/app/components/modals/select_modal/SortBySelect'));
+const SortBySelect = dynamic(() => import('./SortBySelect'));
 
 interface Movie {
   id: number;
@@ -28,12 +28,12 @@ interface CategoryPageClientProps {
   title: string;
 }
 
-const CategoryPageClient = ({ initialData, initialSortOrder, title }: CategoryPageClientProps) => {
+const BrowseBySortClientPage = ({ initialData, initialSortOrder, title }: CategoryPageClientProps) => {
   const [data, setData] = useState(initialData);
   const [sortOrder, setSortOrder] = useState(initialSortOrder);
-  const router = useRouter();
-  const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   const handleSortChange = (order: 'default' | 'asc' | 'desc') => {
     startTransition(() => {
@@ -52,12 +52,13 @@ const CategoryPageClient = ({ initialData, initialSortOrder, title }: CategoryPa
     setData(sorted)
   }, [sortOrder]);
   
+  
   return (
     <div>
       {isPending ? (
         <>
-          <div className='absolute z-[9999] w-full h-full top-[50vh] left-1/2 -translate-x-1/2 -translate-y-1/2 bg-bg_main/80'>
-            <Loading_Animate/>
+          <div className='absolute z-[9999] w-full h-full top-[50vh] left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop-brightness-50' >
+            <RedCircle_Animation />
           </div>
           <SortBySelect data={data} sortOrder={sortOrder} onSortChange={handleSortChange} />
         </>
@@ -68,4 +69,4 @@ const CategoryPageClient = ({ initialData, initialSortOrder, title }: CategoryPa
   );
 };
 
-export default CategoryPageClient;
+export default BrowseBySortClientPage;

@@ -4,9 +4,9 @@ import Link from "next/link"
 import dynamic from "next/dynamic"
 import { memo } from "react"
 
-const GithubSignInButton = dynamic(() => import("./modals/signin_button_modal/Github_Signin_Button"));
-const GoogleSignInButton = dynamic(() => import("./modals/signin_button_modal/Google_Signin_Button"));
-const UserLoginInput = dynamic(() => import("./modals/input_modal/UserLoginInput"));
+const GithubSignInButton = dynamic(() => import("./modals/signin-button__modal/Github_Signin_Button"));
+const GoogleSignInButton = dynamic(() => import("./modals/signin-button__modal/Google_Signin_Button"));
+const UserLoginInput = dynamic(() => import("./modals/non-auth-page__modal/UserLoginInput"));
 const Footer = dynamic(() => import("@/app/components/section/Footer"));
 
 type formInfo = {

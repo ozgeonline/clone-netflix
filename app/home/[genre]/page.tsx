@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 const CarouselModal = dynamic(() => import('@/app/components/slider/slider-modal/CarouselModal'), { ssr: false });
 const PreviewModal = dynamic(() => import('@/app/components/movie_modal/PreviewModal'));
-const CategoryPageClient = dynamic(() => import('../../components/modals/select_modal/CategoryPageClient'));
+const BrowseBySortClientPage = dynamic(() => import('../../components/modals/genre__modals/BrowseBySortClientPage'));
 
 async function getData(category: string, userId: string, sortOrder: 'default' | 'asc' | 'desc', query: string ) {
   const selectFields = {
@@ -138,7 +138,7 @@ export default async function CategoryPage({
               <h1 className="text-2xl md:text-3xl">
                 Browse by sort
               </h1>
-              <CategoryPageClient initialData={data} initialSortOrder={sortOrder} title={params.title} />
+              <BrowseBySortClientPage initialData={data} initialSortOrder={sortOrder} title={params.title} />
             </div>
 
             <div 
@@ -224,7 +224,7 @@ export default async function CategoryPage({
               />
             )}
 
-            <div className={`${params.genre === "new" ? "top-28" : "top-0"}  relative px-5 sm:px-[3vw] xl:px-[3.5vw]`} >
+            <div className={`${params.genre === "new" ? "top-28" : "top-10"}  relative px-5 sm:px-[3vw] xl:px-[3.5vw]`} >
               <h1 className="relative title sm:text-xl">
                 {
                   params.genre === "new" ? "New on Netflix" : 

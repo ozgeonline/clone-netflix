@@ -1,16 +1,17 @@
 import { Bell } from "lucide-react"
 import { links } from "./Navlinks.constant"
 import NavLink from "./NavLink"
-import Image__Logo from "../modals/image_modal/ImageLogo"
+import Image__Logo from "../modals/logo-background__modal/ImageLogo"
 import Link from "next/link"
 import dynamic from 'next/dynamic';
 
 const UserNav = dynamic(() => import('./UserNav'));
 const ScrollingElementSSR = dynamic(() => import('./ScrollingElementSSR'));
-const SearchMovieInput = dynamic(() => import('../modals/input_modal/SearchMovieInput'));
+const SearchMovieInput = dynamic(() => import('./SearchMovieInput'));
 const DropdownMenu = dynamic(() => import('./DropdownMenu'));
 
 export default function Navbar() {
+  
   return (
     <ScrollingElementSSR>
       <div className="flex w-full justify-between items-start py-2 pl-2 md:p-5">

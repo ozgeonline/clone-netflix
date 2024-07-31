@@ -29,7 +29,10 @@ export default function ActionWatchlist({
           <Button
             size="icon"
             variant="link"
-            className={`${actionStyle} border rounded-full bg-bg_main border-whiteColor_100 opacity-70 hover:brightness-150 hover:ease-in`}
+            className={`
+              ${actionStyle}
+              border rounded-full bg-main-dark border-main-white_100 opacity-70 hover:brightness-150 hover:ease-in
+            `}
           > 
             <Check />
           </Button>
@@ -41,7 +44,10 @@ export default function ActionWatchlist({
           <Button
             size="icon"
             variant="link"
-            className={`${actionStyle} border rounded-full bg-bg_main border-whiteColor_100 opacity-70 hover:brightness-150 hover:ease-in`}
+            className={`
+              ${actionStyle}
+              border rounded-full bg-main-dark border-main-white_100 opacity-70 hover:brightness-150 hover:ease-in
+            `}
           >
             <Plus />
           </Button>

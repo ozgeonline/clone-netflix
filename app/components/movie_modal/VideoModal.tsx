@@ -71,7 +71,7 @@ export default function VideoModal({
       <source src={source} type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-    <div className="w-full absolute bottom-0 bg-none -z-10 shadow-[0_5px_30px_90px_rgba(0,0,0,1)] shadow-bg_main transform rotate-180"></div>
+    <div className="w-full absolute bottom-0 bg-none -z-10 shadow-[0_5px_30px_90px_rgba(0,0,0,1)] shadow-bg-main-dark transform rotate-180"></div>
     </>
   )
 }

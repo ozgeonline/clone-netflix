@@ -1,7 +1,7 @@
 "use client"
 
 import { InfoIcon, Play } from "lucide-react"
-import ShowDialogButton from "../button_controls/ShowDialogButton"
+import ShowDialogButton from "../card_modals/card-button__controls/ShowDialogButton"
 
 interface iAppProps {
   title: string

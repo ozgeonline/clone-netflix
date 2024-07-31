@@ -53,10 +53,17 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        bg_main: "#141414",
-        errTextColor: "#eb3942",
-        background_red: "#e50914",
-        whiteColor_100: "#ffffffb3",
+        inputInfo: {
+          err_color: "hsl(var(--inputInfoError))",
+          succ_color: "hsl(var(--inputInfoSuccess))",
+        },
+        main: {
+          red : "hsl(var(--main_red))",
+          dark : "hsl(var(--main_dark))",
+          white_100 : "hsl(var(--main_white_100))",
+          white_300 : "hsl(var(--main_white_300))",
+          match_color : "hsl(var(--main_match_color))"
+        },
         whiteColor_200: "#bcbcbc",
         grayColor_700:"#777"
       },
@@ -74,10 +81,15 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        // "animate-pulse": {
+        //   '0%': { left: '3.5vw' },
+        //   '100%': { left: '100%' },
+        // }
       },
     },
   },
