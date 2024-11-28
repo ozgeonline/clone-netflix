@@ -60,7 +60,7 @@ model User {
 model Movie {
   id           Int            @id @unique @default(autoincrement())
   imageString  String
-  title        String         
+  title        String         @unique
   age          Int
   duration     Float
   overview     String
@@ -70,18 +70,18 @@ model Movie {
   cast         String
   genres       String
   WatchLists   WatchList[] // Relation to WatchList model
-  WatchHistory WatchHistory[] // Relation to WatchHistory model
 
   createdAt DateTime @default(now())
 
   @@schema("public")
+
+  WatchHistory WatchHistory[]
 }
 
 model WatchList {
   id     String @id @default(uuid())
-  userId String
-  movieId Int?
-  
+  userId String @unique
+  movieId Int? @unique
   Movie   Movie? @relation(fields: [movieId], references: [id])
 
   @@schema("public")

@@ -2,14 +2,20 @@ import prisma from "../utils/db"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "../utils/auth"
 import dynamic from 'next/dynamic';
-import React, { Suspense }  from 'react';
-import SuspenseWithDelay from '../components/slider/slider-modal/SuspenseWithDelay';
-import RedCircle_Animation from "../components/loading__animation/RedCircle__Animation";
+import React  from 'react';
+import "./home.css"
+import "../components/card_modals/card.css"
+import "../components/carousel__modal/carousel.css"
+import { CardProvider } from "../components/card_modals/CardContext";
+// import ContinueWatchingCard from "../components/card_modals/continue-watching-card__modal/ContinueWatchingCard";
+import { VideoProvider } from "../components/movie__modal/VideoContext";
+import ContinueWatchingCardModal from "../components/card_modals/continue-watching-card__modal/ContinueWatchingCard-ui";
+import ContinueWatchingSection from "../components/card_modals/continue-watching-card__modal/ContinueWatchingSection";
 
-const MovieVideo = dynamic(() => import("../components/movie_modal/MovieVideo"), { suspense: true });
-const CarouselModal = dynamic(() => import('../components/slider/slider-modal/CarouselModal'), { ssr: false, suspense: true });
-const PreviewModal = dynamic(() => import('../components/movie_modal/PreviewModal'), { suspense: true });
-const Top10TV = dynamic(() => import('../components/slider/Top10TV'), { suspense: true });
+const MovieVideo = dynamic(() => import("../components/movie__modal/MovieVideo"), { suspense: true });
+const CarouselModal = dynamic(() => import('../components/carousel__modal/CarouselModal'), { ssr: false, suspense: true });
+const PreviewCard = dynamic(() => import('../components/card_modals/PreviewCard'), { suspense: true });
+const Top10TV = dynamic(() => import('../components/card_modals/Top10TV'), { suspense: true });
 
 async function getData(userId:string) {
   const data = await prisma.movie.findMany({
@@ -32,12 +38,13 @@ async function getData(userId:string) {
       },
     },
     orderBy: {
-      createdAt: "asc",
+      createdAt: "desc",
     },
     take:50
   })
   return data
 }
+
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
@@ -45,48 +52,123 @@ export default async function HomePage() {
   const movie = initialData[0];
 
   return (
-    <SuspenseWithDelay delay={500} fallback={<RedCircle_Animation />}>
-      <div className="overflow-hidden">
-        <MovieVideo
-          key={movie.id}
-          id={movie.id}
-          imageString={movie.imageString}
-          videoSource={movie.videoSource}
-          title={movie.title}
-          overview={movie.overview}
-        />
-    
-        <div 
-          className="w-full flex flex-col px-5 sm:px-[3vw] xl:px-[3.5vw] -mt-[20vw] md:-mt-[15vw] lg:-mt-36 pb-24 space-y-1 sm:space-y-4 lg:space-y-8 xl:space-y-12 mb-14"
-        >
-          <Section title="New on Netflix" movies={initialData.filter(movie => movie.release === 2024)} />
-          <SectionTop10 title="Top 10 TV Shows Today" movies={initialData.filter(movie => movie.category === "show").slice(0, 10)} />
-          <Section title="Family Time TV" movies={initialData.filter(movie => movie.age < 13)} />
-          <Section title="Comedy Movies" movies={initialData.filter(movie => movie.category === "movie" && movie.genres.toLowerCase().includes("comedy"))} />
-          <SectionTop10 title="Top 10 Movies Today" movies={initialData.filter(movie => movie.category === "movie").slice(0, 10)} />
-          <Section title="TV Dramas" movies={initialData.filter(movie => movie.category === "show" && movie.genres.toLowerCase().includes("dramas"))} />
-          <Section title="Get In On the Action" movies={initialData.filter(movie => movie.genres.toLowerCase().includes("action"))} />
-        </div>
+    <>
+      <div className="overflow-hidden ">
+        
+        <VideoProvider>
+          <MovieVideo
+              key={movie.id}
+              id={movie.id}
+              imageString={movie.imageString}
+              videoSource={movie.videoSource}
+              title={movie.title}
+              overview={movie.overview}
+              cast={movie.cast}
+              genres={movie.genres}
+              age={movie.age}
+              release={movie.release}
+              duration={movie.duration}
+              watchList={movie.WatchLists.length > 0 ? true : false}
+              watchlistId={movie.WatchLists[0]?.id as string}
+              movieId={movie.id} 
+            />
+
+          <div className="padding-layout sectionsWrapper space-y-1 sm:space-y-4 lg:space-y-8 xl:space-y-12 mb-14 relative">
+            <CardProvider>
+              <CarouselModal
+                sliderButtonSection={true}
+                source={movie.videoSource}
+                id={initialData.map(movie => movie.id)}
+                key={initialData.map(movie => movie.id).join('-')}
+                sectionTitle="Continue" filterWatchedVideos={true}
+                title={initialData.map(movie => movie.title).join(', ')}
+              >
+                {initialData.map((data) => (
+                  <div 
+                    key={data.id}
+                    className="w-auto h-full"
+                    aria-label={`${data.id} : homepage`}
+                    >
+                    <ContinueWatchingCardModal 
+                      videoSource={data.videoSource}
+                      imageString={data.imageString}
+                      title={data.title}
+                      id={data.id}         
+                      alt={`${data.id}:Continue Watching Video`}     
+                    />
+                  </div>
+                ))}
+              </CarouselModal>
+              </CardProvider>
+           
+           
+            <>
+              <Section 
+                sectionTitle="New"
+                // title={initialData.filter(movie => movie.release === 2024).map(movie => movie.title).join(', ')}
+                movies={initialData.filter(movie => movie.release === 2024)}
+              />
+              <SectionTop10 
+                sectionTitle="Top 10 TV Shows Today"
+                // title={initialData.filter(movie => movie.category === "show").slice(0, 10).map(movie => movie.title).join(', ')}
+                movies={initialData.filter(movie => movie.category === "show").slice(0, 10)}
+              />
+              <Section 
+                sectionTitle="Family Time TV" 
+                // title={initialData.filter(movie => movie.age < 13).map(movie => movie.title).join(', ')}
+                movies={initialData.filter(movie => movie.age < 13)}
+              />
+              <Section 
+                sectionTitle="Comedy Movies" 
+                // title={initialData.filter(movie => movie.category === "movie" && movie.genres.toLowerCase().includes("comedy")).map(movie => movie.title).join(', ')}
+                movies={initialData.filter(movie => movie.category === "movie" && movie.genres.toLowerCase().includes("comedy"))}
+              />
+              <SectionTop10 
+                sectionTitle="Top 10 Movies Today" 
+                // title={initialData.filter(movie => movie.category === "movie").slice(0, 10).map(movie => movie.title).join(', ')}
+                movies={initialData.filter(movie => movie.category === "movie").slice(0, 10)}
+              />
+              <Section 
+                sectionTitle="TV Dramas" 
+                // title={initialData.filter(movie => movie.category === "show" && movie.genres.toLowerCase().includes("dramas")).map(movie => movie.title).join(', ')}
+                movies={initialData.filter(movie => movie.category === "show" && movie.genres.toLowerCase().includes("dramas"))}
+              />
+              <Section 
+                sectionTitle="Get In On the Action" 
+                // title={initialData.filter(movie => movie.genres.toLowerCase().includes("action")).map(movie => movie.title).join(', ')}
+                movies={initialData.filter(movie => movie.genres.toLowerCase().includes("action"))}
+              />
+            </>
+          </div>
+        </VideoProvider>
       </div>
-    </SuspenseWithDelay>
+    </>
   );
 }
 
 interface SectionProps {
-  title: string;
+  sectionTitle: string;
   movies: any[];
 }
 
-const Section: React.FC<SectionProps> = ({ title, movies }) => (
-  <div>
+const Section: React.FC<SectionProps> = ({ sectionTitle, movies }) => (
+  
+  <CardProvider>
     <CarouselModal
-      sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
-      sliderClass="space-x-1 sm:space-x-2"
-      title={title}
+      // filterWatchedVideos={false}
+      sliderButtonSection={true}
+      sectionTitle={sectionTitle}
+      id={movies.map(movie => movie.id)}
+      key={movies.map(movie => movie.id).join('-')}
+      // title={movies.map(movie => movie.title).toString()}
     >
       {movies.map(movie => (
-        <div className="relative w-full h-full" key={movie.id} aria-label={`${movie.id}.Slider-item`}>
-          <PreviewModal
+        <div 
+          key={movie.id} 
+          className="relative w-full h-full"
+          aria-label={`Section -- ${movie.id}.Slider-item`}
+        >
+          <PreviewCard
             key={movie.id}
             id={movie.id}
             imageString={movie.imageString}
@@ -107,15 +189,17 @@ const Section: React.FC<SectionProps> = ({ title, movies }) => (
         </div>
       ))}
     </CarouselModal>
-  </div>
+  </CardProvider>
 );
 
-const SectionTop10: React.FC<SectionProps> = ({ title, movies }) => (
-  <div className="">
+const SectionTop10: React.FC<SectionProps> = ({ sectionTitle, movies }) => (
+  <CardProvider>
     <CarouselModal
-      sliderButtonClass="h-[30vw] sm:h-[22vw] md:h-[17vw] lg:h-[14vw] xl:h-[10.5vw]"
-      title={title}
-     
+      sliderButtonSectionTop10={true}
+      sectionTitle={sectionTitle}
+      id={movies.map(movie => movie.id)}
+      key={movies.map(movie => movie.id).join('-')}
+      // title={movies.map(movie => movie.title).toString()}
     >
       {movies.map((movie,index) => (
         <Top10TV
@@ -137,5 +221,5 @@ const SectionTop10: React.FC<SectionProps> = ({ title, movies }) => (
         />
       ))}
     </CarouselModal>
-  </div>
+  </CardProvider>
 );

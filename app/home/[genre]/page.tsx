@@ -1,14 +1,22 @@
 import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth/next";
-import MovieVideo from "@/app/components/movie_modal/MovieVideo";
+import MovieVideo from "@/app/components/movie__modal/MovieVideo";
 import dynamic from 'next/dynamic';
+import "../home.css"
+import { CardProvider } from "@/app/components/card_modals/CardContext";
+import { VideoProvider } from "@/app/components/movie__modal/VideoContext";
 
-const CarouselModal = dynamic(() => import('@/app/components/slider/slider-modal/CarouselModal'), { ssr: false });
-const PreviewModal = dynamic(() => import('@/app/components/movie_modal/PreviewModal'));
-const BrowseBySortClientPage = dynamic(() => import('../../components/modals/genre__modals/BrowseBySortClientPage'));
+const CarouselModal = dynamic(() => import('@/app/components/carousel__modal/CarouselModal'), { ssr: false });
+const PreviewCard = dynamic(() => import('@/app/components/card_modals/PreviewCard'));
+const BrowseBySortClientPage = dynamic(() => import('../../components/ui/genre__modals/BrowseBySortClientPage'));
 
-async function getData(category: string, userId: string, sortOrder: 'default' | 'asc' | 'desc', query: string ) {
+async function getData(
+  category: string, 
+  userId: string, 
+  sortOrder: 'default' | 'asc' | 'desc', 
+  query: string 
+) {
   const selectFields = {
     id: true,
     title: true,
@@ -127,26 +135,42 @@ export default async function CategoryPage({
       data.sort((a, b) => 
         sortOrder === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)
       );
+      //PreviewCard.propTypes.openDialogCardStyle.prototype === false
     }
 
+    //const openDialogCardStyle = params.genre === "query" || params.genre === "audio";
+
+    const sectionTitle =  
+      params.genre === "new" ? "New on web" : 
+      params.genre === "kids" ? "We Think You’ll Love These" : 
+      movie.category === "show" ? "Popular TV Series" :
+      movie.category === "movie" ? "Popular Movie Series" : 
+      "more Series"
+    
+
   return (
+    <VideoProvider>
+      <CardProvider>
     <div>
       {
         params.genre === "audio" ? (
-          <div className="top-14 sm:top-24 relative px-5 sm:px-[3vw] xl:px-[3.5vw]">
+          <>
+          <div className="top-14 sm:top-24 relative padding-layout">
             <div className="flex max-sm:flex-col max-sm:space-y-2 sm:justify-between sm:items-center mb-14 sm:mb-24 ">
               <h1 className="text-2xl md:text-3xl">
                 Browse by sort
               </h1>
-              <BrowseBySortClientPage initialData={data} initialSortOrder={sortOrder} title={params.title} />
+              <BrowseBySortClientPage 
+                initialData={data} 
+                initialSortOrder={sortOrder} 
+                title={params.title} 
+              />
             </div>
 
-            <div 
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-[0.4vw] gap-y-[5.5vw] md:gap-y-[5.5vw] lg:gap-y-[4.5vw] xl:gap-y-[4vw]"
-            >
+            <div className="genre-grid-layout">
               {data.map((movie) => (
                 <div key={movie.title} className="relative w-full">
-                  <PreviewModal
+                  <PreviewCard
                     key={movie.id}
                     id={movie.id}
                     imageString={movie.imageString}
@@ -162,21 +186,20 @@ export default async function CategoryPage({
                     watchlistId={movie.WatchLists[0]?.id as string}
                     movieId={movie.id}
                     imageCardWrapper={true}
-                    imageStyle="rounded-sm"
+                    imageStyle="rounded-sm" 
                   />
                 </div>
               ))}
             </div>
         </div>
+        </>
         
         ) : params.genre === "query" && data.length>0 ? (
-          <div className="flex flex-col top-14 sm:top-32 relative px-5 sm:px-[3vw] xl:px-[3.5vw]">
-            <div 
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-[0.4vw] gap-y-[5.5vw] md:gap-y-[5.5vw] lg:gap-y-[4.5vw] xl:gap-y-[4vw]"
-            >
+          <div className="flex flex-col top-14 sm:top-32 relative padding-layout">
+            <div className="genre-grid-layout">
               {data.map((movie) => (
                 <div key={movie.title} className="relative w-full">
-                  <PreviewModal
+                  <PreviewCard
                     key={movie.id}
                     id={movie.id}
                     imageString={movie.imageString}
@@ -215,56 +238,66 @@ export default async function CategoryPage({
           <>
             {movie &&  params.genre !== "new" && (
               <MovieVideo
-                key={movie.id}
-                id={movie.id}
-                imageString={movie.imageString} 
-                videoSource={movie.videoSource} 
-                title={movie.title} 
-                overview={movie.overview} 
-              />
-            )}
-
-            <div className={`${params.genre === "new" ? "top-28" : "top-10"}  relative px-5 sm:px-[3vw] xl:px-[3.5vw]`} >
-              <h1 className="relative title sm:text-xl">
-                {
-                  params.genre === "new" ? "New on Netflix" : 
-                  params.genre === "kids" ? "We Think You’ll Love These" : 
-                  movie.category === "show" ? "Popular TV Series" :
-                  movie.category === "movie" ? "Popular Movie Series" : 
-                  "Netflix Series"
-                }
-              </h1>
-              <CarouselModal
-                 sliderButtonClass="h-[25vw] sm:h-[20vw] md:h-[13vw] lg:h-[10vw] xl:h-[8.3vw]"
-                 sliderClass=""
-                //  title={movie.title}
-              >
-                {data.map((movie) => (
-                  <div key={movie.id} className="relative w-full h-full " aria-label={`${movie.id}.Slider-item`}>
-                    <PreviewModal 
                       key={movie.id}
-                      id={movie.id}
                       imageString={movie.imageString}
                       videoSource={movie.videoSource}
                       title={movie.title}
                       overview={movie.overview}
-                      age={movie.age}
                       cast={movie.cast}
                       genres={movie.genres}
+                      age={movie.age}
                       release={movie.release}
                       duration={movie.duration}
                       watchList={movie.WatchLists.length > 0 ? true : false}
                       watchlistId={movie.WatchLists[0]?.id as string}
-                      movieId={movie.id}
-                      imageCardWrapper={true}
-                      imageStyle="rounded-sm max-lg:brightness-75 w-full h-full"
-                    />
-                  </div>
-                ))}
-              </CarouselModal>
+                      movieId={movie.id} id={movie.id}              />
+            )}
+
+            <div className={`${params.genre === "new" ? "top-28" : "top-10"}  relative padding-layout`} >
+              {/* <h1 className="relative title sm:text-xl">
+                {
+                  params.genre === "new" ? "New on web" : 
+                  params.genre === "kids" ? "We Think You’ll Love These" : 
+                  movie.category === "show" ? "Popular TV Series" :
+                  movie.category === "movie" ? "Popular Movie Series" : 
+                  "more Series"
+                }
+              </h1> */}
+              <>
+                <CarouselModal 
+                  sliderButtonSection={true}
+                  sectionTitle={sectionTitle}// optional
+                  id={data.map(movie => movie.id)}
+                  key={data.map(movie => movie.id).join('-')}
+                >
+                  {data.map((movie) => (
+                    <div key={movie.id} className="relative w-full h-full " aria-label={`${movie.id}.Slider-item`}>
+                      <PreviewCard 
+                        key={movie.id}
+                        id={movie.id}
+                        imageString={movie.imageString}
+                        videoSource={movie.videoSource}
+                        title={movie.title}
+                        overview={movie.overview}
+                        age={movie.age}
+                        cast={movie.cast}
+                        genres={movie.genres}
+                        release={movie.release}
+                        duration={movie.duration}
+                        watchList={movie.WatchLists.length > 0 ? true : false}
+                        watchlistId={movie.WatchLists[0]?.id as string}
+                        movieId={movie.id}
+                        imageCardWrapper={true}
+                        imageStyle="rounded-sm max-lg:brightness-75 w-full h-full" />
+                    </div>
+                  ))}
+                </CarouselModal>
+              </>
             </div>
           </>
         )}
       </div>
+      </CardProvider>
+      </VideoProvider>
     )
   }

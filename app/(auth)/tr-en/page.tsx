@@ -4,10 +4,10 @@ import { redirect } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import dynamic from "next/dynamic";
 
-const UserLoginInput = dynamic(() => import("@/app/components/modals/non-auth-page__modal/UserLoginInput"));
-const CardAnimationWatch = dynamic(() => import("@/app/components/section/CardAnimationWatch"));
-const FAQ = dynamic(() => import("@/app/components/section/FAQ"));
-const Footer = dynamic(() => import("@/app/components/section/Footer"));
+const EmailLoginInputModal = dynamic(() => import("@/app/components/ui/non-auth-section__modals/login-ui-controls/EmailLoginInputModal"));
+const CardAnimationWatch = dynamic(() => import("@/app/components/ui/non-auth-section__modals/section-ui/CardAnimationWatch"));
+const FAQ = dynamic(() => import("@/app/components/ui/non-auth-section__modals/section-ui/FAQ"));
+const Footer = dynamic(() => import("@/app/components/ui/non-auth-section__modals/section-ui/Footer"));
 
 export default async function Tr() {
   const session = await getServerSession(authOptions);
@@ -36,7 +36,7 @@ export default async function Tr() {
             action="/api/auth/signin" 
             className="flex flex-col sm:flex-row w-full items-center justify-center sm:space-x-2 max-sm:space-y-2"
           >
-            <UserLoginInput
+            <EmailLoginInputModal
               inputWrapper="relative flex flex-col max-sm:w-full"
               inputStyle="bg-main-dark sm:w-[370px] h-12 sm:h-14"
               errorMsgColor="text-inputInfo-err_color"

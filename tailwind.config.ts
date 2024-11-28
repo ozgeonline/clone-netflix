@@ -62,10 +62,11 @@ module.exports = {
           dark : "hsl(var(--main_dark))",
           white_100 : "hsl(var(--main_white_100))",
           white_300 : "hsl(var(--main_white_300))",
-          match_color : "hsl(var(--main_match_color))"
+          match_color : "hsl(var(--main_match_color))",
+          login_input_info_color : "hsl(var(--main_login_input_info_color))"
         },
-        whiteColor_200: "#bcbcbc",
-        grayColor_700:"#777"
+        // whiteColor_200: "#bcbcbc",
+        // grayColor_700:"#777"
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -81,11 +82,18 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        "slide-X": {
+          from: { '0%': { transform: 'rotateX(-100%)' }},
+          to: { '100%': { transform: 'rotateX(0)' }}
+         
+         ,
+        }
         
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+         "slide-X":  "slide-X 5s infinite linear"
         // "animate-pulse": {
         //   '0%': { left: '3.5vw' },
         //   '100%': { left: '100%' },

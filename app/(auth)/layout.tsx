@@ -1,10 +1,10 @@
 import { ReactNode } from "react"
 import dynamic from "next/dynamic"
 
-const Image__Bg = dynamic(() => import("../components/modals/logo-background__modal/ImageBackground"));
-const Image__Logo = dynamic(() => import("../components/modals/logo-background__modal/ImageLogo"));
-const Lang__Select = dynamic(() => import("../components/modals/non-auth-page__modal/LangSelect"));
-const Signin_Button = dynamic(() => import("../components/modals/signin-button__modal/Signin_Button"));
+const Image__Bg = dynamic(() => import("../components/ui/logo-bg__modals/ImageBackground"));
+const Image__Logo = dynamic(() => import("../components/ui/logo-bg__modals/ImageLogo"));
+const Lang__Select = dynamic(() => import("../components/ui/non-auth-section__modals/LangSelect"));
+const Signin_Button = dynamic(() => import("../components/signin-button__modals/Signin_Button"));
 
 export default function AuthLayout({children}:{children: ReactNode}){
   return (

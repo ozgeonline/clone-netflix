@@ -1,0 +1,30 @@
+.movieButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(var(--radius) - 4px);
+  transition: all ease-in 150ms;
+  height: 6vw;
+}
+
+.movieButtons:hover {
+  filter: brightness(0.9);
+}
+
+@media (min-width:640px) {
+  .movieButtons {
+    height: 5vw;
+  }
+}
+
+@media (min-width:768px) {
+  .movieButtons {
+    height: 4vw;
+  }
+}
+
+@media (min-width:1024px) {
+  .movieButtons {
+    height: 3vw;
+  }
+}

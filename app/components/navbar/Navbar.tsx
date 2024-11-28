@@ -1,40 +1,54 @@
 import { Bell } from "lucide-react"
-import { links } from "./Navlinks.constant"
-import NavLink from "./NavLink"
-import Image__Logo from "../modals/logo-background__modal/ImageLogo"
+import { links } from "../../data/Navlinks.constant"
+import NavLink from "./ui-controls/NavLink"
+import Image__Logo from "../ui/logo-bg__modals/ImageLogo"
 import Link from "next/link"
 import dynamic from 'next/dynamic';
 
-const UserNav = dynamic(() => import('./UserNav'));
-const ScrollingElementSSR = dynamic(() => import('./ScrollingElementSSR'));
-const SearchMovieInput = dynamic(() => import('./SearchMovieInput'));
-const DropdownMenu = dynamic(() => import('./DropdownMenu'));
+const UserNav = dynamic(() => import('./user-controls-button/UserNavServer'));
+const ScrollingElementSSR = dynamic(() => import('./ui-controls/ScrollingElementSSR'));
+const SearchMovieInput = dynamic(() => import('./ui-controls/SearchMovieInput'));
+const DropdownNavbarMenu = dynamic(() => import('./ui-controls/DropdownNavbarMenu'));
 
 export default function Navbar() {
-  
   return (
     <ScrollingElementSSR>
       <div className="flex w-full justify-between items-start py-2 pl-2 md:p-5">
         <div className="flex mx-5">
-          <Image__Logo logoStyle="relative flex items-center h-5 w-8 md:h-[1.7vw] sm:w-[11vw]" />
+          <Image__Logo 
+            logoStyle="relative flex items-center h-5 md:h-[1.7vw] w-8 sm:w-[11vw]" 
+          />
           <ul className="hidden lg:flex md:gap-x-3 lg:gap-x-5">
             {links.map((link) => (
-              <NavLink key={link.id} path={link.href} label={link.name} />
+              <NavLink
+                key={link.id}
+                path={link.href}
+                label={link.name}
+              />
             ))}
           </ul>
           
-          <DropdownMenu>
-            <ul className="flex flex-col items-center lg:hidden bg-black/90 w-[45vw] min-w-[135px] gap-x-5 space-y-8 -ml-10 border-t-white border first:pt-2 last:pb-2">
+          <DropdownNavbarMenu>
+            <ul className="dropdown-navbar-wrapper" >
               {links.map((link) => (
-                <NavLink key={link.id} path={link.href} label={link.name} />
+                <NavLink 
+                  key={link.id} 
+                  path={link.href} 
+                  label={link.name}
+                />
               ))}
             </ul>
-          </DropdownMenu>
+          </DropdownNavbarMenu>
         </div>
        
-        <div className="relative flex items-center lg:space-x-5 space-x-2 px-5 sm:px-[3vw] xl:px-[3.5vw]">
+        <div className="padding-layout relative flex items-center lg:space-x-5 space-x-2">
           <SearchMovieInput />
-          <Link className="hidden lg:flex cursor-pointer " href="/home/kids">Kids</Link>
+          <Link 
+            className="hidden lg:flex cursor-pointer" 
+            href="/home/kids"
+          >
+            Kids
+          </Link>
           <Bell className="hidden lg:flex size-5 text-gray-300 cursor-not-allowed" />
           <UserNav />
         </div>

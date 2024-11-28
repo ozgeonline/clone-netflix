@@ -1,7 +1,10 @@
 module.exports = {
   plugins: {
     tailwindcss: {},
-    autoprefixer: {},
+    // autoprefixer: {},
+    // 'postcss-reporter': {
+    //   clearReportedMessages: true,
+    // },
   },
 }
 

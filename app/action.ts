@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import prisma from "./utils/db";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "./utils/auth";
+import { title } from "process";
 
 export async function addTowatchlist(formData: FormData) {
   "use server";
@@ -13,7 +14,7 @@ export async function addTowatchlist(formData: FormData) {
   const session = await getServerSession(authOptions);
   const userId = session?.user?.email as string;
 
-  const existingEntry = await prisma.watchList.findFirst({
+  const existingEntry = await prisma.watchList.findUnique({
     where: {
       userId,
       movieId: Number(movieId),
@@ -24,7 +25,6 @@ export async function addTowatchlist(formData: FormData) {
     console.log("Movie is already in the watchlist");
     return;
   }
-
   await prisma.watchList.create({
     data: {
       userId,
@@ -48,7 +48,6 @@ export async function deleteFromWatchlist(formData: FormData) {
   });
 
   if (existingItem) {
-    // If the item exists, proceed with deletion
     await prisma.watchList.delete({
       where: {
         id: watchlistId,
